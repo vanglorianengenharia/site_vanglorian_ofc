@@ -11,7 +11,7 @@ export function HeaderNavigation() {
       <div className={styles.containerHeaderNav}>
         <div className={styles.menuSandwichBlock}>
           <button  className={styles.menuSandwichBtn}>
-            <Menu />
+            <Menu color="#002100"/>
             <span>Menu</span>
           </button>
         </div>
