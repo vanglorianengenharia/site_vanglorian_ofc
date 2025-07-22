@@ -1,0 +1,53 @@
+.introVanglorianComponent{
+  background-color: rgba(141, 108, 0, 0.22);
+  width: 100%;
+}
+.introVanglorianContent{
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10rem 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 150%;
+  color: #705700;
+  font-family: var(--font-montserrat);
+}
+.introVanglorianParagraph1{
+  margin-bottom: 0.6rem;
+}
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.introVanglorianParagraph1,
+.introVanglorianParagraph2 {
+  opacity: 0;
+  animation: fadeSlideIn 1s ease forwards;
+}
+.introVanglorianParagraph1 {
+  animation-delay: 0.3s;
+}
+.introVanglorianParagraph2 {
+  animation-delay: 0.9s;
+}
+@media (max-width: 1000px){
+  .introVanglorianContent{
+    max-width: 23rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 110%;
+    padding: 2.5rem 0.5rem;
+}
+}
+@media (max-width: 350px){
+  .introVanglorianContent{
+    font-size: 1rem;
+}
+}

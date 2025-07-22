@@ -1,5 +1,32 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Montserrat, DM_Serif_Display, Outfit, Roboto } from "next/font/google";
+
+
+
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['100','200', '300' ,'400','500', '600', '700', '800', '900'],
+  variable: '--font-montserrat',
+})
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-dmSerifDisplay',
+})
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['100','200', '300' ,'400','500', '600', '700', '800', '900'],
+  variable: '--font-outfit',
+})
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-roboto",
+});
+
+
 
 
 export const metadata: Metadata = {
@@ -45,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${montserrat.variable} ${dmSerifDisplay.variable} ${outfit.variable} ${roboto.variable}`}>
       <body>
         {children}
       </body>
