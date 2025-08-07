@@ -1,6 +1,7 @@
 .introVanglorianComponent{
   background-color: rgba(141, 108, 0, 0.22);
   width: 100%;
+  margin-bottom: 4rem;
 }
 .introVanglorianContent{
   max-width: 800px;

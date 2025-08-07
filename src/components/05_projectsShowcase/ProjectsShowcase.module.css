@@ -1,0 +1,191 @@
+.projectsShowcaseContainer {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Bloco base de cada seção */
+.projectsShowcaseContent,
+.projectsShowcaseContentLanc {
+  width: 100%;
+  max-width: 1280px;
+  scroll-margin-top: 3vh;
+}
+
+/* Título */
+.emExecucaoTitle{
+  margin-top: 3rem;
+}
+.emExecucaoTitle,
+.lancamTitle {
+  margin-bottom: 2rem;
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+  border: 1px solid #705700;
+  border-right: none;
+  border-left: none;
+  max-width: fit-content;
+  padding: 1rem 2rem 2rem 0;
+  margin-bottom: 3rem;
+  color: #705700;
+}
+
+/* Área do conteúdo com imagem e texto lado a lado */
+.emExecucaoContent,
+.lancamContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background-color: #002a14;
+  border-radius: 0.5rem;
+
+}
+
+/* Área que contém a imagem em retrato */
+.slideImageContent {
+  width: 100%;
+  aspect-ratio: 2.5 / 3;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.imageIconeNomeResidencial{
+  position: absolute;
+  width: 80%;
+  top: 0;
+  right: -2rem;
+}
+/* Imagem em si */
+.imageEmExec,
+.imageLancam {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+/* Texto */
+.paragraphContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  /* max-width: 32rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  min-height: 70vh; */
+}
+
+.paragraphText {
+  font-family: var(--font-outfit);
+  font-size: 2.1rem;
+  color: #fff;
+  margin: 0 auto;
+  max-width: 85%;
+  font-weight: 100;
+  line-height: 1.5;
+}
+
+/* Responsivo */
+@media(max-width: 1000px){
+  .paragraphText{
+    font-size: 1.8rem;
+  }
+     .imageIconeNomeResidencial{
+
+  width: 95%;
+
+}
+}
+@media(max-width: 850px){
+  .paragraphText{
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 600px) {
+  .emExecucaoTitle,
+  .lancamTitle {
+    margin-bottom: 1rem;
+    font-family: var(--font-montserrat);
+    font-weight: 500;
+    border: 1px solid #705700;
+    border-right: none;
+    border-left: none;
+    max-width: fit-content;
+    padding: 1rem 2rem 1.5rem 0;
+    margin-bottom: 3rem;
+    color: #705700;
+}
+  .projectsShowcaseContent,
+  .projectsShowcaseContentLanc {
+    padding: 0rem;
+  }
+
+  .emExecucaoContent,
+  .lancamContent {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    /* width: 92%; */
+  }
+  .imageEmExec, .imageLancam{
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  .slideImageContent {
+    aspect-ratio: 3 / 4;
+  }
+
+  .paragraphText {
+    text-align: center;
+    max-width: 80%;
+    padding-bottom: 2rem;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+
+  .slideImageContent {
+    aspect-ratio: 4 / 5;
+  }
+    .imageIconeNomeResidencial{
+
+  width: 96%;
+
+}
+}
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+ 
+
+  .videoStatementParagraph {
+    text-align: center;
+    font-size: 1.2rem;
+
+    padding-bottom: 1.5rem;
+    
+  }
+}
+/* Responsivo */
+@media (max-width: 500px) {
+  .videoStatementParagraph {
+    text-align: center;
+    font-size: 1.2rem;
+
+    padding: 0rem 0 1.5rem 0;
+  }
+}

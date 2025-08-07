@@ -21,8 +21,7 @@ export function CompanyIntroVideo(){
   return(
     <div className={styles.wrapperCompanyIntroVideo}>
       <div className={styles.content}>
-        <div className={styles.backgrounGradient}>
-          <div>
+          <div className={styles.videoBlock}>
             <video 
               autoPlay
               muted
@@ -32,13 +31,14 @@ export function CompanyIntroVideo(){
               <source src="/videos/teaser.webm" type="video/webm" />
             </video>
           </div>
+          <div className={styles.backgrounGradient}></div>
           <div className={styles.textBlock}>
             <span className={styles.textTitle1}>Construtora e Incorporadora</span>
             <span className={styles.words1}>{listWord1[indexWordsState]}</span>
             <h1 className={styles.textH1}>Vanglorian</h1>
               <span className={styles.words2}>{listWord2[indexWordsState]}</span>
           </div>
-        </div>
+        
       </div>
     </div>
 

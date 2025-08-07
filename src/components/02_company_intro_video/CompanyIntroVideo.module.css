@@ -1,48 +1,65 @@
-/* .wrapperCompanyIntroVideo{
-  position: absolute;
-} */
-.backgrounGradient{
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-}
 .video{
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: 75%;
+  height: 100vh;
   object-fit: cover;
   max-height: 100%;
+  aspect-ratio: 2/3;
+}
+.backgrounGradient{
+  position: absolute;
+  background: linear-gradient(
+    to left,
+    white 0%,
+    rgb(255, 255, 255) 20%,
+    rgba(255, 255, 255, 0.998) 40%,
+    rgba(255, 255, 255, 0.928) 70%,
+     rgb(255, 255, 255) 20%,
+    rgba(255, 255, 255, 0.898) 60%,
+    rgba(255, 255, 255, 0.919) 30%,
+     rgba(255, 255, 255, 0.214) 90%,
+      rgba(255, 255, 255, 0.093) 95%,
+    transparent 100%
+  );
+  top: 0rem;
+  right: 17rem;
+  height: 100%;
+  width: 23%;
+  z-index: 1000;
+ 
 }
 .textBlock{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, transparent, #d8d8dbf1,#e8e7e7ef, #d1d0d01f);
-  margin-left: -12rem;
-  z-index: 9888;
-  width: 100%;
-}
-.content{
-  background: linear-gradient(to bottom, transparent, #939393c9);
-  background: linear-gradient(to right, transparent, #d8d8dbf1,#e8e7e7ef, #d1d0d0);
-  position: relative;
+  /* background: linear-gradient(to left, white 0%, transparent 100%);
+  background: linear-gradient(to left, white 0%, rgba(255, 255, 255, 0.9) 20%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.967) 80%, rgba(255, 255, 255, 0.91) 85%, rgba(255, 255, 255, 0.698) 90%, rgba(255, 255, 255, 0.218) 95%, transparent 100%); */
+
+  z-index: 999;
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  top: 0rem;
+  right: 6rem; 
+  z-index: 1000;
+ 
 }
 .textTitle1, .textH1{
   font-size: 1.7rem;
   font-family: 'Montserrat';
   color: #002d18;
-  margin-right:-15rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 .textH1{
   font-size: 3.5rem;
+  font-weight: 300;
 }
 .words1, .words2{
-  margin-right:-15rem ;
-  margin-top: 1rem;
   font-size: 1.5rem;
   color: #603900;
+  margin-bottom: 1rem;
 }
 .words1{
   opacity: 0;
@@ -62,4 +79,39 @@
   to {
     opacity: 1;
   }
+}
+
+@media(max-width: 1200px){
+  .textTitle1, .textH1{
+  font-size: 1.5rem;
+}
+.textH1{
+  font-size: 3rem;
+}
+.words1, .words2{
+  font-size: 1.2rem;
+
+}
+}
+@media(max-width: 1000px){
+  .textTitle1, .textH1{
+  font-size: 1.2rem;
+}
+.textH1{
+  font-size: 2rem;
+}
+.words1, .words2{
+  font-size: 1rem;
+}
+}
+@media(max-width: 600px){
+  .textTitle1, .textH1{
+  font-size: 1rem;
+}
+.textH1{
+  font-size: 1.5rem;
+}
+.words1, .words2{
+  font-size: 1rem;
+}
 }

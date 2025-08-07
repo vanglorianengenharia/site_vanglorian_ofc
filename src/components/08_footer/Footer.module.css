@@ -1,0 +1,189 @@
+.footerContainer{
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+  position: relative;
+  padding: 0 4rem;
+}
+.footerContent{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  height: 15rem; 
+}
+.footerFirstGrid, .footerThreeGrid{
+  font-family: 'outfit', 'roboto';
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+.internalLinks{
+  justify-self: flex-start;
+  cursor: pointer;
+}
+.logoWithSlogan{
+  align-self: flex-start;
+}
+.socialLinks{
+  justify-self: flex-end;
+  cursor: pointer;
+}
+.imageLogo{
+  max-width: 10rem;
+  height: auto;
+}
+.linksText{
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  color: #002a13;
+    &:hover{
+    scale: 1.1;
+    color: rgb(122, 100, 0);
+  }
+}
+.linksTextGridUm{
+  margin-bottom: 1rem;
+}
+.iconSty{
+  width: 2.5rem;
+  margin-right: 0.2rem;
+}
+.copyBlock{
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  align-content: center;
+  font-size: 0.75rem;
+  font-family: var(--font-outfit);
+  color: #002a13;
+  justify-content: center;
+  margin-top: 8rem;
+  text-align: center;
+  gap: 0.15rem;
+  padding: 0;
+}
+.copyIcon{
+  width: 0.95rem;
+  height: auto;
+}
+/* Responsivo */
+@media (max-width: 1300px){
+  .footerContainer{
+      margin-top: 8rem;
+  }
+}
+@media(max-width: 1000px){
+  .footerContainer{
+    margin-top: 18rem;
+  }
+}
+@media(max-width: 700px){
+  .linksText{
+  font-size: 1rem;
+}
+.imageLogo{
+  max-width: 8rem;
+}
+.iconSty{
+  width: 2rem;
+  height: auto;
+}
+.copyBlock{
+  font-size: 0.75rem;
+  margin-top: 7.5rem;
+}
+}
+@media(max-width: 652px){
+  .textCopy{
+    display: grid;
+  }
+}
+@media(max-width: 600px){
+  .footerContainer{
+    padding: 0 2rem;
+  }
+  .footerContent{
+    min-height: 260px;
+  }
+  .internalLinks, .socialLinks{
+    align-self: flex-end;
+  }
+  .internalLinks{
+   justify-self: center;
+}
+  .imageLogo{
+    max-width: 8rem;
+  }
+.socialLinks{
+  margin-left: -3rem;
+  margin-bottom: 1rem;
+}
+  .linksText{
+  font-size: 1rem;
+}
+  .iconSty{
+    width: 1.6rem;
+    height: auto;
+  }
+}
+  @media(max-width: 500px){
+  .footerContainer{
+    margin-top: 20rem;
+  }
+}
+ @media(max-width: 380px){
+   .footerContainer{
+    margin-top: 23rem;
+  }
+    .imageLogo{
+    margin-left: -1rem;
+  }
+  .copyBlock{
+  font-size: 0.68rem;
+  }
+.copyIcon{
+  width: 0.70rem;
+  margin-top: 0.10rem;
+}
+}
+@media(max-width: 330px){
+  .footerContainer{
+    margin-top: 25rem;
+  }
+  .imageLogo{
+    margin-left: -2rem;
+  }  
+  .copyBlock{
+    font-size: 0.55rem;
+    gap: 0.10rem;
+  }
+  .copyIcon{
+    width: 0.55rem;
+    margin-top: 0.15rem;
+}
+}
+@media(max-width: 300px){
+  .footerContainer{
+    margin-top: 14rem;
+  }
+  .imageLogo{
+    margin-left: -1.5rem;
+  }
+  .linksText{
+    font-size: 0.8rem;
+    margin-bottom: 0;   
+  }
+  .iconSty{
+    width: 1rem;  
+  }
+  .linksTextGridDois{
+    margin-bottom: 0.6rem;
+  }
+  .linksTextGridUm{
+    margin-top: -2.6rem;
+  }
+}
