@@ -1,22 +1,22 @@
 .projectsShowcaseContainer {
   padding: 2rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4rem;
 }
-
-/* Bloco base de cada seção */
 .projectsShowcaseContent,
 .projectsShowcaseContentLanc {
   width: 100%;
   max-width: 1280px;
   scroll-margin-top: 3vh;
 }
-
-/* Título */
+.projectsShowcaseContentLanc{
+  scroll-margin-top: 3vh;
+}
 .emExecucaoTitle{
-  margin-top: 3rem;
+  scroll-margin-top: 30rem;
 }
 .emExecucaoTitle,
 .lancamTitle {
@@ -31,8 +31,6 @@
   margin-bottom: 3rem;
   color: #705700;
 }
-
-/* Área do conteúdo com imagem e texto lado a lado */
 .emExecucaoContent,
 .lancamContent {
   display: grid;
@@ -41,10 +39,7 @@
   align-items: center;
   background-color: #002a14;
   border-radius: 0.5rem;
-
 }
-
-/* Área que contém a imagem em retrato */
 .slideImageContent {
   width: 100%;
   aspect-ratio: 2.5 / 3;
@@ -60,28 +55,18 @@
   top: 0;
   right: -2rem;
 }
-/* Imagem em si */
 .imageEmExec,
 .imageLancam {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem; 
 }
-
-/* Texto */
 .paragraphContent {
   display: flex;
   align-items: center;
   justify-content: center;
-
-
-  /* max-width: 32rem;
-  text-align: center;
-  padding: 2rem 1rem;
-  min-height: 70vh; */
 }
-
 .paragraphText {
   font-family: var(--font-outfit);
   font-size: 2.1rem;
@@ -91,16 +76,13 @@
   font-weight: 100;
   line-height: 1.5;
 }
-
 /* Responsivo */
 @media(max-width: 1000px){
   .paragraphText{
     font-size: 1.8rem;
   }
-     .imageIconeNomeResidencial{
-
-  width: 95%;
-
+  .imageIconeNomeResidencial{
+    width: 95%;
 }
 }
 @media(max-width: 850px){
@@ -126,66 +108,48 @@
   .projectsShowcaseContentLanc {
     padding: 0rem;
   }
-
   .emExecucaoContent,
   .lancamContent {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    /* width: 92%; */
   }
   .imageEmExec, .imageLancam{
     border-radius: 0.5rem 0.5rem 0 0;
   }
-
   .slideImageContent {
     aspect-ratio: 3 / 4;
   }
-
   .paragraphText {
     text-align: center;
     max-width: 80%;
     padding-bottom: 2rem;
   }
-
 }
-
 @media (max-width: 500px) {
-
-
+  .projectsShowcaseContainer{
+    padding: 2rem 1rem;
+  }
   .slideImageContent {
     aspect-ratio: 4 / 5;
   }
-    .imageIconeNomeResidencial{
-
-  width: 96%;
-
+  .imageIconeNomeResidencial{
+    width: 96%;
+  }
+  .paragraphText{
+    max-width: 82%;
+  }
 }
-}
-
-
-
-
-
-
-
-
 @media (max-width: 768px) {
- 
-
   .videoStatementParagraph {
     text-align: center;
     font-size: 1.2rem;
-
     padding-bottom: 1.5rem;
-    
   }
 }
-/* Responsivo */
 @media (max-width: 500px) {
   .videoStatementParagraph {
     text-align: center;
     font-size: 1.2rem;
-
     padding: 0rem 0 1.5rem 0;
   }
 }

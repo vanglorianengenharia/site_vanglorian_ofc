@@ -1,0 +1,188 @@
+.video {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  max-height: 100%;
+  aspect-ratio: 2/3;
+}
+.videoBlock {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: fit-content;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+.textTitle1,
+.textH1 {
+  font-size: 1.7rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  margin-bottom: 0rem;
+  filter: blur(0.1px);
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.textH1 {
+  font-size: 5rem;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Playfair';
+}
+.textSlider {
+  position: relative;
+  width: fit-content;
+  height: 8%;
+  overflow: hidden;
+  align-self: center;
+  text-align: center;
+  margin-top: 3rem;
+}
+.words {
+  font-size: 2rem;
+  color: #ffffff;
+  padding: 0.5rem 2rem;
+  background-color: #002111;
+    background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.004) 0%,
+    rgba(17, 54, 77, 0.756) 25%,
+    rgba(17, 54, 77, 0.8) 45%,
+    rgba(17, 54, 77, 0.839) 65%,
+    rgba(17, 54, 77, 0.695) 85%,
+    transparent 100%
+  );
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  position: relative;
+  width: fit-content;
+  margin-bottom: 1rem;
+  filter: blur(0.1px);
+  width: 25rem;
+}
+@media (max-width: 1200px) {
+  .textTitle1,
+  .textH1 {
+    font-size: 1.5rem;
+  }
+  .textH1 {
+    font-size: 3rem;
+  }
+  .words {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 1000px) {
+  .textTitle1,
+  .textH1 {
+    font-size: 1.2rem;
+    margin-left: 0;
+  }
+  .textH1 {
+    font-size: 2rem;
+  }
+  .words {
+    font-size: 1rem;
+  }
+  .video {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100vh;
+    height: auto;
+    object-fit: cover;
+  }
+  .textBlock {
+    right: 0;
+  }
+}
+@media (max-width: 800px) {
+  .videoBlock {
+    position: relative;
+  }
+  .textBlock {
+    top: 68vh;
+    left: 0;
+    height: fit-content;
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+  .textSlider{
+    margin-top: 0;
+  }
+  .textH1{
+    font-size: 4rem;
+  }
+}
+@media (max-width: 600px) {
+  .textSlider{
+    margin-top: -1rem;
+  }
+  .textTitle1,
+  .textH1 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .textTitle1 {
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+  .textH1 {
+    font-size: 3rem;
+    margin-top: 0rem;
+    padding-top: 0;
+  }
+  .words {
+    font-size: 1rem;
+  }
+  .textBlock {
+    top: 35rem;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  }
+}
+@media (max-width: 500px) {
+  .textBlock {
+    padding-bottom: 3rem;
+    top: 36rem;
+  }
+  .textH1 {
+    margin-top: 0;
+  }
+  .words {
+    margin-bottom: 0.5rem;
+    width: 15rem;
+  }
+}
+@media (max-width: 280px){
+  .textBlock{
+    padding: 0;
+  }
+  .textTitle1{
+    font-size: 0.8rem;
+    padding: 0;
+  }
+  .textH1{
+    padding: 0.8rem 0;
+    font-size: 2rem;
+  }
+  .words{
+    padding: 0.8rem 0;
+    width: 10rem;
+  }
+}

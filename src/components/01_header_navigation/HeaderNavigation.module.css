@@ -71,8 +71,8 @@
   flex-direction: column;
   top: 100%;
   left: 1.5%;
-  background-color: rgba(255, 255, 255, 0.702); /* pode ajustar a transparência */
-  backdrop-filter: blur(100px);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
   box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.251);
   padding: 2rem 3rem 2rem 1rem;
   border-radius: 0.6rem;
@@ -116,7 +116,6 @@
   top: 150%;
   left: 5%;
   padding: 1.5rem 3rem 1.5rem 1rem;
-
 }
 }
 @media (max-width: 500px) {

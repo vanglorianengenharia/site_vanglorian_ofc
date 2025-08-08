@@ -73,7 +73,7 @@
 /* Responsivo */
 @media (max-width: 1300px){
   .footerContainer{
-      margin-top: 8rem;
+    margin-top: 8rem;
   }
 }
 @media(max-width: 1000px){
@@ -84,18 +84,18 @@
 @media(max-width: 700px){
   .linksText{
   font-size: 1rem;
-}
-.imageLogo{
+  }
+  .imageLogo{
   max-width: 8rem;
-}
-.iconSty{
+  }
+  .iconSty{
   width: 2rem;
   height: auto;
-}
-.copyBlock{
+  }
+  .copyBlock{
   font-size: 0.75rem;
   margin-top: 7.5rem;
-}
+  }
 }
 @media(max-width: 652px){
   .textCopy{
@@ -103,6 +103,9 @@
   }
 }
 @media(max-width: 600px){
+   .footerContainer{
+    margin-top: 8rem;
+  }
   .footerContainer{
     padding: 0 2rem;
   }
@@ -114,46 +117,35 @@
   }
   .internalLinks{
    justify-self: center;
-}
+  }
   .imageLogo{
     max-width: 8rem;
   }
 .socialLinks{
   margin-left: -3rem;
   margin-bottom: 1rem;
-}
+  }
   .linksText{
   font-size: 1rem;
-}
+  }
   .iconSty{
     width: 1.6rem;
     height: auto;
   }
 }
-  @media(max-width: 500px){
-  .footerContainer{
-    margin-top: 20rem;
-  }
-}
  @media(max-width: 380px){
-   .footerContainer{
-    margin-top: 23rem;
-  }
-    .imageLogo{
+  .imageLogo{
     margin-left: -1rem;
   }
   .copyBlock{
   font-size: 0.68rem;
   }
-.copyIcon{
+  .copyIcon{
   width: 0.70rem;
   margin-top: 0.10rem;
-}
+  }
 }
 @media(max-width: 330px){
-  .footerContainer{
-    margin-top: 25rem;
-  }
   .imageLogo{
     margin-left: -2rem;
   }  
@@ -164,12 +156,9 @@
   .copyIcon{
     width: 0.55rem;
     margin-top: 0.15rem;
-}
+  }
 }
 @media(max-width: 300px){
-  .footerContainer{
-    margin-top: 14rem;
-  }
   .imageLogo{
     margin-left: -1.5rem;
   }

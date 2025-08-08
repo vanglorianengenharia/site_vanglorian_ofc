@@ -1,5 +1,5 @@
 .constructionAdvantagesContainer{
-  background: #000C00;
+  background: #00140a;
   margin: 4rem 0 0 0;
   height: auto;
   padding: 4rem;
@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #a48101;
+  color: #baa24b;
 }
 .constructionAdvantagesTitle{
   font-family: var(--font-montserrat);
@@ -41,7 +41,7 @@
   width: 100%;
   height: auto;
   min-height: 528px;
-  max-height: 33rem; /* ou qualquer limite confortável */
+  max-height: 33rem;
   border-radius: 0.625rem;
   object-fit: cover;
   cursor: pointer;
@@ -87,7 +87,6 @@
   align-items: flex-start;
   justify-content: space-between;
 }
-
 .chevronDown{
   transform: rotate(0deg);
   transition: transform 0.3s ease;
@@ -122,31 +121,7 @@
 .btnSaibaMais{
   border-bottom: 1px solid #a48101;
 }
-
-/* .imageWrapper {
-  position: relative;
-  width: 100%;
-  height: auto;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.imageWrapper.active {
-  opacity: 1;
-} */
-
-
-
-
-
-
-
-
-@media(max-width: 1293px){
-
-}
-
-
+/*Responsivo*/
 @media(max-width: 1200px){
   .constructionAdvantagesImageDescription{
     gap: 2.2rem;
@@ -162,7 +137,6 @@
     font-size: 1rem;
 }
 }
-
 @media(max-width: 900px){
   .imageGif{
     max-height: 300px;
@@ -171,18 +145,14 @@
   }
   .titleSubtitle{
     outline: none;
+    min-height: fit-content;
     -webkit-tap-highlight-color: transparent;
   }
-    .constructionAdvantagesImageDescription{
+  .constructionAdvantagesImageDescription{
     gap: 1.5rem;
 }
 }
-@media(max-width: 785px){
-  .titleSubtitle{
-    min-height: 175px;
-  }
 
-}
 @media(max-width: 700px){
   .constructionAdvantagesImageDescription{
     grid-template-columns: 1fr;
@@ -206,9 +176,7 @@
  .constructionAdvantagesContainer{
     padding: 4rem 1rem;
   }
-
 }
-
 @media(max-width: 500px){
   .imageGif{
     max-width: 95%;

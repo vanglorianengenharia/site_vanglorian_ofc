@@ -7,50 +7,46 @@
   max-height: 100%;
   aspect-ratio: 2/3;
 }
-.backgrounGradient{
+/* .backgrounGradient{
   position: absolute;
-  background: linear-gradient(
-    to left,
-    white 0%,
-    rgb(255, 255, 255) 20%,
-    rgba(255, 255, 255, 0.998) 40%,
-    rgba(255, 255, 255, 0.928) 70%,
-     rgb(255, 255, 255) 20%,
-    rgba(255, 255, 255, 0.898) 60%,
-    rgba(255, 255, 255, 0.919) 30%,
-     rgba(255, 255, 255, 0.214) 90%,
-      rgba(255, 255, 255, 0.093) 95%,
-    transparent 100%
-  );
   top: 0rem;
   right: 17rem;
   height: 100%;
   width: 23%;
   z-index: 1000;
- 
-}
+} */
 .textBlock{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background: linear-gradient(to left, white 0%, transparent 100%);
-  background: linear-gradient(to left, white 0%, rgba(255, 255, 255, 0.9) 20%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.967) 80%, rgba(255, 255, 255, 0.91) 85%, rgba(255, 255, 255, 0.698) 90%, rgba(255, 255, 255, 0.218) 95%, transparent 100%); */
-
+  text-wrap: nowrap;
   z-index: 999;
-  width: 25%;
+  width: 40%;
   height: 100%;
   position: absolute;
   top: 0rem;
   right: 6rem; 
   z-index: 1000;
- 
+   background: linear-gradient(
+    to left,
+    white 0%,
+    rgb(255, 255, 255) 20%,
+    rgb(255, 255, 255) 50%,
+    rgba(255, 255, 255, 0.875) 80%,
+    rgba(255, 255, 255, 0.823) 82%,
+    rgba(255, 255, 255, 0.725) 85%,
+     rgba(255, 255, 255, 0.498) 90%,
+      /* rgba(255, 255, 255, 0.093) 98%, */
+    transparent 100%
+  );
 }
 .textTitle1, .textH1{
   font-size: 1.7rem;
   font-family: 'Montserrat';
   color: #002d18;
   margin-bottom: 1.5rem;
+  margin-left: 15rem;
 }
 .textH1{
   font-size: 3.5rem;
@@ -60,6 +56,7 @@
   font-size: 1.5rem;
   color: #603900;
   margin-bottom: 1rem;
+  margin-left: 15rem;
 }
 .words1{
   opacity: 0;
@@ -94,24 +91,98 @@
 }
 }
 @media(max-width: 1000px){
+
   .textTitle1, .textH1{
   font-size: 1.2rem;
+  margin-left: 0;
 }
 .textH1{
   font-size: 2rem;
 }
 .words1, .words2{
   font-size: 1rem;
+    margin-left: 0;
+
 }
+  .videoBlock{
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  }
+  .video{
+    position: absolute;
+
+  min-width: 100%;
+  min-height: 100%;
+  width: 100vh;
+  height: auto;
+  object-fit: cover;
+  }
+  .textBlock{
+    right: 0rem;
+  }
 }
+
+
+@media(max-width: 800px){
+  .videoBlock{
+    position: relative;
+  }
+  .textBlock{
+    top: 68vh;
+    left: 0;
+    height: fit-content;
+    width: 100%;
+    padding: 2rem 1rem;
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.607) 20%,
+      rgba(255, 255, 255, 0.823) 50%,
+      rgba(255, 255, 255, 0.875) 80%,
+      rgba(255, 255, 255, 0.838) 82%,
+      rgba(255, 255, 255, 0.688) 85%,
+      rgba(255, 255, 255, 0.498) 90%,
+        /* rgba(255, 255, 255, 0.093) 98%, */
+      transparent 100%
+  );
+  }
+}
+
 @media(max-width: 600px){
   .textTitle1, .textH1{
   font-size: 1rem;
+  margin-bottom: 0.8rem;
+  margin-top: 0.5rem;
+  }
+  .textTitle1{
+    margin-top: 1rem;
+  }
+  .textH1{
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  .words1, .words2{
+    font-size: 1rem;
+  }
+
+  .textBlock{
+    top: 35.7rem; 
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  }
 }
-.textH1{
-  font-size: 1.5rem;
-}
-.words1, .words2{
-  font-size: 1rem;
-}
+
+@media(max-width: 500px){
+  .textBlock{
+    padding-bottom: 3rem;
+    top: 38rem; 
+  }
+   .textH1{
+    margin-top: 0rem;
+  }
+    .words1, .words2{
+      margin-bottom: 0.5rem;
+    }
 }

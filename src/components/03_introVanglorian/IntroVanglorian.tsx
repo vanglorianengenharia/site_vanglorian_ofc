@@ -16,7 +16,7 @@ export default function IntroVanglorian() {
           observer.disconnect(); // dispara só uma vez
         }
       },
-      { threshold: 0.1 } // 30% visível já ativa
+      { threshold: 0.2 } // 30% visível já ativa
     );
     if (sectionRef.current) {
       observer.observe(sectionRef.current);

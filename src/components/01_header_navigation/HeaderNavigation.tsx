@@ -14,8 +14,6 @@ export function HeaderNavigation() {
     window.open(whatsappLink, '_blank'); 
   }
 
-
-
   return(
     <header className={styles.wrapperHeaderNav} aria-label="Cabeçalho principal do site">
       <div className={styles.containerHeaderNav}>
@@ -28,7 +26,6 @@ export function HeaderNavigation() {
             <Menu color="#002100" size={19} />
             <span className={styles.menuSandwichText}>Menu</span>
           </button>
-
           {menuOpen && (
             <div>
               <ul className={styles.modalMenuOpen}>
@@ -48,8 +45,6 @@ export function HeaderNavigation() {
             </div>
           )}
         </div>
-
-
         <div className={styles.logoIconBlock}> 
          <Link href={"/"}>
             <Image
@@ -61,7 +56,6 @@ export function HeaderNavigation() {
             />
           </Link>
         </div> 
-
         <nav className={styles.nav} aria-label="Navegação principal">
           <ul className={styles.menu}>
             <li><Link href="#execBlock" className={`${styles.menuItem} ${styles.menuItem1}`}>Em execução</Link></li>
@@ -70,9 +64,6 @@ export function HeaderNavigation() {
           </ul>
         </nav>
       </div>
-
-     
-    
     </header>
   )
 }

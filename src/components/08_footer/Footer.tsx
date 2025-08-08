@@ -6,7 +6,6 @@ import styles from "./Footer.module.css"
 import Image from "next/image"
 import { CopyrightIcon } from "lucide-react";
 
-
 export function Footer(){
   const phoneNumber = '+554191459026'; 
   const handleClickTalkWithUs = () => {
@@ -21,7 +20,6 @@ export function Footer(){
   };
   const currentYear = new Date().getFullYear();
 
-
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.footerContent}>
@@ -30,7 +28,6 @@ export function Footer(){
           <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href={"#execBlock"}>Em execução</Link>
           <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href={"#lancamentBlock"}>Lançamentos</Link>
         </div>
-
         <Link href={"/"} className={styles.logoWithSlogan}>
           <Image 
             src="/assets/logoOficial.webp"
@@ -40,8 +37,6 @@ export function Footer(){
             className={styles.imageLogo}
           />
         </Link>
-
-
         <div className={styles.socialLinks}>
           <button className={`${styles.linksText} ${styles.linksTextGridDois}`}  onClick={handleClickTalkWithUs}><Image  src={"/assets/logoWhatsapp.webp"} alt="simbolo whatsapp" width={100} height={93} className={styles.iconSty}/>Whatsapp</button>
           <button className={`${styles.linksText} ${styles.linksTextGridDois}`}  onClick={handleRedirectInstagram}><Image  src={"/assets/logoInstagram.webp"} alt="simbolo instagram" width={100} height={93} className={styles.iconSty}/>Instagram</button>
@@ -52,4 +47,3 @@ export function Footer(){
     </footer>
   ) 
 }
-
