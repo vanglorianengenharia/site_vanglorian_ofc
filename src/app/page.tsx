@@ -7,12 +7,13 @@ import { ProjectsShowcase } from "@/components/05_projectsShowcase/ProjectsShowc
 import DiferenciVanglorian from "@/components/06_diferencVanglorian/DiferenciVanglorian";
 import { AboutUs } from "@/components/07_aboutUs/AboutUs";
 import { Footer } from "@/components/08_footer/Footer";
+import { BtnWhatsapp } from "@/components/btnWhatsapp/BtnWhatsapp";
 
 export default function Home() {
   return (
     <main>
       <HeaderNavigation />
-      {/* <CompanyIntroVideo /> */}
+      {/* <CompanyIntroVideo/> */}
       <BannerVideo />
       <IntroVanglorian />
       <CompanyIdentityVideo />
@@ -20,6 +21,7 @@ export default function Home() {
       <DiferenciVanglorian />
       <AboutUs />
       <Footer />
+      <BtnWhatsapp />
     </main>
   );
 }

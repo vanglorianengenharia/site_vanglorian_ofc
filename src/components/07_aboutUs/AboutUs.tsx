@@ -10,7 +10,7 @@ export function AboutUs(){
     <div className={styles.aboutUsContainer} id="aboutUsComponent">
       <div className={styles.aboutUsGridOne}>
         <Image
-              src={"/assets/backgroundAboutUs3.png"}
+              src={"/assets/test2.png"}
               width={500}
               height={386}
               alt={"Logo da Vanglorian representado por um leão com uma coroa"}
@@ -35,7 +35,7 @@ export function AboutUs(){
                 viewport={{ once: true, amount: 0.6 }}
                 className={styles.aboutUs}
             >
-              Nosso nome carrega nossa identidade e missão: “Van”, de vanguarda, representa inovação, visão e liderança. “Glorian”, de glória, simboliza o esplendor que dedicamos a Deus - cada projeto, cada conquista, é para glorificar Aquele que nos guia.
+              Nosso nome carrega nossa identidade e missão: “Van”, de vanguarda, representa inovação, visão e liderança. “Glorian”, de glória, simboliza o esplendor que dedicamos a Deus. Cada projeto, cada conquista, é para glorificar Aquele que nos guia.
             </motion.p>
         </div>
       </div>

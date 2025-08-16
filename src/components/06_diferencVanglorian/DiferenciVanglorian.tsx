@@ -6,37 +6,47 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const imageListDif1 = [
- "/assets/infra1.webp",
- "/assets/infra2.webp",
- "/assets/infra3.webp",
+ "/assets/infra11.webp",
+ "/assets/infra22.webp",
+ "/assets/infra33.webp",
 ];
 const imageListDif2 = [
  "/assets/supra1.webp",
- "/assets/supra2.webp",
- "/assets/supra3.webp",
+ "/assets/supra22.webp",
+ "/assets/supra33.webp",
 ];
 
 export default function DiferenciVanglorian() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
-  // const [handleClickShowDescription, setHandleClickShowDescription] = useState(false);
+  const [currentIndex2, setCurrentIndex2] = useState(0);
+
+
+    const [openCards, setOpenCards] = useState([false, false, false]);
+      const toggleCard = (index: number) => {
+    setOpenCards((prev) =>
+      prev.map((isOpen, i) => (i === index ? !isOpen : isOpen))
+    );
+  };
+
+  
 
   useEffect(() => {
    const interval = setInterval(() => {
      setCurrentIndex((prevIndex) =>
        prevIndex === imageListDif1.length - 1 ? 0 : prevIndex + 1
      );
-   }, 2000); // 3 segundos por slide
+   }, 3000); // 3 segundos por slide
    return () => clearInterval(interval);
     }, []);
   useEffect(() => {
-   const interval = setInterval(() => {
-     setCurrentIndex((prevIndex) =>
-       prevIndex === imageListDif2.length - 1 ? 0 : prevIndex + 1
+   const interval2 = setInterval(() => {
+     setCurrentIndex2((prevIndex2) =>
+       prevIndex2 === imageListDif2.length - 1 ? 0 : prevIndex2 + 1
      );
-   }, 2000); // 3 segundos por slide
-   return () => clearInterval(interval);
+   }, 3000); // 3 segundos por slide
+   return () => clearInterval(interval2);
     }, []);
+
 
  return(
    <div className={styles.constructionAdvantagesContainer}>
@@ -47,8 +57,8 @@ export default function DiferenciVanglorian() {
        </div>
        <div className={styles.constructionAdvantagesImageDescription}>
           <div className={styles.constructionAdvantagesImageTitleDescription}
-            onMouseEnter={() => setHoveredCardIndex(0)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
+            onClick={() => toggleCard(0)}
+            
           >
             <Image
               src={imageListDif1[currentIndex]}
@@ -59,32 +69,30 @@ export default function DiferenciVanglorian() {
               unoptimized
             />    
             <div className={styles.titleSubtitle}>
-              <div className={styles.divTitleAndIcon}><p className={styles.titleImage}>Infraestrutura e superestrutura robustas</p> <span className={hoveredCardIndex === 0 ? styles.chevronDown : styles.chevronUp}><ChevronDown className={styles.chevroDownIcon}/></span></div>
-              <div className={hoveredCardIndex === 0 ?  styles.mouseIconHide : styles.btnSaibaMaisBlock}><p className={styles.btnSaibaMais}>Saiba mais</p></div>
-              <p className={hoveredCardIndex === 0 ? styles.subtitleImage : styles.descriptionHide}>Vigas baldrames sobre estacas com mais de 3 metros de profundidade.</p>
+              <div className={styles.divTitleAndIcon}><p className={styles.titleImage}>Infraestrutura e superestrutura robustas</p> <span className={openCards[0] ? styles.chevronDown : styles.chevronUp}><ChevronDown className={styles.chevroDownIcon}/></span></div>
+              <div className={openCards[0] ?  styles.mouseIconHide : styles.btnSaibaMaisBlock}><p className={styles.btnSaibaMais}>Saiba mais</p></div>
+              <p className={openCards[0] ? styles.subtitleImage : styles.descriptionHide}>Vigas baldrames sobre estacas com mais de 3 metros de profundidade.</p>
             </div>
           </div>
          <div className={styles.constructionAdvantagesImageTitleDescription}
-              onMouseEnter={() => setHoveredCardIndex(1)}
-              onMouseLeave={() => setHoveredCardIndex(null)} 
+              onClick={() => toggleCard(1)}
            >
             <Image
-             src={imageListDif2[currentIndex]}
-             alt={`Slide ${currentIndex + 1}`}
+             src={imageListDif2[currentIndex2]}
+             alt={`Slide ${currentIndex2 + 1}`}
              className={styles.imageGif}
              width={1600}
              height={900}
              unoptimized
            />
             <div className={styles.titleSubtitle} >
-              <div className={`${styles.divTitleAndIcon} ${styles.divTitleAndIconSecondCard} `}><p className={styles.titleImage}>Estrutura que permite alteração e ampliação do layout</p> <span className={hoveredCardIndex === 1 ? styles.chevronDown : styles.chevronUp}><ChevronDown /></span></div>
-              <div className={hoveredCardIndex === 1 ? styles.mouseIconHide : styles.btnSaibaMaisBlock}><p className={styles.btnSaibaMais}>Saiba mais</p></div>
-              <p className={hoveredCardIndex === 1 ? styles.subtitleImage : styles.descriptionHide}>Diferente de construções de alvenaria estrutural a nossa é construída com estrutura de concreto armado e paredes de vedação que permitem reformas e personalizações mesmo depois da entrega da obra.</p>
+              <div className={`${styles.divTitleAndIcon} ${styles.divTitleAndIconSecondCard} `}><p className={styles.titleImage}>Estrutura que permite alteração e ampliação do layout</p> <span className={openCards[1] ? styles.chevronDown : styles.chevronUp}><ChevronDown /></span></div>
+              <div className={openCards[1] ? styles.mouseIconHide : styles.btnSaibaMaisBlock}><p className={styles.btnSaibaMais}>Saiba mais</p></div>
+              <p className={openCards[1] ? styles.subtitleImage : styles.descriptionHide}>Diferente de construções de alvenaria estrutural a nossa é construída com estrutura de concreto armado e paredes de vedação que permitem reformas e personalizações mesmo depois da entrega da obra.</p>
             </div>
          </div>
             <div  className={styles.constructionAdvantagesImageTitleDescription}
-              onMouseEnter={() => setHoveredCardIndex(2)}
-              onMouseLeave={() => setHoveredCardIndex(null)}>
+              onClick={() => toggleCard(2)}>
               <Image
               src={'/assets/gifTransitionFac.gif'}
               alt={'imagem ilustrativa casa Vanglorian'}
@@ -94,9 +102,9 @@ export default function DiferenciVanglorian() {
               unoptimized
               />
               <div className={styles.titleSubtitle}>
-              <div className={styles.divTitleAndIcon}><p className={styles.titleImage}> O lar dos seus sonhos com o estilo que é só seu</p> <span className={hoveredCardIndex === 2 ? styles.chevronDown : styles.chevronUp}><ChevronDown /></span></div>
-              <div className={hoveredCardIndex === 2 ? styles.mouseIconHide : styles.btnSaibaMaisBlock}><p className={styles.btnSaibaMais}>Saiba mais</p></div>
-              <p className={hoveredCardIndex === 2 ? styles.subtitleImage : styles.descriptionHide}>Oferecemos a possibilidade de escolha do revestimento cerâmico, da pintura das paredes internas, externas, portão e grades.</p>
+              <div className={styles.divTitleAndIcon}><p className={styles.titleImage}> O lar dos seus sonhos com o estilo que é só seu</p> <span className={openCards[2] ? styles.chevronDown : styles.chevronUp}><ChevronDown /></span></div>
+              <div className={openCards[2] ? styles.mouseIconHide : styles.btnSaibaMaisBlock}><p className={styles.btnSaibaMais}>Saiba mais</p></div>
+              <p className={openCards[2] ? styles.subtitleImage : styles.descriptionHide}>A fachada é o cartão de visitas do seu imóvel, por isso, oferecemos a possibilidade de escolher a cor que melhor expressa sua identidade.</p>
             </div>
           </div>
        </div>

@@ -9,7 +9,7 @@ import { CopyrightIcon } from "lucide-react";
 export function Footer(){
   const phoneNumber = '+554191459026'; 
   const handleClickTalkWithUs = () => {
-  const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá,%20gostaria%20de%20mais%20informações%20sobre%20os%20empreendimentos.`;
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá!%20Acessei%20o%20%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informações.`;
     window.open(whatsappLink, '_blank'); 
   }
   const handleRedirectInstagram = () => {

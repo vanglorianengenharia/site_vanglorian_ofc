@@ -1,3 +1,6 @@
+.wrapperCompanyIntroVideo{
+  position: relative;
+}
 .video {
   position: relative;
   z-index: 1;
@@ -23,27 +26,38 @@
   top: 0;
   right: 0;
   width: fit-content;
-  height: 100%;
+  height: 100vh;
+  width: fit-content;
   align-items: center;
   justify-content: center;
   justify-items: center;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.75) 48%,  rgba(241, 241, 241, 0.55) 48%, rgba(255, 255, 255, 0.4) 51%,rgba(255, 255, 255, 0.2) 51%, rgba(255, 255, 255, 0.2) 54%,  rgba(255, 255, 255, 0.6) 54%,  #f1f1f100 54%);
+  background-size: 90rem 135rem;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 8%;
+  overflow: hidden;
 }
 .textTitle1,
 .textH1 {
   font-size: 1.7rem;
   font-family: 'Montserrat', sans-serif;
-  color: #ffffff;
+  color: #003518;
   margin-bottom: 0rem;
   filter: blur(0.1px);
   padding: 0.5rem 2rem;
   border-radius: 0.5rem 0 0 0.5rem;
 }
+.textTitle1{
+  padding-top: 8rem;
+}
 .textH1 {
   font-size: 5rem;
   font-weight: 400;
-  color: #ffffff;
+  color: #013219;
   text-align: center;
   font-family: 'Playfair';
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25); 
 }
 .textSlider {
   position: relative;
@@ -59,13 +73,15 @@
   color: #ffffff;
   padding: 0.5rem 2rem;
   background-color: #002111;
+  letter-spacing: 0.5rem;
     background: linear-gradient(
     to left,
     rgba(255, 255, 255, 0.004) 0%,
-    rgba(17, 54, 77, 0.756) 25%,
-    rgba(17, 54, 77, 0.8) 45%,
-    rgba(17, 54, 77, 0.839) 65%,
-    rgba(17, 54, 77, 0.695) 85%,
+    rgba(50, 57, 59, 0.786) 25%,
+    rgba(50, 57, 59, 0.8) 45%,
+    rgba(50, 57, 59, 0.839) 65%,
+    rgba(50, 57, 59, 0.728) 88%,
+    transparent 95%,
     transparent 100%
   );
   border-radius: 0.5rem;
@@ -75,6 +91,30 @@
   margin-bottom: 1rem;
   filter: blur(0.1px);
   width: 25rem;
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.004) 0%,
+    rgba(18, 20, 21, 0.756) 25%,
+    rgba(25, 27, 28, 0.8) 45%,
+    rgba(30, 32, 33, 0.839) 65%,
+    rgba(30, 32, 33, 0.623) 85%,
+    transparent 100%
+  );
+    background: radial-gradient(
+    circle at center,
+    #2f353b 0%,      
+    rgba(47, 53, 59, 0.7) 48%, 
+    rgba(47, 53, 59, 0.3) 85%,
+    rgba(47, 53, 59, 0) 100%  
+  );
+}
+
+@media(max-width: 1059px){
+  .words{
+  padding: 0.5rem 2rem;
+  letter-spacing: 0.4rem;
+  width: 19rem;
+}
 }
 @media (max-width: 1200px) {
   .textTitle1,
@@ -86,6 +126,7 @@
   }
   .words {
     font-size: 1.2rem;
+    width: 18rem;
   }
 }
 @media (max-width: 1000px) {
@@ -95,7 +136,7 @@
     margin-left: 0;
   }
   .textH1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   .words {
     font-size: 1rem;
@@ -110,29 +151,36 @@
   }
   .textBlock {
     right: 0;
+    width: 50%;
+    background-size: 90rem 140rem;
+  }
+  .textSlider{
+    margin-top: 1.5rem;
   }
 }
 @media (max-width: 800px) {
-  .videoBlock {
-    position: relative;
+   .textTitle1{
+    padding-top: 0rem;
+    padding: 0 0 1rem 0;
+} 
+  .textSlider{
+    margin-top: 1rem;
   }
   .textBlock {
-    top: 68vh;
-    left: 0;
-    height: fit-content;
-    width: 100%;
-    padding: 2rem 1rem;
-  }
-  .textSlider{
-    margin-top: 0;
-  }
-  .textH1{
-    font-size: 4rem;
-  }
+   width: 56%;
 }
-@media (max-width: 600px) {
+}
+@media (max-width: 720px) {
+.textBlock {
+  width: 60%;
+}
+}
+@media (max-width: 670px) {
   .textSlider{
     margin-top: -1rem;
+    padding-bottom: 6.9rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
   }
   .textTitle1,
   .textH1 {
@@ -146,21 +194,29 @@
   .textH1 {
     font-size: 3rem;
     margin-top: 0rem;
+    margin-bottom: 2rem;
     padding-top: 0;
   }
   .words {
     font-size: 1rem;
   }
-  .textBlock {
-    top: 35rem;
-    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  .textBlock{
+    bottom: 0; 
+    left: 50%;
+    padding: 0;
+    height: fit-content;
+    width: 100%;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    background-position: center top;
+    margin: 0;
+    justify-content:flex-end;
+    background-size: 90rem 150rem;
+    height: 100vh;
   }
 }
 @media (max-width: 500px) {
-  .textBlock {
-    padding-bottom: 3rem;
-    top: 36rem;
-  }
   .textH1 {
     margin-top: 0;
   }
@@ -169,7 +225,7 @@
     width: 15rem;
   }
 }
-@media (max-width: 280px){
+@media (max-width: 290px){
   .textBlock{
     padding: 0;
   }

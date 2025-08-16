@@ -1,7 +1,7 @@
 .wrapperHeaderNav{
   position: absolute;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.7); /* pode ajustar a transparência */
+  background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(5px);
   z-index: 9999;
   padding: 0.6rem 0;
@@ -51,10 +51,10 @@
 .menuItem::after{
   content: "";
   display: block;
-  height: 2px;
-  width: 0px;
+  height: 0.125rem;
+  width: 0;
   background-color: #002100;
-  margin-top: 2px;
+  margin-top: 0.125rem;
   transition: 0.3s;
   position: absolute;
 }
@@ -73,7 +73,7 @@
   left: 1.5%;
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(5px);
-  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.251);
+  box-shadow: 0.13rem 0.25rem 0.5rem rgba(0, 0, 0, 0.251);
   padding: 2rem 3rem 2rem 1rem;
   border-radius: 0.6rem;
   height: auto;
@@ -86,10 +86,10 @@
 .modalMenuItem::after{
   content: "";
   display: block;
-  height: 2px;
-  width: 0px;
+  height: 0.125rem;
+  width: 0;
   background-color: #002100;
-  margin-top: 2px;
+  margin-top: 0.125rem;
   transition: 0.3s;
   position: absolute;
 }

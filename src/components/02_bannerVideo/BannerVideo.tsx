@@ -6,15 +6,28 @@ import styles from './BannerVideo.module.css';
 
 const listWord = [
   'Se importa',
-  'Sonha',
   'Constrói',
   'Realiza',
-  'Detalhes pensados',
   'Versatilidade',
 ];
 
+const images = [
+  "/assets/slideVid1.jpeg",
+  "/assets/slideVid2.jpeg",
+  "/assets/slideVid3.jpeg",
+  "/assets/slideVid4.jpeg",
+  "/assets/slideVid5.jpeg",
+  "/assets/slideVid5-1.jpeg",
+  "/assets/slideVid6.webp",
+  "/assets/slideVid7.webp",
+  "/assets/slideVid8.webp",
+];
+
+
 export function BannerVideo() {
   const [indexWordsState, setIndexWordsState] = useState(0);
+  const [index, setIndex] = useState(0);
+  const [effect, setEffect] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,11 +37,68 @@ export function BannerVideo() {
     return () => clearInterval(timer);
   }, []);
 
+
+  
+   useEffect(() => {
+      const timer = setInterval(() => {
+        setIndex((prev) => (prev + 1) % images.length);
+        setEffect((prev) => (prev + 1) % 3); // alterna entre 3 efeitos
+      }, 5000); // troca a cada 5s
+      return () => clearInterval(timer);
+    }, []);
+  
+    const getAnimation = (effectType: number) => {
+      switch (effectType) {
+        case 0: // Fade + Zoom
+          return {
+            initial: { opacity: 0, scale: 1.1 },
+            animate: { opacity: 1, scale: 1 },
+            exit: { opacity: 0, scale: 0.9 },
+          };
+        case 1: // Pan esquerda → direita
+          return {
+            initial: { x: "0%", scale: 1.1, opacity: 0 },
+            animate: { x: "0%", scale: 1, opacity: 1 },
+            exit: { opacity: 0 },
+          };
+        case 2: // Pan direita → esquerda
+          return {
+            initial: { x: "0%", scale: 1.1, opacity: 0 },
+            animate: { x: "0%", scale: 1, opacity: 1 },
+            exit: { opacity: 0 },
+          };
+        default:
+          return {};
+      }
+    };
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className={styles.wrapperCompanyIntroVideo}>
       <div className={styles.content}>
         <div className={styles.videoBlock}>
-          <video
+
+          <AnimatePresence mode="wait">
+                  <motion.img
+                    key={images[index]}
+                    src={images[index]}
+                    alt=""
+                    className={styles.video}
+                    {...getAnimation(effect)}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                  />
+                </AnimatePresence>
+          
+          {/* <video
             autoPlay
             muted
             loop
@@ -36,7 +106,7 @@ export function BannerVideo() {
             className={styles.video}
           >
             <source src="/videos/teaser.webm" type="video/webm" />
-          </video>
+          </video> */}
         </div>
         <div className={styles.backgrounGradient}></div>
         <div className={styles.textBlock}>
