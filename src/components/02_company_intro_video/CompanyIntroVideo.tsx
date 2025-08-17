@@ -23,7 +23,6 @@ const images = [
   "/assets/slideVid8.webp",
 ];
 
-
 export function CompanyIntroVideo() {
   const [indexWordsState, setIndexWordsState] = useState(0);
   const [index, setIndex] = useState(0);
@@ -32,17 +31,15 @@ export function CompanyIntroVideo() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndexWordsState((prev) => (prev + 1) % listWord.length);
-    }, 4000); // troca a cada 4 segundos
+    }, 4000);
 
     return () => clearInterval(timer);
   }, []);
-
-
   
    useEffect(() => {
       const timer = setInterval(() => {
         setIndex((prev) => (prev + 1) % images.length);
-        setEffect((prev) => (prev + 1) % 3); // alterna entre 3 efeitos
+        setEffect((prev) => (prev + 1) % 3);
       }, 5000); // troca a cada 5s
       return () => clearInterval(timer);
     }, []);
@@ -72,16 +69,6 @@ export function CompanyIntroVideo() {
       }
     };
 
-
-
-
-
-
-
-
-
-
-
   return (
     <div className={styles.wrapperCompanyIntroVideo}>
       <div className={styles.content}>
@@ -94,25 +81,14 @@ export function CompanyIntroVideo() {
                     alt=""
                     className={styles.video}
                     {...getAnimation(effect)}
-                    transition={{ duration: 1, ease: "easeInOut" }}
+                    transition={{ duration: 0.9, ease: "easeInOut" }}
                   />
                 </AnimatePresence>
-          
-          {/* <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className={styles.video}
-          >
-            <source src="/videos/teaser.webm" type="video/webm" />
-          </video> */}
         </div>
-        {/* <div className={styles.backgrounGradient}></div> */}
         <div className={styles.textBlock}>
           <div className={styles.newDiv}>
-               <span className={styles.textTitle1}>Construtora e Incorporadora</span>
-              <h1 className={styles.textH1}>Vanglorian</h1>
+            <span className={styles.textTitle1}>Construtora e Incorporadora</span>
+            <h1 className={styles.textH1}>Vanglorian</h1>
 
           <div className={styles.textSlider}>
             <AnimatePresence mode="wait">
@@ -128,8 +104,7 @@ export function CompanyIntroVideo() {
               </motion.div>
             </AnimatePresence>
           </div>
-          </div>
-         
+          </div>        
         </div>
       </div>
     </div>

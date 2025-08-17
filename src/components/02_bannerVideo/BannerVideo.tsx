@@ -94,7 +94,7 @@ export function BannerVideo() {
                     alt=""
                     className={styles.video}
                     {...getAnimation(effect)}
-                    transition={{ duration: 1, ease: "easeInOut" }}
+                    transition={{ duration: 0.9, ease: "easeInOut" }}
                   />
                 </AnimatePresence>
           
@@ -108,7 +108,7 @@ export function BannerVideo() {
             <source src="/videos/teaser.webm" type="video/webm" />
           </video> */}
         </div>
-        <div className={styles.backgrounGradient}></div>
+        <div className={styles.backgrounGradient}>
         <div className={styles.textBlock}>
           <span className={styles.textTitle1}>Construtora e Incorporadora</span>
           <h1 className={styles.textH1}>Vanglorian</h1>
@@ -128,6 +128,7 @@ export function BannerVideo() {
             </AnimatePresence>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -38,6 +38,7 @@
   padding-left: 8%;
   overflow: hidden;
 }
+
 .textTitle1,
 .textH1 {
   font-size: 1.7rem;
@@ -212,7 +213,7 @@
     background-position: center top;
     margin: 0;
     justify-content:flex-end;
-    background-size: 90rem 150rem;
+    background-size: 65rem 150rem;
     height: 100vh;
   }
 }
@@ -223,6 +224,11 @@
   .words {
     margin-bottom: 0.5rem;
     width: 15rem;
+  }
+  .textBlock{
+    background-size: 85rem 150rem;
+    height: 100vh;
+    
   }
 }
 @media (max-width: 290px){
@@ -240,5 +246,8 @@
   .words{
     padding: 0.8rem 0;
     width: 10rem;
+  }
+  .textBlock{
+    height: 100vh;
   }
 }
