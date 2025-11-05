@@ -40,7 +40,7 @@ export function HeaderNavigation() {
                 </li>
 
                 {pathname === '/emExecucao' ? (<span className={styles.modalMenuItemSpan}>Em execução</span>) :  (<li className={`${styles.modalMenuItem} ${styles.modalMenuItem2}`}>
-                  <Link href="/emExecucao">Em execução</Link></li>)}
+                  <Link href="#execBlock">Em execução</Link></li>)}
 
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem3}`}>
                   <Link href="#lancamentBlock">Lançamentos</Link>
@@ -66,7 +66,7 @@ export function HeaderNavigation() {
         <nav className={styles.nav} aria-label="Navegação principal">
           <ul className={styles.menu}>
 
-            {pathname === '/emExecucao' ? (<span className={styles.menuItemSpan}>Em execução</span>) : (<li><Link href="/emExecucao" rel="noopener noreferrer" className={`${styles.menuItem} ${styles.menuItem1}`}>Em execução</Link></li>)}
+            {pathname === '/emExecucao' ? (<span className={styles.menuItemSpan}>Em execução</span>) : (<li><Link href="#execBlock" rel="noopener noreferrer" className={`${styles.menuItem} ${styles.menuItem1}`}>Em execução</Link></li>)}
 
             <li><Link href="#lancamentBlock" className={`${styles.menuItem} ${styles.menuItem2}`}>Lançamentos</Link></li>
             <li><button className={`${styles.menuItem} ${styles.menuItem3}`} onClick={handleClickTalkWithUs}>Fale conosco</button></li>
