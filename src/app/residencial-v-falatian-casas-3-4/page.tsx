@@ -226,7 +226,7 @@ const IconLavanderia = currentLavanderia.icon
 
     const phoneNumber = '+554191459026'; 
     const handleClickTalkWithUs = () => {
-    const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá!%20Gostei%20do%20%20residencial%20V-Falatian%20e%20gostaria%20de%20agendar%20uma%20visita.`;
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá!%20Gostei%20do%20residencial%20V-Falatian%20e%20gostaria%20de%20agendar%20uma%20visita.`;
     window.open(whatsappLink, '_blank'); 
   }
   return (
