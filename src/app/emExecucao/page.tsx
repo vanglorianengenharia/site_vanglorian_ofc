@@ -19,7 +19,7 @@ export default function EmExecucao(){
                 <span className={styles.textResidenciaVFalatian}>Residencial V-Falatian - Casa 1 e 2</span>
               </div>
            </Link>
-             <Link  href={"/residVFalatianCasas3e4"} className={styles.linkEmExecImgTextResidenciaVFalatian}>
+             <Link  href={"/residencial-v-falatian-casas-3-4"} className={styles.linkEmExecImgTextResidenciaVFalatian}>
               <Image src={"/assets/cardImage.png"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={styles.imageCapaCard}/>
               <div className={styles.divEmExecImgTextResidenciaVFalatian} >
                 <Image src={"/assets/logo_icon.webp"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={styles.imageTextResidencial}/>
