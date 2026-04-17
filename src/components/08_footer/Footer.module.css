@@ -128,9 +128,15 @@
     height: auto;
   }
 }
+ @media(max-width: 440px){
+  .imageLogo{
+    margin-left: -2rem;
+  }
+
+}
  @media(max-width: 380px){
   .imageLogo{
-    margin-left: -1rem;
+    margin-left: -3.5rem;
   }
   .copyBlock{
   font-size: 0.68rem;
@@ -141,9 +147,9 @@
   }
 }
 @media(max-width: 330px){
-  .imageLogo{
-    margin-left: -2rem;
-  }  
+ .imageLogo{
+    margin-left: -3.95rem;
+  }
   .copyBlock{
     font-size: 0.55rem;
     gap: 0.10rem;
@@ -154,9 +160,7 @@
   }
 }
 @media(max-width: 300px){
-  .imageLogo{
-    margin-left: -1.5rem;
-  }
+ 
   .linksText{
     font-size: 0.8rem;
     margin-bottom: 0;   
