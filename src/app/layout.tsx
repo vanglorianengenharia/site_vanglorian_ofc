@@ -75,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${montserrat.variable} ${dmSerifDisplay.variable} ${outfit.variable} ${roboto.variable}`}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${montserrat.variable} ${dmSerifDisplay.variable} ${outfit.variable} ${roboto.variable}`}>
       <body>
         <HeaderNavigation />
         {children}

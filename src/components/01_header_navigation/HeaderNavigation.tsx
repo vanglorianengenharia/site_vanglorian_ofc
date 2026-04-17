@@ -39,10 +39,10 @@ export function HeaderNavigation() {
                   <Link href="/">Página Inicial</Link>
                 </li>
                 {pathname === '/emExecucao' ? (<span className={styles.modalMenuItemSpan}>Empreendimentos</span>) :  (<li className={`${styles.modalMenuItem} ${styles.modalMenuItem2}`}>
-                  <Link href="#empreendimentos">Empreendimentos</Link></li>)}
+                  <a href="#empreendimentos">Empreendimentos</a></li>)}
 
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem3}`}>
-                  <Link href="#obras-em-lancamento">Lançamentos</Link>
+                  <a href="#obras-em-lancamento">Lançamentos</a>
                 </li>
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem4}`}>
                   <button onClick={handleClickTalkWithUs}>Fale conosco</button>
@@ -58,14 +58,15 @@ export function HeaderNavigation() {
               width={500}
               height={386}
               alt="Logo da Vanglorian"
+              loading="eager"
               className={styles.logoIcon}
             />
           </Link>
         </div> 
         <nav className={styles.nav} aria-label="Navegação principal">
           <ul className={styles.menu}>
-            {pathname === '/emExecucao' ? (<span className={styles.menuItemSpan}>Empreendimentos</span>) : (<li><Link href="#empreendimentos" rel="noopener noreferrer" className={`${styles.menuItem} ${styles.menuItem1}`}>Empreendimentos</Link></li>)}
-            <li><Link href="#obras-em-lancamento" className={`${styles.menuItem} ${styles.menuItem2}`}>Lançamentos</Link></li>
+            {pathname === '/emExecucao' ? (<span className={styles.menuItemSpan}>Empreendimentos</span>) : (<li><a href="#empreendimentos" rel="noopener noreferrer" className={`${styles.menuItem} ${styles.menuItem1}`}>Empreendimentos</a></li>)}
+            <li><a href="#obras-em-lancamento" className={`${styles.menuItem} ${styles.menuItem2}`}>Lançamentos</a></li>
             <li><button className={`${styles.menuItem} ${styles.menuItem3}`} onClick={handleClickTalkWithUs}>Fale conosco</button></li>
           </ul>
         </nav>

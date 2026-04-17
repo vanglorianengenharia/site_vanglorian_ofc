@@ -61,12 +61,12 @@ export function ProjectsShowcase(){
                     className={styles.imageCapaCard}
                     />
                   <div className={styles.divEmExecImgTextResidenciaVFalatian} >
-                    <Image src={"/assets/logo_icon.webp"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={styles.imageTextResidencial}/>
+                    <Image src={"/assets/logo_icon.webp"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024}  loading="eager" className={styles.imageTextResidencial}/>
                     <span className={styles.textResidenciaVFalatian}>Residencial V-Falatian - Casas 3 e 4</span>
                   </div>
               </Link>
              <div className={`${styles.linkEmExecImgTextResidenciaVFalatian} ${styles.linkEmExecImgTextResidenciaVFalatianCasa1e2}`}>
-              <Image src={"/assets/cardImage.png"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={`${styles.imageCapaCard} ${styles.imageCapaCard2}`}/>
+              <Image src={"/assets/cardImage.png"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} loading="eager" className={`${styles.imageCapaCard} ${styles.imageCapaCard2}`}/>
               <div className={styles.divEmExecImgTextResidenciaVFalatian} >
                 <Image src={"/assets/logo_icon.webp"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={styles.imageTextResidencial}/>
                 <span className={styles.textResidenciaVFalatian}>Residencial V-Falatian - Casas 1 e 2</span>

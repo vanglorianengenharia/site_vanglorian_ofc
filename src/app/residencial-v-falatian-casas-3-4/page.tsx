@@ -221,18 +221,17 @@ const IconLavanderia = currentLavanderia.icon
 
   const router = useRouter();
     const handleVoltarExec = () => {
-    router.back();
-    window.scrollTo(0, 0); // força rolagem para o topo
+      router.push("/");
   };
 
   return (
     <div className={styles.containerResidVFalatian}>
     <div className={styles.content}>
       <div className={styles.divBtnsMenu2}>
-        <Link className={styles.divBtnUndoV} href={""} onClick={() => handleVoltarExec()}>
+        <button className={styles.divBtnUndoV} onClick={() => handleVoltarExec()}>
           <Undo2 className={styles.btnUndoV}/>
           <span className={styles.textBtnUndoV}>Voltar</span>
-        </Link>
+        </button>
       </div>
           <div className={styles.divTitleBlocksComodos}>
             <h3 className={styles.titleBlocksComodos}>Um Passeio Pelo<br />Seu novo Lar</h3>
