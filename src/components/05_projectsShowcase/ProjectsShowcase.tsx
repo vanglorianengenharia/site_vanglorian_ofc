@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import styles from "./ProjectsShowcase.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const imageList = [
-  "/assets/slide1.webp",
-  "/assets/slide2.webp",
-  "/assets/slide3.webp",
-  "/assets/slide4.webp",
+  "/assets/imageTesteNovoExec.png",
+  "/assets/imageTesteNovoExec1.png",
+  "/assets/imageTesteNovoExec2.png",
+  "/assets/imageTesteNovoExec03.png",
 ];
 const imageList2 = [
   "/assets/slideLan1.webp",
@@ -46,31 +47,36 @@ export function ProjectsShowcase(){
 
   return(
     <div className={styles.projectsShowcaseContainer}>
-      <div className={styles.projectsShowcaseContent} id="execBlock" >
-        <h2 className={styles.emExecucaoTitle}>Em execução</h2>
-        <div className={styles.emExecucaoContent}>
-          <div className={styles.slideImageContent}>
-              <Image 
-                src={imageList[currentIndexExec]}
-                alt={`Slide ${currentIndexExec + 1}`}
-                width={1024}
-                height={1536}
-                className={styles.imageEmExec}
-                />
-                <Image 
-                src={"/assets/v-falatian-quadrado-logo-esquerda.webp"}
-                alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"}
-                width={1024}
-                height={1536}
-                className={styles.imageIconeNomeResidencial}
-                />
-          </div>
-          <div className={styles.paragraphContent}>
-            <h2 className={styles.paragraphText}>Acompanhe de perto a evolução das obras das futuras casas Vanglorian. Projetos em andamento que unem qualidade, design e conforto, com a garantia de um lar pensado nos mínimos detalhes.</h2>
-          </div>
+      <div className={styles.projectsShowcaseContent} id="empreendimentos" >
+        <div className={styles.emExecContainer}>
+        <div className={styles.divTitleSection}>
+            <h2 className={styles.lancamTitle}>Empreendimentos</h2>
+            <div className={styles.divBlocksSection}>
+                <Link href={"/residencial-v-falatian-casas-3-4"} target="_self" className={styles.linkEmExecImgTextResidenciaVFalatian}>                  
+                  <Image 
+                    src={imageList[currentIndexExec]}
+                    alt={`Slide ${currentIndexExec + 1}`}
+                    width={1024}
+                    height={1536}
+                    className={styles.imageCapaCard}
+                    />
+                  <div className={styles.divEmExecImgTextResidenciaVFalatian} >
+                    <Image src={"/assets/logo_icon.webp"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={styles.imageTextResidencial}/>
+                    <span className={styles.textResidenciaVFalatian}>Residencial V-Falatian - Casas 3 e 4</span>
+                  </div>
+              </Link>
+             <div className={`${styles.linkEmExecImgTextResidenciaVFalatian} ${styles.linkEmExecImgTextResidenciaVFalatianCasa1e2}`}>
+              <Image src={"/assets/cardImage.png"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={`${styles.imageCapaCard} ${styles.imageCapaCard2}`}/>
+              <div className={styles.divEmExecImgTextResidenciaVFalatian} >
+                <Image src={"/assets/logo_icon.webp"} alt={"Ìcone Vanglorian com o nome do residencial que se chama v-falatian"} width={1536} height={1024} className={styles.imageTextResidencial}/>
+                <span className={styles.textResidenciaVFalatian}>Residencial V-Falatian - Casas 1 e 2</span>
+              </div>
+            </div>
         </div>
-      </div>
-      <div className={styles.projectsShowcaseContentLanc} id="lancamentBlock" >
+     </div>  
+   </div>
+   </div>
+      <div className={styles.projectsShowcaseContentLanc} id="obras-em-lancamento" >
         <h2 className={styles.lancamTitle}>Lançamentos</h2>
         <div className={styles.lancamContent}>
           <div className={styles.slideImageContent}>

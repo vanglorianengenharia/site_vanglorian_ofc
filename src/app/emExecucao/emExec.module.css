@@ -1,0 +1,258 @@
+.emExecContainer{
+  width: 100%;
+  /* padding-bottom: 40rem; */
+  margin-bottom: 20rem;
+  /* position: relative; */
+/* 
+  &::after{
+    position: absolute;
+    display: flex;
+    justify-self: center;
+    content: "";
+    background-color: #705700;
+    width: 85%;
+    height: 1px;
+    margin: 0 auto;
+    bottom: -10rem;
+  } */
+}
+.titleImageContent{
+  display: grid;
+  grid-template-columns: 1fr;
+  
+}
+.imageCapaEmExec{
+  width: 100%;
+  height: 95vh;
+  position: relative;
+}
+.divTitleBlock{
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: 4rem;
+  right: 5rem;
+  bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.emExecP{
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.741);
+
+}
+.divTitleSection{
+  padding-top: 6rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.divBtnUndo {
+  font-size: 1.5rem;
+  background-color: #705700;
+  border-radius: 1rem;
+  position: absolute;
+  top: 10rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  padding: 1.2rem 1.5rem;
+
+  &:hover{
+    /* color: #dece96; */
+    background-color: #a38002;
+
+  }
+}
+.titleSection{
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+  border: 1px solid #705700;
+  border-right: none;
+  border-left: none;
+  max-width: fit-content;
+  padding: 1rem 2rem 2rem 0;
+  margin-bottom: 3rem;
+  color: #705700;
+}
+.divBlocksSection{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.imageCapaCard{
+  max-width: 100%;
+  width: 100%;
+  height: 22rem;
+  border-radius: 1rem;
+}
+.linkEmExecImgTextResidenciaVFalatian{
+  width: 100%;
+   &:hover{
+    scale: 1.05;
+  }
+}
+.imageTextResidencial{
+  max-width: 30rem;
+  height: 6rem;
+  width: auto;
+  background: #eae9e9;
+  border-radius: 100%;
+  padding: 0.5rem 0;
+}
+.divEmExecImgTextResidenciaVFalatian{
+  display: flex;
+  align-items: center;
+  gap: 0rem;
+  width: 100%;
+  margin-top: -3.5rem;
+}
+.imageTextResidencial{
+  z-index: 1;
+}
+.textResidenciaVFalatian{
+  background: #002204;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: -1rem;
+  z-index: 0;
+  font-size: 1.5rem;
+  color: wheat;
+  border-radius: 0 0 1rem 0;
+}
+.emExecLabel{
+  position: absolute;
+  bottom: -2rem;
+  font-size: 2rem;
+  background-color: black;
+  gap: 1rem;
+  color: wheat;
+}
+
+@media(max-width: 1400px){
+  .divTitleSection{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+@media(max-width: 1200px){
+  .divTitleSection{
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  .textResidenciaVFalatian{
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+  }
+}
+@media(max-width: 1000px){
+  .emExecContainer{ 
+    margin-bottom: 15rem;
+}
+  .titleSection{
+    font-size: 1.5rem;
+    padding: 1rem 2rem 1rem 0;
+  }
+  .divTitleBlock{
+    font-size: 3rem;
+    right: 4rem;
+    bottom: 12rem;
+}
+.divBtnUndo {
+  font-size: 0.9rem;
+  border-radius: 0.8rem;
+  top: 7rem;
+  gap: 0.2rem;
+  padding: 0.8rem 0.7rem;
+
+}
+.imageCapaEmExec{
+  height: 80vh;
+}
+.imageCapaCard{
+  height: 15rem;
+}
+.textResidenciaVFalatian{
+  padding: 1rem 2rem;
+  padding-left: 3rem;
+  margin-left: -2rem;
+}
+}
+
+@media(max-width: 800px){
+  .emExecContainer{ 
+    margin-bottom: 10rem;
+}
+  .titleSection{
+    margin-left: 4rem;
+  }
+  .divBlocksSection{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .divTitleBlock{
+    font-size: 2.5rem;
+    right: 2.8rem;
+    bottom: 16rem;
+}
+.divTitleSection{
+   padding: 4rem 1rem 0 1rem;
+}
+
+.imageCapaEmExec{
+  height: 70vh;
+}
+}
+@media(max-width: 600px){
+    .emExecContainer{ 
+    margin-bottom: 15rem;
+}
+  .titleSection{
+    margin-left: 0.5rem;
+  }
+.divTitleBlock{
+    font-size: 2rem;
+    right: 2rem;
+    bottom: 20rem;
+}
+.imageCapaEmExec{
+  height: 60vh;
+}
+.iconUndo{
+  height: 0.8rem;
+  width: auto;
+}
+.divBtnUndo {
+  font-size: 0.8rem;
+  border-radius: 0.7rem;
+  top: 6rem;
+  gap: 0.2rem;
+  padding: 0.6rem 0.65rem;
+}
+  .divBlocksSection{
+    width: 98%;
+  }
+}
+@media(max-width: 380px){
+  .divTitleBlock{
+    font-size: 1.5rem;
+    right: 1rem;
+    bottom: 22rem;
+}
+  .titleSection{
+    margin-left: 1rem;
+  }
+  .imageTextResidencial{
+    max-width: 30rem;
+    height: 5.2rem;
+  }
+  .textResidenciaVFalatian{
+    font-size: 0.9rem;
+  }
+}

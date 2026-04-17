@@ -4,7 +4,7 @@
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(5px);
   z-index: 9999;
-  padding: 0.6rem 0;
+  padding: 0.11rem 0;
 }
 .containerHeaderNav{
   display: grid;
@@ -39,14 +39,36 @@
 .menu{
   display: flex;
   justify-content: flex-end;
-  gap: 2rem;
+  align-items: center;
+  gap: 1.5rem;
   padding: 0.5rem 1rem;
+}
+.menuItemSpan{
+  text-decoration: none;
+  color: #002d18;
+  font-size: 1rem; 
+  position: relative;
+  cursor: not-allowed;
+}
+
+.menuItemSpan::after{
+  content: "";
+  display: block;
+  height: 0.125rem;
+  width: 100%;
+  background-color: #002100;
+  margin-top: 0.125rem;
+  transition: 0.3s;
+  position: absolute;
 }
 .menuItem {
   text-decoration: none;
   color: #002d18;
   font-size: 1rem; 
   position: relative;
+}
+.menuItem1, .menuItem2, .menuItem3, .menuItemSpan{
+  padding: 1.5rem 0;
 }
 .menuItem::after{
   content: "";
@@ -79,6 +101,22 @@
   height: auto;
   z-index: 1000;
 }
+.modalMenuItemSpan{
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: not-allowed;
+}
+.modalMenuItemSpan::after{
+  content: "";
+  display: block;
+  height: 0.125rem;
+  width: 51%;
+  background-color: #002100;
+  margin-top: 0.125rem;
+  transition: 0.3s;
+  position: absolute;
+}
+
 .modalMenuItem{
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
@@ -96,9 +134,18 @@
 .modalMenuItem:hover::after{
   width: 51%;
 }
+.activeLink {
+  border-bottom: 2px solid #002100; /* ou a cor que você quiser */
+  font-weight: 600;
+}
+
+@media(max-width: 1260px){
+  .menu{
+    gap: 0.9rem;
+  }
+}
 @media (max-width: 1200px) {
   .menu{
-    gap: 1rem;
     margin-left: -2.5rem;
   }
 }
@@ -109,9 +156,12 @@
   .logoIcon{
   height: 3.8rem;
   }
-  .menuItem1, .menuItem2{
+  .menuItem1, .menuItem2, .menuItemSpan{
     display: none;
   }
+  .menuItem1, .menuItem2, .menuItem3, .menuItemSpan{
+  padding: 1.374rem 0;
+}
 .modalMenuOpen{
   top: 150%;
   left: 5%;
@@ -122,8 +172,14 @@
   .menu{
     gap: 0.5rem;
     margin-left: -1rem;
-    padding: 0.2rem;
+    /* padding: 0.2rem; */
   }
+
+}
+@media(max-width: 400px){
+      .menuItem1, .menuItem2, .menuItem3, .menuItemSpan{
+    padding: 0.728rem 0;
+}
 }
 @media (max-width: 360px) {
   .menu{
@@ -131,7 +187,15 @@
     margin-left: -1rem;
     padding: 0.2rem;
   }
-  .menuItem, .menuSandwichBtn, .modalMenuItem{
+  .menuItem, .menuSandwichBtn, .modalMenuItem, .modalMenuItemSpan, .menuItemSpan{
     font-size: 0.875rem;
   }
+  .menuItem1, .menuItem2, .menuItem3, .menuItemSpan{
+    padding: 1.726rem 0;
+}
+}
+@media (max-width: 300px) {
+  .menuItem1, .menuItem2, .menuItem3, .menuItemSpan{
+    padding: 1.156rem 0;
+}
 }

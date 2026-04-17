@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function AboutUs(){
   return(
-    <div className={styles.aboutUsContainer} id="aboutUsComponent">
+    <div className={styles.aboutUsContainer} id="sobre-nos">
       <div className={styles.aboutUsGridOne}>
         <Image
               src={"/assets/test2.png"}

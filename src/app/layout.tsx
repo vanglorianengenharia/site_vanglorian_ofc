@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Montserrat, DM_Serif_Display, Outfit, Roboto } from "next/font/google";
+import { Footer } from "@/components/08_footer/Footer";
+import { BtnWhatsapp } from "@/components/btnWhatsapp/BtnWhatsapp";
+import { HeaderNavigation } from "@/components/01_header_navigation/HeaderNavigation";
 
 
 
@@ -74,7 +77,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${montserrat.variable} ${dmSerifDisplay.variable} ${outfit.variable} ${roboto.variable}`}>
       <body>
+        <HeaderNavigation />
         {children}
+        <Footer />
+        <BtnWhatsapp />
       </body>
     </html>
   );

@@ -1,0 +1,1072 @@
+.imagesVFalatian{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  margin: 0 auto;
+  gap: 2rem;
+  margin-top: 5rem;
+  width: 75%;
+  max-width: 2000px;
+}
+.locationContainer{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin: 0 auto;
+  max-width: 100rem;
+  width: 100%;
+}
+.containerInfoCasa{
+  max-width: 2000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+ .containerEmExec{
+  width: 100%;
+ }
+.content{
+  position: relative;
+}
+.imageBanner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 95vh;
+  object-fit: cover;
+  max-height: 100%;
+  aspect-ratio: 2/3;
+}
+.videoBlock {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.vFalatianTitle{
+  width: 100%;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  font-size: 7rem;
+  font-weight: 600;
+  letter-spacing: 8px;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.residencP{
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #C5A24C;
+  font-size: 2rem;
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(255, 245, 57, 0.3);
+}
+.divTitleBlock{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 999;
+  color: rgb(255, 255, 255);
+  font-size: 4rem;
+  right: 0em;
+  bottom: 0rem;
+  width: 100%;
+  height: 100%;
+  align-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+}
+.divBtnUndoV{
+  font-size: 1.5rem;
+  background-color: #705700;
+  border-radius: 1rem;
+  position: absolute;
+  top: 10rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  padding: 1.2rem 1.5rem;
+  &:hover{
+    background-color: #a38002;
+  }
+}
+.imageApresentationResid{
+  max-width: 80vh;
+  height: 30rem;
+  border: 5px solid #D4AF37; 
+  border-radius: 10px;    
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); 
+  background-color: #000; 
+}
+.descriptionImage{
+  max-width: 70vh;
+  font-family: var(--font-outfit);
+  font-weight: 300;
+  text-align: center;
+  color: #fffaeb;
+}
+.dotIconSpan{
+  margin-left: 0.5rem;
+  font-size: 1.7rem;
+  color: #004f27;
+  max-height: fit-content;
+}
+.dotTextLi{
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.tituloLocal1{
+  margin-bottom: 0em;
+  font-size: 3.8rem;
+}
+.tituloLocal2{
+  margin-top: -1.0rem;
+  margin-bottom: 0em;
+  margin-left: 3rem;
+}
+.tituloLocal,.tituloLocalLeft{
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #d0d0d0;
+  margin-bottom: 3rem;
+}
+.divIntroInfoContent{
+  width: 100%;
+  background-color: rgba(141, 108, 0, 0.22);
+}
+.divIntroInfo{
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 1rem;
+  margin: 0 auto;
+  width: 75%;
+  max-width: 1500px;
+  padding: 5rem 0 5rem 0;
+  margin-bottom: 0;
+}
+.divIntroInfo > :nth-child(3n + 1) {
+  justify-self: start;
+}
+.divIntroInfo > :nth-child(3n + 2) {
+  justify-self: center;
+}
+.divIntroInfo > :nth-child(3n + 3) {
+  justify-self: end;
+}
+.listIntroInfo{
+  display: flex;
+  margin-top: 3rem;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: auto;
+  gap: 1rem;
+  margin-bottom: 0rem;
+  text-wrap: nowrap;
+}
+.listIntroInfoText{
+  font-family: var(--font-outfit);
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+.iconIntro{
+  max-width: min-content;
+  text-align: center;
+  display: flex;
+  height: 1.9rem;
+}
+.divTitleBlocksComodos{
+  text-align: center;
+  padding-top: 12rem;
+}
+.titleBlocksComodos{
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #705700;
+}
+.divLocation{
+  display: grid;
+  grid-template-columns: 3.5fr 6fr;
+  height: 28rem;
+}
+.locationText{
+  display: grid;
+  grid-template-columns: 1fr;
+  max-height: 20rem;
+}
+.locationTitle{
+  position: relative;
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  color: #705700;
+  padding-bottom: 1.5rem;
+  margin-bottom: 3rem;
+}
+.localizacaoTextTitle, .comodidadesProxTitle{
+    &::after{
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 1px;
+    background-color: #70580039;
+    bottom: 0rem;
+    left: 0;
+  }
+}
+.comodidadesProxTitle{
+    &::after{
+    width: 55%;
+  }
+}
+.iconAndTextLocation{
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+.iconMap{
+  margin-bottom: 1.2rem;
+}
+.detailsTextLocation, .detailsTextBLocation, .detailsTextLocationBtn{
+  font-family: var(--font-outfit);
+  font-weight: 200;
+  font-size: 1.2rem;
+}
+.detailsTextBLocation{
+  font-size: 1.8rem;
+  max-width: 90%;
+  margin-bottom: 0rem;
+}
+.locGoogleMaps{
+  border-radius: 2rem;
+  height: 100%;
+  width: 100%;
+  height: 100%;
+}
+.comodidadesContainer{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  justify-items: flex-start;
+  align-items: flex-start;
+}
+.comodidadesCategoriasText{
+  text-wrap: nowrap;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+.comodidadesCategorias{
+  position: relative;
+  width: 100%;
+}
+.comodidadesCategorias{
+  justify-items: flex-end;
+}
+.comodidadesCategorias:first-child{
+  justify-items: flex-start;
+}
+.comodidadesCategorias:nth-child(2), .comodidadesCategorias:nth-child(3){
+  justify-items: center;
+}
+.comodidadesCategoriasSpan{
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  gap: 0.5rem;
+  font-weight: 400;
+  text-wrap: nowrap;
+  padding-right: 1rem; 
+}
+.comodidadesCategorias::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1px;
+  height: 1.5rem;
+  background: rgba(0, 43, 0, 0.163);
+}
+.comodidadesCategorias:last-child::after {
+  display: none;
+}
+.btnRotas{
+  display: flex;
+  text-wrap: nowrap;
+  font-size: 0.8rem;
+  padding: 1rem 2rem;
+  background: #e4e0d1;
+  border-radius: 1rem;
+  color: #002a13c0;
+  gap: 0.5rem; 
+  margin-right: 1rem;
+  justify-items: center;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: fit-content;
+  &:hover{
+   background:rgb(185, 181, 168);
+  }
+}
+.containerComodos{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  max-width: 2000px;
+}
+.imageAndText{
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  margin: 3rem 0;
+  align-items: center;  
+  justify-content: center;
+  border-radius: 40px;
+  border: 2px solid #d5d4d4; 
+  box-shadow: 0 0 25px rgba(212, 212, 212, 0.6); 
+  gap: 1rem;
+  background-color: #ececec;
+  width: 85%;
+  height: 700px;
+  overflow: hidden;
+}
+.imageAndTextImageRight{
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+}
+.imageApresentationResidSideLeft, .imageApresentationResidSideRight{
+  border-radius: 40px;
+  border-left: none;    
+  background-color: #000; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.grupoTexto, .grupoTexto2{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-self: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+.descriptionImage, .descriptionImageFormatText, .iconAndTextright{
+  font-family: var(--font-outfit);
+  max-width: 40rem;
+  align-content: center;
+  text-align: center;
+  justify-self: center;
+  font-size: 2.2rem;
+  font-weight: 200;
+  color: #012312;
+}
+.iconAndText, .iconAndTextLeft{
+  font-family: var(--font-outfit);
+  display: flex;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: auto;
+}
+.secondGrid, .secondGridLeft, .iconAndTextright{
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #012312;
+}
+.secondGridLeft, .divThirdGridText{
+  justify-items: center;
+  padding: 5rem 4rem; /*adicao teste de padding no bloco*/
+  width: 100%;
+}
+.tituloLocalLeft{
+  align-self: center;
+}
+.icon{
+  height: 1.9rem;
+}
+.iconAndTextLeft , .descriptionImageFormatText{
+  text-align: left;  
+  justify-content: left;
+ }
+.iconAndTextLeft{
+  font-weight: 400;
+  gap: 1rem;
+}
+.descriptionImageFormatText{
+  font-size: 1.6rem;
+  max-width: 30rem;
+}
+.textIntro{
+  color: #004f27;
+}
+.imageAndText3{
+  display: flex;
+}
+ .iconAndTextright{
+  display: flex;
+  font-weight: 400;
+  gap: 1rem;
+  justify-content: flex-start;
+ }
+ .divThirdGridText{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: center;
+  justify-self: center;
+ }
+ .numberTwoSup{
+  font-size: 1rem;
+  margin-left: 0.15rem;
+ }
+ .imageAndArrow{
+  position: relative;
+ }
+.imageAndText{
+  position: relative;
+  overflow: visible;
+}
+ .arrowIconRRight, .arrowIconLRight, .arrowIconLLeft, .arrowIconRLeft{
+  position: absolute;
+  top: 50%;
+  width: auto;
+  display: flex;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  color: #b17f00;
+    &:hover{
+    scale: 1.1;
+    color: #d69a03;
+  }
+ }
+.arrowIconLRight, .arrowIconRRight{
+  right: -6rem;
+  height: 4rem;
+}
+.arrowIconLLeft, .arrowIconRLeft{
+  left: -2rem;
+  height: 4rem;
+}
+.iconsSala{
+  display: flex;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+}
+.divTextCtaEBtn{
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #b17f0054;
+  border-bottom: 1px solid #b17f0054;
+  padding: 5rem 2rem;
+  width: fit-content;
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 8rem;
+  margin-bottom: 11rem;
+ }
+.divText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.textCta1, .textCta2{
+  font-weight: 300;
+  margin-bottom: 1rem;
+ font-family: 'Montserrat', sans-serif;
+  color: #976c00;
+}
+.textCta1{
+  font-size: 1.5rem;
+  color: #595959;
+  font-style: italic;
+  color: #9e7203;
+  text-shadow: 0 2px 8px rgba(126, 126, 123, 0.3);
+}
+.textCta2{
+  font-size: 2rem;
+  color: #9e7203;
+  text-shadow: 0 2px 8px rgba(126, 126, 123, 0.3);
+  font-weight: 400;
+  text-wrap: nowrap;
+  text-align: center;
+}
+.divBtn{
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+.btnCta{
+  width: fit-content;
+  padding: 1.1rem 4rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fffaeb;
+  background-color: #b17f00;
+  border-radius: 1rem;
+  text-wrap: nowrap;
+  &:hover{
+    background-color: #d69a03;
+  }
+}
+@media(max-width: 1600px){
+ .tituloLocal1{
+  font-size: 3rem;
+ }
+  .tituloLocal2{
+  font-size: 2rem;
+ }
+ .secondGridLeft, .divThirdGridText{
+  padding: 4rem 3rem;
+ }
+ .descriptionImageFormatText{
+  font-size: 1.4rem;
+ }
+ .iconAndTextLeft, .iconAndTextright{
+  gap: 0.5rem;
+ }
+ .tituloLocalLeft{
+  align-self: center;
+ }
+ .tituloLocal,.tituloLocalLeft{
+  margin-bottom: 2.2rem;
+}
+}
+@media(max-width: 1300px){
+  .dotIconSpan{
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+}
+ .divBtnUndoV{
+  padding: 1rem 1.2rem;
+  font-size: 1.2rem;
+ }
+ .titleBlocksComodos{
+  font-size: 2.5rem;
+ }
+ .divTextCtaEBtn{
+  margin-top: 7rem;
+ }
+.locationContainer{
+  gap: 2rem;
+}
+.divLocation{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+.locationTitle{
+  font-size: 2rem;
+}
+.detailsTextBLocation{
+  max-width: fit-content;
+  font-size: 1.5rem;
+}
+.iconAndTextLocation{
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.comodidadesContainer{
+  justify-items: flex-end;
+}
+.iconAndTextright{
+  max-width: fit-content;
+  text-align: start;
+}
+.iconAndTextLeft, .iconAndTextright{
+  margin-bottom: 0.5rem;
+}
+.titleCaracteristica, .titleBlock{
+  margin-bottom: 0.6rem;
+}
+  .containerComodos{
+    margin-top: 1rem;
+  }
+ .imageAndText{
+  width: 85%;
+  height: auto;
+  margin-top: 1rem;
+ }
+ .imagesVFalatian{
+  width: 85%;
+ }
+ .imageApresentationResidSideRight, .imageApresentationResidSideLeft{
+  height: 32rem;
+  min-height: 32rem;
+ }
+ .descriptionImageFormatText{
+   max-width: 90%;
+   font-size: 1.2rem;
+   justify-self: flex-start;
+ }
+ .iconAndTextright{
+  justify-self: flex-start;
+ }
+ .arrowIconLLeft, .arrowIconRLeft{
+  left: -2rem;
+ }
+  .arrowIconRRight, .arrowIconLRight{
+    right: -6rem;
+ }
+}
+@media(max-width: 1100px){
+  .secondGridLeft, .divThirdGridText{
+    padding: 3rem 2rem;
+ }
+}
+@media(max-width: 1000px){
+  .imageApresentationResidSideRight{
+    height: 100%;
+  }
+  .divIntroInfo{
+    padding: 2rem 0;
+  }
+  .listIntroInfoText{
+    font-size: 1.2rem;
+}
+  .listIntroInfo{
+    gap: 0.5rem;
+}
+  .divBtnUndoV{
+    font-size: 0.9rem;
+    top: 7.5rem;
+    left: 2rem;
+    gap: 0.2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0.9rem;
+  }
+  .btnUndoV{
+    height: 0.9rem;
+    width: auto;
+  }
+  .locGoogleMaps{
+    width: 100%;
+    justify-self: center;
+  }
+  .locationContainer{
+    gap: 4rem;
+  }
+  .locationText, .btnRotas{
+    justify-self: center;
+  }
+  .detailsTextBLocation{
+    margin-bottom: 1rem;
+  }
+  .divLocation{
+    height: 22rem;
+  }
+ .divThirdGridText{
+    padding: 3rem 1.3rem;
+ }
+  .secondGridLeft{
+    padding: 3rem 0.2rem 3rem 2rem;
+ }
+}
+@media(max-width: 900px){
+  .divThirdGridText, .secondGridLeft{
+    width: 100%;
+    padding: 1rem 1rem 3rem 3rem;
+  }
+  .containerComodos{
+    margin-top: 1rem;
+  }
+  .imageAndText{
+    width: 85%;
+  }
+  .arrowIconLRight, .arrowIconRRight{
+  right: -4.5rem;
+  height: 3rem;
+}
+.arrowIconLLeft, .arrowIconRLeft{
+  left: -1.5rem;
+  height: 3rem;
+}
+  .residencP{
+    font-size: 1.8rem;
+  }
+  .vFalatianTitle{
+    font-size: 5rem;
+  }
+  .comodidadesContainer{
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin: 0 auto;
+    align-content: center;
+    justify-items: flex-start;
+    justify-self: center;
+    row-gap: 3rem;
+  }
+  .comodidadesCategorias:nth-child(2){
+    justify-items: flex-end;
+  }
+   .comodidadesCategorias:nth-child(3){
+    justify-items: flex-start;
+  }
+  .comodidadesCategorias:nth-child(even){
+    &::after{
+      display: none;
+    }
+  }
+  .imageAndText{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 85%;
+}
+.imageApresentationResidSideLeft, .imageApresentationResidSideRight{
+  grid-row: 1;
+  height: 25rem;
+}
+.textCta2{
+  font-size: 1.5rem;
+}
+.divBtn{
+  margin-top: 2.5rem;
+}
+ .divTextCtaEBtn{
+  margin-top: 6rem;
+  padding: 3rem 2rem;
+ }
+  .tituloLocal,.tituloLocalLeft{
+  margin-bottom: 2rem;
+}
+  .dotTextLi{
+    margin-bottom: 0.3rem;
+  }
+}
+@media(max-width: 800px){
+.divLocation{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  width: 100%;
+  max-width: 100%; 
+  gap: 2rem;
+  padding: 0;
+}
+.locationText, .comodProxContainer{
+  justify-self: flex-start;
+  padding-left: 3.7rem;
+}
+ .locGoogleMaps{
+  grid-row: 1;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 0;
+  height: 14rem;
+}
+ .divIntroInfo{
+   grid-template-columns: 1fr 1fr;
+   width: fit-content;
+   gap: 2rem;
+   text-align: center;
+   column-gap: 2rem;
+  }
+.divIntroInfo > :nth-child(odd) {
+  justify-self: flex-start;
+}
+
+.divIntroInfo > :nth-child(even) {
+  justify-self: flex-start;
+}
+  .listIntroInfoText{
+    text-wrap: wrap;
+    width: auto;
+  }
+  .listIntroInfo{
+    gap: 0.5rem;
+    margin-top: 0;
+
+  }
+  .imagesVFalatian{
+    margin-top: 0;
+    width: 100%;
+  }
+  .containerInfoCasa{
+    padding: 0;
+  }
+
+  .locationContainer{
+    padding: 0; 
+    margin: 0;
+    height: 65rem;
+  }
+  .textCta1{
+    font-size: 1rem;
+  }
+  .textCta2{
+    font-size: 1.2rem;
+  }
+  .btnCta{
+    font-size: 1.1rem;
+  }
+  .divTextCtaEBtn{
+    padding: 3rem 1rem;
+    margin-top: 3rem;
+  }
+  .comodProxContainer{
+    margin: 10rem 0;
+    justify-content: flex-start;
+  }
+  .comodidadesProxTitle{
+    &::after{
+    width: 84%;
+  }
+}
+.comodidadesCategorias:first-child, .comodidadesCategorias:nth-child(3){
+  justify-items: flex-start;
+}
+.comodidadesCategorias:nth-child(2){
+  justify-items: flex-end;
+  padding-left: 1rem;
+}
+.comodidadesCategorias::after {
+  right: -2rem;
+  height: 3rem;
+}
+}
+@media(max-width: 600px){
+  .dotIconSpan{
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+}
+.dotTextLi{
+  margin-top: 0.3rem ;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+  .titleBlocksComodos{
+  font-size: 2rem;
+ }
+ .tituloLocal, .tituloLocal1, .tituloLocalLeft{
+  font-size: 2.2rem;
+ }
+ .tituloLocal2{
+  font-size: 1.5rem;
+  margin-top: 0.1px;
+ }
+ .divBtnUndoV{
+  padding: 0.6rem 0.9rem;
+  font-size: 0.7rem;
+  top: 5.4rem;
+  border-radius: 0.5rem;
+ }
+ .divTitleBlocksComodos{
+  padding-top: 10rem;
+ }
+ .iconAndTextright{
+  gap: 0.3rem;
+  text-align: left;
+  align-items: center;
+ }
+.iconAndTextLeft{
+  max-height: fit-content;
+  justify-items: center;
+  gap: 0.3rem;
+  text-align: left;
+  align-items: center;
+}
+.descriptionImageFormatText{
+  font-size: 1rem;
+}
+.secondGridLeft, .divThirdGridText{
+  padding-bottom: 2.5rem;
+}
+ .imageAndText{
+  width: 95%;
+  margin-bottom: 0.5rem;
+}
+.tituloLocalLeft{
+  margin-bottom: 1.5rem;
+}
+ .residencP{
+    font-size: 1.4rem;
+  }
+  .vFalatianTitle{
+    font-size: 2.5rem;
+  }
+   .divIntroInfo{
+    width: fit-content;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .divIntroInfo > :nth-child(odd) {
+      justify-self: flex-start;
+      text-align: left;
+  }
+  .divIntroInfo > :nth-child(even) {
+      justify-self: flex-start;
+      text-align: left;
+  }
+   .comodidadesContainer{
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: 0 auto;
+    row-gap: 2rem;
+  }
+   .comodidadesCategorias:nth-child(2), .comodidadesCategorias:nth-child(4){
+    justify-items: flex-start;
+    padding-left: 0;
+  }
+    .comodidadesCategorias::after {
+     display: none;
+}
+    .comodidadesCategorias:last-child::after {
+     display: none;
+}
+  .locGoogleMaps{
+    max-width: 100%;
+    height: 14rem;
+  }
+  .imageApresentationResidSideLeft, .imageApresentationResidSideRight{
+    min-height: 20rem;
+    max-height: 20rem;
+  } 
+ .arrowIconRRight, .arrowIconLRight{
+    right: 0rem;
+    height: 4rem;
+    top: 40%;
+  }
+  .arrowIconRLeft, .arrowIconLLeft{
+    left: 4rem;
+    height: 4rem;
+    top: 40%;
+  }
+  .textCta2{
+    text-wrap: wrap;
+  }
+  .divBtn{
+    margin-top: 1rem;
+  }
+  .btnCta{
+    padding: 0.6rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+  }
+   .divTextCtaEBtn{
+    max-width: 90%;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+    padding: 2.5rem 0.5rem;
+  }
+  .locationText, .comodProxContainer{
+    padding: 1.5rem 1rem 1.5rem 2rem;
+  }
+   .locationContainer{
+    margin-bottom: 12rem;
+  }
+  .comodProxContainer{
+    width: 98%;
+  }
+  .comodidadesProxTitle{
+    &::after{
+    width: 95%;
+  }
+}
+ .tituloLocal,.tituloLocalLeft{
+  margin-bottom: 1.3rem;
+}
+.titleBlock, .titleCaracteristica{
+  margin-bottom: 0;
+}
+}
+@media(max-width: 480px){
+  .secondGridLeft, .divThirdGridText{
+    padding: 1rem 2.5rem 2rem 1.5rem;
+  }
+  .locationContainer{
+    justify-content: center;
+  }
+ .divLocation{
+  width: auto;
+ }
+  .arrowIconRRight, .arrowIconLRight{
+    right: -1rem;
+    height: 3rem;
+    top: 40%;
+  }
+  .arrowIconRLeft, .arrowIconLLeft{
+    left: 2rem;
+    height: 3rem;
+    top: 40%;
+  }
+  .locGoogleMaps{
+    overflow: hidden;
+  }
+  .comodProxContainer{
+    margin-top: 12rem;
+  }
+    .locationContainer{
+    margin-bottom: 14rem;
+  }
+.locationText{
+  padding-top: 1rem;
+}
+.locationTitle{
+  padding-bottom: 1rem;
+}
+  .iconAndTextLeft, .iconAndTextright{
+    font-size: 1.2rem;
+  }
+}
+@media(max-width: 390px){
+   .detailsTextBLocation, .iconAndTextLocation{
+    font-size: 1.2rem;
+    max-width: 90%;
+    width: 95%;
+   }
+  .detailsTextLocationBtn{
+    padding: 0rem 0rem;
+    max-width: 100%;
+    font-size: 0.8rem;
+   }
+   .btnRotas{
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.5rem;
+    margin-right: 0;
+    justify-self: flex-start;
+   }
+  .divTextCtaEBtn{
+    max-width: 96%;
+    padding: 2rem 0.5rem;
+  }
+  .secondGridLeft, .divThirdGridText{
+    padding: 1rem 0.5rem 2rem 1.5rem;
+  }
+}
+@media(max-width: 350px){
+  .comodProxContainer, .locationText{
+    min-width: 290px;
+    max-width: 290px;
+  }
+}

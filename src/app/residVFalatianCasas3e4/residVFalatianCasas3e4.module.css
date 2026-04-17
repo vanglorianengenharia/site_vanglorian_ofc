@@ -1,0 +1,288 @@
+.imagesVFalatian{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.content{
+  position: relative;
+}
+.imageBanner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 95vh;
+  object-fit: cover;
+  max-height: 100%;
+  aspect-ratio: 2/3;
+}
+.videoBlock {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.vFalatianTitle{
+  width: 100%;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  font-size: 7rem;
+  font-weight: 600;
+  letter-spacing: 8px;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.residencP{
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #C5A24C;
+  font-size: 2rem;
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(255, 245, 57, 0.3);
+}
+.divTitleBlock{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 999;
+  color: rgb(255, 255, 255);
+  font-size: 4rem;
+  right: 0em;
+  bottom: 0rem;
+  width: 100%;
+  height: 100%;
+  align-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+}
+.divBtnUndoV{
+  position: absolute;
+  top: 10rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  padding: 2rem 1.5rem;
+  justify-items: center;
+  z-index: 1000;
+  &:hover{
+    color: #d4c79c;
+  }
+}
+.imageApresentationResid{
+  max-width: 80vh;
+  height: 30rem;
+  border: 5px solid #D4AF37; 
+  border-radius: 10px;    
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); 
+  background-color: #000; 
+}
+.descriptionImage{
+  max-width: 70vh;
+  font-family: var(--font-outfit);
+  font-weight: 300;
+  text-align: center;
+  color: #fffaeb;
+}
+.imageAndText{
+  width: 80%;
+  max-height: min-content;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  margin: 3rem 0;
+  align-items: center;  
+  justify-content: center;
+  border-radius: 40px 40px 40px 40px;
+  border: 2.5px solid #00300c79; 
+  border-left: none;    
+  box-shadow: 0 0 15px rgba(0, 36, 13, 0.6); 
+  gap: 1rem;
+}
+.imageApresentationResidSideLeft{
+  height: 40rem;
+  border-radius: 40px 0px 0px 40px;
+  border-left: none;    
+  box-shadow: 0 0 15px rgba(0, 44, 12, 0.6); 
+  background-color: #000; 
+}
+.imageApresentationResidSideRight{
+  height: 40rem;
+  border-radius: 40px 40px 40px 40px;
+  border: 1px solid #D4AF37; 
+  border-right: none;    
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); 
+  background-color: #000; 
+}
+.descriptionImage, .descriptionImageFormatText, .iconAndTextright{
+  font-family: var(--font-outfit);
+  max-width: 40rem;
+  align-content: center;
+  text-align: center;
+  justify-self: center;
+  font-size: 2.2rem;
+  font-weight: 200;
+  color: #012312;
+}
+.iconAndText, .iconAndTextLeft{
+  font-family: var(--font-outfit);
+  display: flex;
+  margin-top: 4rem;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: auto;
+}
+.secondGrid, .secondGridLeft, .iconAndTextright{
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #012312;
+}
+.secondGridLeft{
+ 
+  justify-items: center;
+  
+}
+.icon{
+  height: 1.9rem;
+}
+.iconAndTextLeft , .descriptionImageFormatText{
+  text-align: left;  
+  justify-content: left;
+ }
+ .iconAndTextLeft{
+  font-weight: 400;
+  gap: 1rem;
+ }
+ .descriptionImageFormatText{
+  font-size: 1.6rem;
+  max-width: 30rem;
+ }
+.textIntro{
+  color: #004f27;
+  /* text-align: center;
+  max-width: 60%; */
+}
+ .imageAndText3{
+  display: flex;
+ }
+ .iconAndTextright{
+  display: flex;
+  font-weight: 400;
+  gap: 1rem;
+  justify-content: flex-start;
+ }
+ .divThirdGridText{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: center;
+  justify-self: center;
+ }
+ .numberTwoSup{
+  font-size: 1rem;
+  margin-left: 0.15rem;
+ }
+ .imageAndArrow{
+  position: relative;
+ }
+.imageAndText{
+  position: relative;
+}
+ .arrowIconRRight, .arrowIconLRight, .arrowIconLLeft, .arrowIconRLeft{
+  position: absolute;
+  top: 50%;
+  width: auto;
+  display: flex;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  color: #b17f00;
+
+    &:hover{
+    scale: 1.1;
+    color: #d69a03;
+  }
+ }
+.arrowIconLRight, .arrowIconRRight{
+  right: -7rem;
+  height: 4rem;
+}
+.arrowIconLLeft, .arrowIconRLeft{
+  left: -3rem;
+  height: 4rem;
+}
+.iconsSala{
+  display: flex;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+}
+
+.divTextCtaEBtn{
+  display: flex;
+  flex-direction: column;
+ 
+  border-top: 1px solid #b17f0054;
+  border-bottom: 1px solid #b17f0054;
+  padding: 5rem 2rem;
+  max-width: 70%;
+  margin: 0 auto;
+  margin-top: 8rem;
+  margin-bottom: 10rem;
+ }
+.divText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.textCta1, .textCta2{
+  font-weight: 300;
+  margin-bottom: 1rem;
+ font-family: 'Montserrat', sans-serif;
+  color: #976c00;
+}
+.textCta1{
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(108, 112, 109, 0.3);
+  color: #595959;
+    font-style: italic;
+
+
+  color: #9e7203;
+  text-shadow: 0 2px 8px rgba(126, 126, 123, 0.3);
+}
+.textCta2{
+  font-size: 2rem;
+  color: #9e7203;
+  text-shadow: 0 2px 8px rgba(126, 126, 123, 0.3);
+  font-weight: 400;
+
+}
+.divBtn{
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+.btnCta{
+  width: 50%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fffaeb;
+  background-color: #b17f00;
+  padding: 1.5rem 1rem;
+  border-radius: 1rem;
+
+  &:hover{
+    background-color: #d69a03;
+  }
+}
