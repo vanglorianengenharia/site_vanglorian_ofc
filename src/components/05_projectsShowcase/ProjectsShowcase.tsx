@@ -45,6 +45,15 @@ export function ProjectsShowcase(){
     return () => clearInterval(interval);
   }, []);
 
+
+  useEffect(() => {
+  const savedPosition = sessionStorage.getItem('scrollPositionEmpreendComponent');
+  if (savedPosition) {
+    window.scrollTo({ top: Number(savedPosition), behavior: 'instant' });
+    sessionStorage.removeItem('scrollPositionEmpreendComponent'); // limpa pra não interferir em visitas normais
+  }
+}, []);
+
   return(
     <div className={styles.projectsShowcaseContainer}>
       <div className={styles.projectsShowcaseContent} id="empreendimentos" >
@@ -52,7 +61,7 @@ export function ProjectsShowcase(){
         <div className={styles.divTitleSection}>
             <h2 className={styles.lancamTitle}>Empreendimentos</h2>
             <div className={styles.divBlocksSection}>
-                <Link href={"/residencial-v-falatian-casas-3-4"} target="_self" className={styles.linkEmExecImgTextResidenciaVFalatian}>                  
+                <Link href={"/residencial-v-falatian-casas-3-4"} target="_self" className={styles.linkEmExecImgTextResidenciaVFalatian}  onClick={() => sessionStorage.setItem('scrollPositionEmpreendComponent', String(window.scrollY))}>                  
                   <Image 
                     src={imageList[currentIndexExec]}
                     alt={`Slide ${currentIndexExec + 1}`}

@@ -70,7 +70,6 @@
   width: 0.95rem;
   height: auto;
 }
-/* Responsivo */
 @media (max-width: 1300px){
   .footerContainer{
     margin-top: 8rem;
@@ -132,7 +131,6 @@
   .imageLogo{
     margin-left: -2rem;
   }
-
 }
  @media(max-width: 380px){
   .imageLogo{

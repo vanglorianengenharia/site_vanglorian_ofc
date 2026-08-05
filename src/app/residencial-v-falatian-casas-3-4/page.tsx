@@ -16,7 +16,7 @@ type SlideItem = {
 };
  const slideFachada: SlideItem[] = [
     {
-      image: "/assets/entrada-garagem-01.png",
+      image: "/assets/entrada-garagem-01.webp",
       icon:  Car,
       title: "2 Vagas de Garagem",
       topics: [
@@ -26,7 +26,7 @@ type SlideItem = {
       ]
     },
     {
-      image: "/assets/garagemJardim2.jpg",
+      image: "/assets/entrada-jardim-02.webp",
       icon:  Leaf,
       title: "Beleza que Acolhe", 
       topics: [
@@ -39,7 +39,7 @@ type SlideItem = {
 
    const slideSala: SlideItem[]  = [
     {
-      image: "/assets/salaCasa.png",
+      image: "/assets/salaCasa.webp",
       icon:  Sofa,
       title:"2 Salas que Conectam",
 
@@ -50,7 +50,7 @@ type SlideItem = {
 ]
     },
     {
-      image: "/assets/salaCasa2.png",
+      image: "/assets/sala-visao-interna-02.webp",
       icon:  SparklesIcon,
       title: "Ambiente que Inspira",
       topics: [
@@ -62,7 +62,7 @@ type SlideItem = {
 
      const slideQuartos: SlideItem[]  = [
     {
-      image: "/assets/sala2Casa2.png",
+      image: "/assets/quartos-visao-sala-01.webp",
       icon:  BedDoubleIcon,
       title:"2 Quartos Aconchegantes",
       topics: [
@@ -72,7 +72,7 @@ type SlideItem = {
     ]
     },
     {
-      image: "/assets/quartosQ1.jpg",
+      image: "/assets/quartos-visao-interna-03.webp",
       icon:  Bed,
       title:"Refúgio Convidativo",
      topics: [
@@ -82,7 +82,7 @@ type SlideItem = {
       ]
     },
     {
-      image: "/assets/quartos-visao-geral-01.png",
+      image: "/assets/quartos-visao-geral-02.webp",
       icon:  Bed,
       title:"Refúgio Convidativo",
       topics: [
@@ -92,7 +92,7 @@ type SlideItem = {
     ]
     },
     {
-      image: "/assets/quartosQ2.jpg",
+      image: "/assets/quartos-iluminacao-04.webp",
       icon:  Bed,
       title: "Espaço Versátil e Iluminado",
       topics: [
@@ -104,7 +104,7 @@ type SlideItem = {
   ];
      const slideBanheiro: SlideItem[]  = [
     {
-      image: "/assets/banheiro2Casa2.png",
+      image: "/assets/banheiro-visao-geral-01.webp",
       icon:  Toilet,
       title:"1 Banheiro Planejado",
       topics: [
@@ -114,7 +114,7 @@ type SlideItem = {
   ]
     },
     {
-      image: "/assets/banheiro1Casa.jpg",
+      image: "/assets/banheiro-vista-porta-02.webp",
       icon:  ShowerHead,
       title: "Design Sofisticado",
       topics: [
@@ -126,7 +126,7 @@ type SlideItem = {
   ];
    const slideCozinha: SlideItem[]  = [
     {
-      image: "/assets/cozinha-completa-01.png",
+      image: "/assets/cozinha-completa-01.webp",
       icon:  ChefHat,
       title:"Elegância Funcional no Dia a Dia",
       topics: [
@@ -137,7 +137,7 @@ type SlideItem = {
       ]
     },
     {
-      image: "/assets/cozinha2Casa.jpg",
+      image: "/assets/cozinha-iluminada-02.webp",
       icon:  Sun,
       title: "Cozinha que Inspira Bem-Estar",
       topics: [
@@ -150,7 +150,7 @@ type SlideItem = {
   ];
      const slideAreaGourmet: SlideItem[]  = [
     {
-      image: "/assets/areaGourmet1Casa.png",
+      image: "/assets/espaco-gourmet-completa-01.webp",
       icon:  Flame,
       title:"Área Gourmet Completa",
       topics: [
@@ -160,7 +160,7 @@ type SlideItem = {
       ]
     },
     {
-      image: "/assets/areaGourmet2Casa2.png",
+      image: "/assets/espaco-gourmet-visao-frente-02.webp",
       icon:  UtensilsCrossed,
       title: "Praticidade e Convivência",
       topics: [
@@ -172,7 +172,7 @@ type SlideItem = {
   ];
        const slideLavanderia: SlideItem[]  = [
     {
-      image: "/assets/lavanderia1Casa1.png",
+      image: "/assets/lavanderia-visao-geral-01.webp",
       icon:  SoapDispenserDroplet,
       title:"Área de Serviço",
        topics: [
@@ -182,7 +182,7 @@ type SlideItem = {
       ]
     },
     {
-      image: "/assets/lavanderia2Casa.jpg",
+      image: "/assets/lavanderia-visao-interna-02.webp",
       icon:  Bubbles,
       title: "Privacidade e Comodidade",
        topics: [

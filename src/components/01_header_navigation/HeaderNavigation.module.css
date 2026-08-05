@@ -135,10 +135,9 @@
   width: 51%;
 }
 .activeLink {
-  border-bottom: 2px solid #002100; /* ou a cor que você quiser */
+  border-bottom: 2px solid #002100;
   font-weight: 600;
 }
-
 @media(max-width: 1260px){
   .menu{
     gap: 0.9rem;
@@ -172,7 +171,6 @@
   .menu{
     gap: 0.5rem;
     margin-left: -1rem;
-    /* padding: 0.2rem; */
   }
 
 }

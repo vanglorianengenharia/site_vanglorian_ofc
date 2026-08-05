@@ -355,10 +355,14 @@
   width: 85%;
   height: 700px;
   overflow: hidden;
+  user-select: none;
+
 }
 .imageAndTextImageRight{
   display: grid;
   grid-template-columns: 1fr 0.9fr;
+  user-select: none;
+
 }
 .imageApresentationResidSideLeft, .imageApresentationResidSideRight{
   border-radius: 40px;
@@ -368,6 +372,14 @@
   height: 100%;
   object-fit: cover;
 }
+.imageApresentationResidSideLeft, 
+.imageApresentationResidSideRight,
+.arrowIconRRight, 
+.arrowIconLRight, 
+.arrowIconLLeft, 
+.arrowIconRLeft {
+  -webkit-tap-highlight-color: transparent;
+}
 .grupoTexto, .grupoTexto2{
   display: flex;
   flex-direction: column;
@@ -375,6 +387,7 @@
   justify-self: flex-start;
   width: 100%;
   min-width: 0;
+  /* user-select: text; */
 }
 .descriptionImage, .descriptionImageFormatText, .iconAndTextright{
   font-family: var(--font-outfit);
