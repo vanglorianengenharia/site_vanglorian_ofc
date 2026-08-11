@@ -237,6 +237,7 @@ const tourRoomMarkers = tourRooms.map((room, roomIndex) => {
 });
 
 const TOUR_SLIDE_DURATION = 4500;
+const MOBILE_TIMELINE_ENTRY_OFFSET = 96;
 
 
 export default function ResidVFalatianCasa1e2(){
@@ -269,9 +270,13 @@ const [isTourOpen, setIsTourOpen] = useState(false);
 const [tourIndex, setTourIndex] = useState(0);
 const [isTourPlaying, setIsTourPlaying] = useState(true);
 const [activeRoomIndex, setActiveRoomIndex] = useState(0);
+const [isRoomTimelineVisible, setIsRoomTimelineVisible] = useState(false);
+const [hasReachedSectionAfterRooms, setHasReachedSectionAfterRooms] = useState(false);
 const tourElapsedTime = useRef(0);
 const tourPlaybackStartedAt = useRef(0);
 const roomBlocks = useRef<Array<HTMLDivElement | null>>([]);
+const roomsSectionBlock = useRef<HTMLDivElement | null>(null);
+const roomsTimelineTrigger = useRef<HTMLDivElement | null>(null);
 const propertyDetailsBlock = useRef<HTMLDivElement | null>(null);
 const isManualScrollTransitioning = useRef(false);
 const currentTourStop = tourStops[tourIndex];
@@ -425,6 +430,23 @@ useEffect(() => {
       }
     });
 
+    const timelineTriggerBounds = roomsTimelineTrigger.current?.getBoundingClientRect();
+    const roomsSectionBounds = roomsSectionBlock.current?.getBoundingClientRect();
+    const sectionAfterRoomsBounds = propertyDetailsBlock.current?.getBoundingClientRect();
+    const timelineEntryLine = Math.min(window.innerHeight * 0.88, MOBILE_TIMELINE_ENTRY_OFFSET);
+    setIsRoomTimelineVisible(Boolean(
+      timelineTriggerBounds
+      && roomsSectionBounds
+      && timelineTriggerBounds.top < timelineEntryLine
+      && roomsSectionBounds.bottom > 0
+    ));
+    setHasReachedSectionAfterRooms(Boolean(
+      roomsSectionBounds
+      && sectionAfterRoomsBounds
+      && roomsSectionBounds.bottom <= window.innerHeight * 0.3
+      && sectionAfterRoomsBounds.top < window.innerHeight
+    ));
+
     setActiveRoomIndex(closestRoom);
     animationFrame = 0;
   };
@@ -507,7 +529,10 @@ useEffect(() => {
   }
   return (
     <div className={styles.containerResidVFalatian}>
-    <nav className={styles.roomTimeline} aria-label="Navegação pelos cômodos">
+    <nav
+      className={`${styles.roomTimeline} ${isRoomTimelineVisible ? styles.roomTimelineVisible : ""} ${hasReachedSectionAfterRooms ? styles.roomTimelineDesktopHidden : ""}`}
+      aria-label="Navegação pelos cômodos"
+    >
       <span className={styles.roomTimelineLine} aria-hidden="true" />
       {tourRooms.map((room, index) => {
         const RoomIcon = room.slides[0].icon;
@@ -547,10 +572,10 @@ useEffect(() => {
               </span>
             </button>
           </div> 
-          <div className={styles.containerComodos}>
+          <div className={styles.containerComodos} ref={roomsSectionBlock}>
 
            <div className={styles.imageAndText} ref={(element) => { roomBlocks.current[0] = element; }}>
-            <div className={styles.secondGridLeft}>
+            <div className={styles.secondGridLeft} ref={roomsTimelineTrigger}>
               <div className={styles.tituloLocal}><p className={styles.tituloLocal1}>Entrada</p><p className={styles.tituloLocal2}>do lar</p></div>
               <div className={styles.grupoTexto}>
                 <div className={styles.iconAndTextLeft}><IconFachada  className={styles.icon}/> <p className={styles.titleCaracteristica}>{currentFachada.title}</p></div>

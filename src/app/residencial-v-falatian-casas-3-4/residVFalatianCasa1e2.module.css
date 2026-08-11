@@ -2155,6 +2155,19 @@
   box-shadow: 0 0 0 3px rgba(216, 189, 105, 0.35);
 }
 
+@media(min-width: 901px){
+  .roomTimeline{
+    top: 60%;
+    transition: opacity 220ms ease, visibility 220ms ease, transform 260ms ease;
+  }
+
+  .roomTimelineDesktopHidden{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(calc(-50% + 0.75rem));
+  }
+}
+
 @media(min-width: 901px) and (max-width: 2200px){
   .imageAndText{
     width: calc(85% - 5.75rem);
@@ -2164,21 +2177,30 @@
 
 @media(max-width: 900px){
   .roomTimeline{
-    top: auto;
+    top: calc(env(safe-area-inset-top, 0px) + 0.7rem);
     right: auto;
-    bottom: 0.7rem;
-    left: 0.75rem;
-    width: min(calc(100vw - 5.75rem), 25rem);
-    padding: 0.18rem 0;
+    bottom: auto;
+    left: 50%;
+    width: min(calc(100vw - 1.25rem), 29rem);
+    padding: 0.4rem 0.5rem;
     flex-direction: row;
     justify-content: space-between;
     gap: 0.12rem;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-    transform: none;
+    border: 1px solid rgba(7, 61, 43, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 252, 0.96);
+    box-shadow: 0 12px 30px rgba(7, 46, 33, 0.16), 0 2px 8px rgba(7, 46, 33, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(14px) saturate(1.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, calc(-100% - 1.5rem));
+    transition: opacity 220ms ease, visibility 220ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .roomTimelineVisible{
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
   }
 
   .roomTimelineLine{
@@ -2193,11 +2215,11 @@
   }
 
   .roomTimelineItem{
-    width: 2.55rem;
-    height: 2.55rem;
+    width: calc((100% - 0.72rem) / 7);
+    height: calc(clamp(2.75rem, 12.2vw, 3.1rem) + 1.25rem);
     min-height: 0;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: clamp(2.75rem, 12.2vw, 3.1rem) 1.25rem;
     column-gap: 0;
     flex: 0 0 auto;
     border-radius: 50%;
@@ -2214,15 +2236,16 @@
 
   .roomTimelineIcon,
   .roomTimelineItemActive .roomTimelineIcon{
-    width: 2.55rem;
-    height: 2.55rem;
+    width: clamp(2.45rem, 11vw, 2.8rem);
+    height: clamp(2.45rem, 11vw, 2.8rem);
     grid-column: 1;
     grid-row: 1;
+    align-self: center;
   }
 
   .roomTimelineItemActive .roomTimelineIcon{
-    width: 2.9rem;
-    height: 2.9rem;
+    width: clamp(2.75rem, 12.2vw, 3.1rem);
+    height: clamp(2.75rem, 12.2vw, 3.1rem);
   }
 
   .roomTimelineItemActive .roomTimelineIcon::before{
@@ -2230,26 +2253,44 @@
   }
 
   .roomTimelineIcon svg{
-    width: 1.16rem;
-    height: 1.16rem;
+    width: clamp(1.15rem, 5vw, 1.3rem);
+    height: clamp(1.15rem, 5vw, 1.3rem);
   }
 
   .roomTimelineItemActive .roomTimelineIcon svg{
-    width: 1.42rem;
-    height: 1.42rem;
+    width: clamp(1.4rem, 6vw, 1.58rem);
+    height: clamp(1.4rem, 6vw, 1.58rem);
     color: #f0d98e;
     stroke: #f0d98e;
   }
 
   .roomTimelineLabel{
-    display: none;
+    display: block;
+    width: 100%;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    overflow: visible;
+    color: #68716c;
+    font-size: clamp(0.52rem, 2.25vw, 0.68rem);
+    font-weight: 500;
+    line-height: 0.95;
+    text-align: center;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .roomTimelineItemActive .roomTimelineLabel{
+    color: #073d2b;
+    font-size: clamp(0.52rem, 2.25vw, 0.68rem);
+    font-weight: 700;
   }
 
 }
 
 @media(max-height: 760px) and (min-width: 901px){
   .roomTimeline{
-    top: 58%;
+    top: 60%;
     gap: 0.36rem;
   }
 
@@ -2270,35 +2311,13 @@
 
 @media(max-width: 370px){
   .roomTimeline{
-    left: 0.4rem;
-    width: calc(100vw - 5rem);
-    padding-inline: 0.3rem;
+    left: 50%;
+    width: calc(100vw - 0.75rem);
+    padding-inline: 0.32rem;
   }
 
   .roomTimelineItem{
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-
-  .roomTimelineIcon,
-  .roomTimelineItemActive .roomTimelineIcon{
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-
-  .roomTimelineItemActive .roomTimelineIcon{
-    width: 2.55rem;
-    height: 2.55rem;
-  }
-
-  .roomTimelineIcon svg{
-    width: 1.05rem;
-    height: 1.05rem;
-  }
-
-  .roomTimelineItemActive .roomTimelineIcon svg{
-    width: 1.28rem;
-    height: 1.28rem;
+    width: calc((100% - 0.72rem) / 7);
   }
 
 }
