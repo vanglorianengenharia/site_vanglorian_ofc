@@ -237,7 +237,11 @@ const tourRoomMarkers = tourRooms.map((room, roomIndex) => {
 });
 
 const TOUR_SLIDE_DURATION = 4500;
-const MOBILE_TIMELINE_ENTRY_OFFSET = 96;
+const TOUR_PREVIEW_SLIDE_DURATION = 3800;
+const tourPreviewSlides = tourRooms.map((room) => room.slides[0]);
+const MOBILE_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.7;
+const DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.3;
+const NARROW_DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.8;
 
 
 export default function ResidVFalatianCasa1e2(){
@@ -269,6 +273,7 @@ const IconLavanderia = currentLavanderia.icon
 const [isTourOpen, setIsTourOpen] = useState(false);
 const [tourIndex, setTourIndex] = useState(0);
 const [isTourPlaying, setIsTourPlaying] = useState(true);
+const [tourPreviewIndex, setTourPreviewIndex] = useState(0);
 const [activeRoomIndex, setActiveRoomIndex] = useState(0);
 const [isRoomTimelineVisible, setIsRoomTimelineVisible] = useState(false);
 const [hasReachedSectionAfterRooms, setHasReachedSectionAfterRooms] = useState(false);
@@ -276,7 +281,6 @@ const tourElapsedTime = useRef(0);
 const tourPlaybackStartedAt = useRef(0);
 const roomBlocks = useRef<Array<HTMLDivElement | null>>([]);
 const roomsSectionBlock = useRef<HTMLDivElement | null>(null);
-const roomsTimelineTrigger = useRef<HTMLDivElement | null>(null);
 const propertyDetailsBlock = useRef<HTMLDivElement | null>(null);
 const isManualScrollTransitioning = useRef(false);
 const currentTourStop = tourStops[tourIndex];
@@ -411,6 +415,16 @@ const navigateToRoom = (roomIndex: number) => {
 };
 
 useEffect(() => {
+  if (isTourOpen) return;
+
+  const timer = window.setTimeout(() => {
+    setTourPreviewIndex((currentIndex) => (currentIndex + 1) % tourPreviewSlides.length);
+  }, TOUR_PREVIEW_SLIDE_DURATION);
+
+  return () => window.clearTimeout(timer);
+}, [isTourOpen, tourPreviewIndex]);
+
+useEffect(() => {
   let animationFrame = 0;
 
   const updateActiveRoom = () => {
@@ -430,14 +444,29 @@ useEffect(() => {
       }
     });
 
-    const timelineTriggerBounds = roomsTimelineTrigger.current?.getBoundingClientRect();
     const roomsSectionBounds = roomsSectionBlock.current?.getBoundingClientRect();
     const sectionAfterRoomsBounds = propertyDetailsBlock.current?.getBoundingClientRect();
-    const timelineEntryLine = Math.min(window.innerHeight * 0.88, MOBILE_TIMELINE_ENTRY_OFFSET);
+    const isDesktopViewport = window.matchMedia("(min-width: 901px)").matches;
+    const visibleRoomsSectionHeight = roomsSectionBounds
+      ? Math.max(
+          0,
+          Math.min(roomsSectionBounds.bottom, window.innerHeight)
+            - Math.max(roomsSectionBounds.top, 0)
+        )
+      : 0;
+    const visibleRoomsViewportRatio = window.innerHeight > 0
+      ? visibleRoomsSectionHeight / window.innerHeight
+      : 0;
+    const desktopRoomsVisibilityThreshold = window.innerWidth < 1500
+      ? NARROW_DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD
+      : DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD;
+    const hasEnteredRoomsSection = isDesktopViewport
+      ? visibleRoomsViewportRatio >= desktopRoomsVisibilityThreshold
+      : visibleRoomsViewportRatio >= MOBILE_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD;
+
     setIsRoomTimelineVisible(Boolean(
-      timelineTriggerBounds
+      hasEnteredRoomsSection
       && roomsSectionBounds
-      && timelineTriggerBounds.top < timelineEntryLine
       && roomsSectionBounds.bottom > 0
     ));
     setHasReachedSectionAfterRooms(Boolean(
@@ -549,7 +578,14 @@ useEffect(() => {
             aria-current={isActive ? "location" : undefined}
           >
             <span className={styles.roomTimelineIcon}><RoomIcon aria-hidden="true" /></span>
-            <span className={styles.roomTimelineLabel}>{roomLabel}</span>
+            <span className={styles.roomTimelineLabel}>
+              {roomLabel === "Espaço gourmet" ? (
+                <>
+                  <span className={styles.roomTimelineLabelLine}>Espaço</span>
+                  <span className={styles.roomTimelineLabelLine}>gourmet</span>
+                </>
+              ) : roomLabel}
+            </span>
           </button>
         );
       })}
@@ -561,21 +597,71 @@ useEffect(() => {
           <span className={styles.textBtnUndoV}>Voltar</span>
         </button>
       </div>
-          <div className={styles.divTitleBlocksComodos}>
-            <h3 className={styles.titleBlocksComodos}>Um Passeio Pelo<br />Seu novo Lar</h3>
-            <p className={styles.tourIntroText}>Conheça cada ambiente e todos os detalhes desta casa em uma apresentação guiada.</p>
-            <button className={styles.startTourButton} onClick={startTour}>
-              <span className={styles.startTourIcon}><Play aria-hidden="true" /></span>
-              <span className={styles.startTourLabel}>
-                <strong>Assistir ao passeio</strong>
-                <small>{tourRooms.length} ambientes • {tourStops.length} imagens</small>
-              </span>
-            </button>
-          </div> 
+          <section className={styles.divTitleBlocksComodos} aria-labelledby="tour-intro-title">
+            <div className={styles.tourPreviewComposition}>
+              <div className={styles.tourPreviewVisual}>
+                <div className={styles.tourPreviewCircle} aria-hidden="true">
+                  <AnimatePresence initial={false}>
+                    <motion.div
+                      key={tourPreviewSlides[tourPreviewIndex].image}
+                      className={styles.tourPreviewFrame}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.9, ease: "easeInOut" }}
+                    >
+                      <Image
+                        src={tourPreviewSlides[tourPreviewIndex].image}
+                        className={styles.tourPreviewImage}
+                        alt=""
+                        fill
+                        sizes="(max-width: 900px) 78vw, 38vw"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                <svg className={styles.tourPreviewProgress} viewBox="0 0 100 100" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="tour-preview-gradient" x1="10%" y1="10%" x2="90%" y2="90%">
+                      <stop offset="0%" stopColor="#b48724" />
+                      <stop offset="52%" stopColor="#d8be66" />
+                      <stop offset="100%" stopColor="#075139" />
+                    </linearGradient>
+                  </defs>
+                  <circle className={styles.tourPreviewProgressTrack} cx="50" cy="50" r="47" pathLength="100" />
+                  <circle
+                    key={tourPreviewIndex}
+                    className={styles.tourPreviewProgressValue}
+                    cx="50"
+                    cy="50"
+                    r="47"
+                    pathLength="100"
+                    style={{ animationDuration: `${TOUR_PREVIEW_SLIDE_DURATION}ms` }}
+                  />
+                </svg>
+
+                <button
+                  type="button"
+                  className={styles.tourPreviewPlayButton}
+                  onClick={startTour}
+                  aria-label="Assistir ao passeio guiado"
+                >
+                  <Play aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className={styles.tourIntroContent}>
+                <h3 id="tour-intro-title" className={styles.titleBlocksComodos}>Um passeio pelo<br />seu novo lar</h3>
+                <span className={styles.tourIntroAccent} aria-hidden="true" />
+                <p className={styles.tourIntroText}>Conheça cada ambiente e todos os detalhes desta casa em uma apresentação guiada.</p>
+              </div>
+            </div>
+          </section>
           <div className={styles.containerComodos} ref={roomsSectionBlock}>
 
            <div className={styles.imageAndText} ref={(element) => { roomBlocks.current[0] = element; }}>
-            <div className={styles.secondGridLeft} ref={roomsTimelineTrigger}>
+            <div className={styles.secondGridLeft}>
               <div className={styles.tituloLocal}><p className={styles.tituloLocal1}>Entrada</p><p className={styles.tituloLocal2}>do lar</p></div>
               <div className={styles.grupoTexto}>
                 <div className={styles.iconAndTextLeft}><IconFachada  className={styles.icon}/> <p className={styles.titleCaracteristica}>{currentFachada.title}</p></div>
