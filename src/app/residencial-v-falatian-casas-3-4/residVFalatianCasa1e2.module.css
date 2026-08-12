@@ -485,8 +485,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  align-content: center;
-  justify-self: center;
+ align-content: center;
+ justify-self: center;
  }
  .numberTwoSup{
   font-size: 1rem;
@@ -1142,7 +1142,7 @@
 
 /* Passeio guiado */
 .divTitleBlocksComodos{
-  padding: clamp(9rem, 12vw, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(5rem, 8vw, 8rem);
+  padding: clamp(9rem, 12vw, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 3vw, 3rem);
   text-align: left;
 }
 
@@ -1301,7 +1301,7 @@
   inset: 0;
   z-index: 10000;
   display: grid;
-  grid-template-rows: 74px 34px minmax(0, 1fr) 114px;
+  grid-template-rows: 74px 64px minmax(0, 1fr) 114px;
   color: #f6f3e9;
   background: rgba(4, 12, 9, 0.78);
   backdrop-filter: blur(6px);
@@ -1309,6 +1309,7 @@
 }
 
 .tourProgress{
+  --tour-progress-line-center: 2.5px;
   position: relative;
   z-index: 3;
   width: var(--tour-content-width);
@@ -1334,14 +1335,16 @@
   position: absolute;
   inset: 0;
   z-index: 2;
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
   pointer-events: none;
 }
 
 .tourChapterMarker{
-  position: absolute;
-  top: 50%;
-  left: var(--tour-room-start);
-  width: var(--tour-room-size);
+  position: relative;
+  top: auto;
+  width: 100%;
   height: 3rem;
   padding: 0;
   border: 0;
@@ -1349,7 +1352,7 @@
   background: transparent;
   cursor: pointer;
   pointer-events: auto;
-  transform: translateY(-0.25rem);
+  transform: translateY(calc(-50% + var(--tour-progress-line-center)));
 }
 
 .tourChapterMarkerActive{
@@ -1358,8 +1361,8 @@
 
 .tourChapterDot{
   position: absolute;
-  top: 0.25rem;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 0.46rem;
   height: 0.46rem;
   border: 1px solid rgba(222, 213, 181, 0.42);
@@ -1386,8 +1389,8 @@
 
 .tourChapterLabel{
   position: absolute;
-  top: 1.05rem;
-  left: 0;
+  top: calc(50% + 0.8rem);
+  left: 50%;
   width: max-content;
   max-width: 9.5rem;
   padding: 0.3rem 0.4rem;
@@ -1396,7 +1399,7 @@
   color: rgba(235, 232, 218, 0.64);
   background: transparent;
   box-shadow: none;
-  font-size: 0.78rem;
+  font-size: 1rem;
   font-weight: 520;
   letter-spacing: 0.035em;
   line-height: 1.08;
@@ -1418,7 +1421,7 @@
   background: linear-gradient(135deg, rgba(10, 77, 55, 0.96), rgba(6, 53, 38, 0.96));
   box-shadow: 0 7px 20px rgba(1, 18, 12, 0.26), 0 0 12px rgba(216, 189, 105, 0.1);
   font-weight: 650;
-  font-size: 0.84rem;
+  font-size: 1.08rem;
   animation: tourChapterLabelIn 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -1442,14 +1445,6 @@
 
 .tourChapterMarker:focus-visible .tourChapterLabel{
   box-shadow: 0 0 0 2px rgba(243, 223, 160, 0.54), 0 7px 20px rgba(1, 18, 12, 0.26);
-}
-
-.tourChapterMarker:first-child .tourChapterLabel{
-  transform: none;
-}
-
-.tourChapterMarker:first-child.tourChapterMarkerActive .tourChapterLabel{
-  animation-name: tourChapterLabelFirstIn;
 }
 
 .tourHeader{
@@ -1603,7 +1598,7 @@
   margin: 0;
   color: #fff;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.7rem, 5vw, 5.6rem);
+  font-size: clamp(2.35rem, 4.25vw, 4.75rem);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 0.9;
@@ -1794,11 +1789,6 @@
   to { opacity: 1; transform: translate(-50%, 0); }
 }
 
-@keyframes tourChapterLabelFirstIn{
-  from { opacity: 0; transform: translateY(-0.3rem); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes tourPulse{
   50% { box-shadow: 0 0 0 7px rgba(217, 183, 72, 0); }
 }
@@ -1829,7 +1819,7 @@
 
 @media(max-width: 900px){
   .divTitleBlocksComodos{
-    padding: 9rem clamp(1.25rem, 3vw, 2rem) 5.5rem;
+    padding: 9rem clamp(1.25rem, 3vw, 2rem) 2.5rem;
   }
 
   .tourPreviewComposition{
@@ -1857,10 +1847,11 @@
   }
 
   .tourBackdrop{
-    grid-template-rows: 70px 32px minmax(0, 1fr) 98px;
+    grid-template-rows: 70px 60px minmax(0, 1fr) 98px;
   }
 
   .tourProgress{
+    --tour-progress-line-center: 2px;
     height: 4px;
   }
 
@@ -1928,7 +1919,7 @@
 
 @media(max-width: 600px){
   .divTitleBlocksComodos{
-    padding: 8rem 1rem 4.5rem;
+    padding: 8rem 1rem 2rem;
   }
 
   .tourPreviewComposition{
@@ -1968,10 +1959,10 @@
   }
 
   .tourChapterLabel{
-    top: 0.95rem;
+    top: calc(50% + 0.7rem);
     padding: 0.24rem 0.2rem;
     max-width: 4.8rem;
-    font-size: 0.64rem;
+    font-size: 0.78rem;
     letter-spacing: 0.01em;
     line-height: 1.12;
     white-space: normal;
@@ -1979,7 +1970,7 @@
 
   .tourChapterMarkerActive .tourChapterLabel{
     padding: 0.36rem 0.58rem;
-    font-size: 0.72rem;
+    font-size: 0.86rem;
   }
 
   .tourBrand{
@@ -2003,15 +1994,23 @@
   }
 
   .tourStage{
-    grid-template-rows: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    grid-template-rows: minmax(0, 1.15fr) minmax(0, 0.85fr);
   }
 
   .tourRoomLabel h2{
-    font-size: 2.7rem;
+    font-size: clamp(1.9rem, 8vw, 2.3rem);
   }
 
   .tourDetails{
-    padding: 1.2rem 1.15rem 1rem;
+    padding: 0.85rem 1.15rem 0.7rem;
+  }
+
+  .tourDetailKicker{
+    margin-bottom: 0.35rem;
+  }
+
+  .tourTopics li{
+    padding: 0.42rem 0;
   }
 
   .tourDetailRoomName{
@@ -2030,7 +2029,7 @@
 
   .tourTopics p{
     font-size: 0.9rem;
-    line-height: 1.45;
+    line-height: 1.38;
   }
 
   .tourControls{
@@ -2131,23 +2130,24 @@
 
   .tourChapterLabel{
     max-width: 3.6rem;
-    font-size: 0.56rem;
+    font-size: 0.68rem;
     line-height: 1.12;
     white-space: normal;
   }
 
   .tourChapterMarkerActive .tourChapterLabel{
     max-width: 5rem;
-    font-size: 0.65rem;
+    font-size: 0.76rem;
   }
 }
 
 @media(max-height: 680px) and (min-width: 901px){
   .tourBackdrop{
-    grid-template-rows: 68px 34px minmax(0, 1fr) 92px;
+    grid-template-rows: 68px 64px minmax(0, 1fr) 92px;
   }
 
   .tourProgress{
+    --tour-progress-line-center: 2px;
     height: 4px;
   }
 
@@ -2400,6 +2400,7 @@
 @media(max-width: 900px){
   .roomTimeline{
     top: calc(env(safe-area-inset-top, 0px) + 0.7rem);
+    top: 0;
     right: auto;
     bottom: auto;
     left: 50%;
@@ -2409,7 +2410,7 @@
     justify-content: space-between;
     gap: 0.12rem;
     border: 1px solid rgba(7, 61, 43, 0.1);
-    border-radius: 999px;
+    border-radius: 0 0 50px 50px;
     background: rgba(255, 255, 252, 0.96);
     box-shadow: 0 12px 30px rgba(7, 46, 33, 0.16), 0 2px 8px rgba(7, 46, 33, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(14px) saturate(1.08);
@@ -2508,6 +2509,11 @@
     font-weight: 700;
   }
 
+}
+@media(max-width: 600px){
+  .roomTimeline{
+    border-radius: 0 0 35px 35px;
+  }
 }
 
 @media(max-height: 760px) and (min-width: 901px){

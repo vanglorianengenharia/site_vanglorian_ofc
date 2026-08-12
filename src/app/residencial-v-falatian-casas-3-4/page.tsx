@@ -5,7 +5,7 @@ import { Bed, BedDoubleIcon, Bubbles, Building2, Car, ChefHat, ChevronLeft, Chev
 import Image from "next/image"
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation"
 
 
@@ -231,8 +231,6 @@ const tourRoomMarkers = tourRooms.map((room, roomIndex) => {
   return {
     label: room.room === "Espaço" ? "Espaço gourmet" : room.room,
     startIndex: previousRoomSlides,
-    startPosition: (previousRoomSlides / tourStops.length) * 100,
-    size: (room.slides.length / tourStops.length) * 100,
   };
 });
 
@@ -284,10 +282,26 @@ const roomsSectionBlock = useRef<HTMLDivElement | null>(null);
 const propertyDetailsBlock = useRef<HTMLDivElement | null>(null);
 const isManualScrollTransitioning = useRef(false);
 const currentTourStop = tourStops[tourIndex];
+const currentTourRoomTitle = currentTourStop.room === "Entrada"
+  || currentTourStop.room === "Banheiro"
+  || currentTourStop.room === "Espaço"
+  ? `${currentTourStop.room} ${currentTourStop.roomDetail}`
+  : currentTourStop.room === "Sala"
+    ? "Salas"
+    : currentTourStop.room;
 const isLastTourStop = tourIndex === tourStops.length - 1;
 const hasTourFinished = isLastTourStop
   && !isTourPlaying
   && tourElapsedTime.current >= TOUR_SLIDE_DURATION;
+const currentRoomMarkerPosition = ((currentTourStop.roomIndex + 0.5) / tourRooms.length) * 100;
+const nextRoomMarkerPosition = currentTourStop.roomIndex === tourRooms.length - 1
+  ? 100
+  : ((currentTourStop.roomIndex + 1.5) / tourRooms.length) * 100;
+const currentRoomProgressLength = nextRoomMarkerPosition - currentRoomMarkerPosition;
+const tourProgressStart = currentRoomMarkerPosition
+  + (currentTourStop.slideIndex / currentTourStop.slidesInRoom) * currentRoomProgressLength;
+const tourProgressEnd = currentRoomMarkerPosition
+  + ((currentTourStop.slideIndex + 1) / currentTourStop.slidesInRoom) * currentRoomProgressLength;
 
 const goToTourStop = (nextIndex: number) => {
   tourElapsedTime.current = 0;
@@ -319,7 +333,7 @@ const previousTourStop = () => {
   goToTourStop(tourIndex - 1);
 };
 
-const toggleTourPlayback = () => {
+const toggleTourPlayback = useCallback(() => {
   if (hasTourFinished) {
     goToTourStop(0);
     setIsTourPlaying(true);
@@ -337,7 +351,7 @@ const toggleTourPlayback = () => {
   }
 
   setIsTourPlaying(true);
-};
+}, [hasTourFinished, isTourPlaying]);
 
 const handleManualNext = (
   nextSlide: () => void,
@@ -522,7 +536,7 @@ useEffect(() => {
     document.body.style.overflow = previousOverflow;
     window.removeEventListener("keydown", handleKeyDown);
   };
-}, [isTourOpen, isTourPlaying, isLastTourStop, tourIndex]);
+}, [isTourOpen, isTourPlaying, isLastTourStop, tourIndex, toggleTourPlayback]);
 
 useEffect(() => {
   if (!isTourOpen || !isTourPlaying) return;
@@ -672,7 +686,7 @@ useEffect(() => {
                 </ul>
               </div>             
             </div>
-            <Image src={currentFachada.image} className={styles.imageApresentationResidSideRight} alt={""} width={1536} height={1024}/>
+            <Image src={currentFachada.image} className={styles.imageApresentationResidSideRight} alt={""} width={1536} height={1024} loading={currentFachada.image === "/assets/entrada-garagem-01.webp" ? "eager" : "lazy"}/>
             <ChevronLeft
               className={styles.arrowIconRLeft}
               onClick={() => handleManualPrevious(prevFachada, indexFachada, -1, resetFachada)}
@@ -973,8 +987,8 @@ useEffect(() => {
         aria-hidden="true"
         key={tourIndex}
         style={{
-          "--tour-progress-start": `${(tourIndex / tourStops.length) * 100}%`,
-          "--tour-progress-end": `${((tourIndex + 1) / tourStops.length) * 100}%`,
+          "--tour-progress-start": `${tourProgressStart}%`,
+          "--tour-progress-end": `${tourProgressEnd}%`,
           animationDuration: `${TOUR_SLIDE_DURATION}ms`,
           animationPlayState: isTourPlaying ? "running" : "paused",
         } as React.CSSProperties}
@@ -989,16 +1003,14 @@ useEffect(() => {
               type="button"
               key={marker.label}
               className={`${styles.tourChapterMarker} ${isCompletedRoom ? styles.tourChapterMarkerCompleted : ""} ${isCurrentRoom ? styles.tourChapterMarkerActive : ""}`}
-              style={{
-                "--tour-room-start": `${marker.startPosition}%`,
-                "--tour-room-size": `${marker.size}%`,
-              } as React.CSSProperties}
               onClick={() => goToTourStop(marker.startIndex)}
               aria-label={`Ir para a primeira imagem de ${marker.label}`}
               aria-current={isCurrentRoom ? "step" : undefined}
             >
               <span className={styles.tourChapterDot} aria-hidden="true" />
-              <span className={styles.tourChapterLabel}>{marker.label}</span>
+              <span className={styles.tourChapterLabel}>
+                {marker.label === "Espaço gourmet" ? <><span>Espaço</span><br /><span>gourmet</span></> : marker.label}
+              </span>
             </button>
           );
         })}
@@ -1040,20 +1052,14 @@ useEffect(() => {
         </AnimatePresence>
         <div className={styles.tourImageShade} />
         <div className={styles.tourRoomLabel}>
-          <h2>{currentTourStop.room}</h2>
-          <p>{currentTourStop.roomDetail}</p>
+          <h2>{currentTourRoomTitle}</h2>
+          <p>{currentTourStop.title}</p>
         </div>
       </div>
 
       <section key={`${currentTourStop.room}-${currentTourStop.slideIndex}`} className={styles.tourDetails}>
         <div>
-          <span className={styles.tourDetailRoomName}>
-            {currentTourStop.room === "Espaço" ? "Espaço gourmet" : currentTourStop.room}
-          </span>
           <span className={styles.tourDetailKicker}>Detalhes deste ambiente</span>
-          <div className={styles.tourDetailTitle}>
-            <h3>{currentTourStop.title}</h3>
-          </div>
           <ul className={styles.tourTopics}>
             {currentTourStop.topics.map((topic, index) => (
               <li key={index}><span>{String(index + 1).padStart(2, "0")}</span><p>{topic}</p></li>
