@@ -1157,6 +1157,7 @@
 
 .tourPreviewVisual{
   position: relative;
+  container-type: inline-size;
   width: min(100%, 34rem);
   aspect-ratio: 1;
   justify-self: end;
@@ -1214,44 +1215,91 @@
 }
 
 .tourPreviewPlayButton{
+  --tour-preview-button-size: clamp(7.4rem, 9.5vw, 9rem);
   position: absolute;
   right: -1.6%;
-  bottom: 1.3%;
+  bottom: calc(1.3% + clamp(1.5rem, 1.9vw, 1.8rem));
   z-index: 3;
   display: grid;
-  width: clamp(7.4rem, 9.5vw, 9rem);
-  aspect-ratio: 1;
+  width: var(--tour-preview-button-size);
+  height: var(--tour-preview-button-size);
+  padding: 0;
+  place-items: center;
+  border-radius: 50%;
+  color: #e7cd78;
+  background: transparent;
+  transition: transform 180ms ease;
+}
+
+.tourPreviewPlayLabel{
+  position: absolute;
+  top: 50%;
+  right: calc(100% - clamp(1.45rem, 2vw, 1.8rem));
+  z-index: 1;
+  display: flex;
+  min-height: clamp(4.2rem, 4.85vw, 4.5rem);
+  padding: 0.2rem clamp(3rem, 3.6vw, 3.4rem) 0.2rem clamp(1.8rem, 2.25vw, 2.1rem);
+  align-items: center;
+  justify-content: center;
+  border: 1.9px solid rgba(180, 135, 36, 0.34);
+  border-radius: 999px 0 0 999px;
+  color: #075039;
+  background: linear-gradient(105deg, rgba(249, 246, 237, 0.98) 0%, rgba(242, 235, 215, 0.96) 100%);
+  box-shadow: 0 0.65rem 1.7rem rgba(60, 52, 30, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  font-family: var(--font-outfit);
+  font-size: clamp(0.85rem, 0.99vw, 0.97rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.tourPreviewPlayDisc{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
   place-items: center;
   border: 0.35rem solid #d8bd67;
   border-radius: 50%;
-  color: #e7cd78;
   background: radial-gradient(circle at 36% 30%, #116147 0%, #084631 46%, #053324 100%);
   box-shadow: 0 1.4rem 2.7rem rgba(4, 46, 32, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.13);
-  transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+  transition: box-shadow 180ms ease, background 180ms ease;
 }
 
-.tourPreviewPlayButton:hover{
-  transform: translateY(-0.25rem) scale(1.025);
-  filter: brightness(1.08);
-  box-shadow: 0 1.7rem 3.1rem rgba(4, 46, 32, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.16);
-}
-
-.tourPreviewPlayButton:active{
-  transform: scale(0.98);
-}
-
-.tourPreviewPlayButton:focus-visible{
-  outline: 3px solid #705700;
-  outline-offset: 5px;
-}
-
-.tourPreviewPlayButton svg{
+.tourPreviewPlayDisc svg{
   width: 37%;
   height: 37%;
   margin-left: 0.45rem;
   fill: currentColor;
   stroke-width: 1.5;
   filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.16));
+}
+
+@media (hover: hover) and (pointer: fine){
+  .tourPreviewPlayButton:hover{
+    transform: translateY(-2px);
+  }
+
+  .tourPreviewPlayButton:hover .tourPreviewPlayDisc{
+    background: linear-gradient(135deg, #0d6245 0%, #08412e 100%);
+    box-shadow: 0 16px 34px rgba(4, 47, 33, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+.tourPreviewPlayButton:active{
+  transform: translateY(0);
+}
+
+.tourPreviewPlayButton:active .tourPreviewPlayDisc{
+  box-shadow: 0 7px 18px rgba(4, 47, 33, 0.2);
+}
+
+.tourPreviewPlayButton:focus-visible{
+  outline: 3px solid #705700;
+  outline-offset: 5px;
 }
 
 .tourIntroContent{
@@ -1288,6 +1336,60 @@
   font-size: clamp(1.15rem, 1.55vw, 1.5rem);
   font-weight: 300;
   line-height: 1.7;
+}
+
+.tourIntroInfoCapsule{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: fit-content;
+  margin-top: 1.15rem;
+  padding: 0.62rem 1.05rem;
+  border: 1px solid rgba(183, 151, 54, 0.11);
+  border-radius: 999px;
+  color: #59615d;
+  background: #f4f0e5;
+  box-shadow: 0 0.3rem 0.9rem rgba(85, 71, 32, 0.05);
+  font-family: var(--font-outfit);
+  font-size: clamp(0.82rem, 1vw, 0.96rem);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tourIntroInfoDot{
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #0b6549;
+}
+
+.manualExploreIntro{
+  width: min(100% - 2rem, 58rem);
+  margin: clamp(2.25rem, 4vw, 3.75rem) auto clamp(0.25rem, 1vw, 0.75rem);
+  text-align: center;
+}
+
+.manualExploreTitle{
+  margin: 0;
+  color: #075039;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.1rem, 3.2vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.manualExploreSubtitle{
+  max-width: 42rem;
+  margin: clamp(0.7rem, 1vw, 0.95rem) auto 0;
+  color: #5c625f;
+  font-family: var(--font-outfit);
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  font-weight: 300;
+  line-height: 1.65;
 }
 
 .tourBackdrop button:focus-visible{
@@ -1345,14 +1447,14 @@
   position: relative;
   top: auto;
   width: 100%;
-  height: 3rem;
+  height: 5.5rem;
   padding: 0;
   border: 0;
   color: inherit;
   background: transparent;
   cursor: pointer;
   pointer-events: auto;
-  transform: translateY(calc(-50% + var(--tour-progress-line-center)));
+  transform: translateY(calc(-1rem + var(--tour-progress-line-center)));
 }
 
 .tourChapterMarkerActive{
@@ -1361,10 +1463,10 @@
 
 .tourChapterDot{
   position: absolute;
-  top: 50%;
+  top: 1rem;
   left: 50%;
-  width: 0.46rem;
-  height: 0.46rem;
+  width: 0.82rem;
+  height: 0.82rem;
   border: 1px solid rgba(222, 213, 181, 0.42);
   border-radius: 50%;
   background: #526158;
@@ -1388,14 +1490,15 @@
 }
 
 .tourChapterLabel{
+  --tour-label-translate-x: -50%;
   position: absolute;
-  top: calc(50% + 0.8rem);
+  top: 1.8rem;
   left: 50%;
   width: max-content;
   max-width: 9.5rem;
   padding: 0.3rem 0.4rem;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 20px;
   color: rgba(235, 232, 218, 0.64);
   background: transparent;
   box-shadow: none;
@@ -1406,7 +1509,7 @@
   pointer-events: none;
   text-align: center;
   white-space: nowrap;
-  transform: translateX(-50%);
+  transform: translateX(var(--tour-label-translate-x));
   transition: padding 260ms ease, color 260ms ease, border-color 260ms ease, background-color 260ms ease, box-shadow 260ms ease, font-size 260ms ease, font-weight 260ms ease;
 }
 
@@ -1570,6 +1673,23 @@
   object-fit: cover;
 }
 
+.tourContentOverlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+  transition: opacity 200ms ease, visibility 0s linear;
+}
+
+.tourContentOverlayHidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+
 .tourImageShade{
   position: absolute;
   inset: 0;
@@ -1582,16 +1702,7 @@
   left: clamp(1.5rem, 4vw, 4rem);
   bottom: clamp(1.5rem, 4vw, 3.5rem);
   z-index: 1;
-}
-
-.tourDetailKicker{
-  display: block;
-  margin-bottom: 0.65rem;
-  color: #dfbd55;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
+  pointer-events: none;
 }
 
 .tourRoomLabel h2{
@@ -1618,13 +1729,63 @@
   display: flex;
   min-width: 0;
   min-height: 0;
-  padding: clamp(2rem, 3.8vw, 4.5rem) clamp(1.8rem, 3vw, 3.5rem) 2rem;
+  padding: clamp(2.5rem, 3.5vw, 4rem) clamp(2rem, 3.35vw, 4rem) clamp(1.5rem, 2vw, 2.25rem);
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   overflow-y: auto;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(145deg, #18221c, #0f1612);
   animation: tourDetailsIn 340ms 40ms ease both;
+}
+
+.tourDetailsInner{
+  width: 100%;
+  flex: 0 0 auto;
+  margin-block: auto;
+  transform: translateY(-10%);
+}
+
+.tourDetailHeading{
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #f7f3e7;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-synthesis: none;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.tourDetailHeading span{
+  display: block;
+  font-family: inherit;
+}
+
+.tourDetailHeadingPrimary{
+  font-size: clamp(1.8634rem, 2.47324vw, 2.8798rem);
+  font-weight: 100;
+}
+
+.tourDetailHeadingSecondary{
+  margin-top: 0.28em;
+  margin-left: clamp(0.8rem, 1.65vw, 1.8rem);
+  color: rgba(223, 189, 85, 0.78);
+  font-size: clamp(1.11804rem, 1.45684vw, 1.694rem);
+  font-weight: 100;
+  letter-spacing: 0.025em;
+  line-height: 1.09;
+}
+
+.tourDetailAccent{
+  display: block;
+  width: clamp(3.45rem, 4vw, 4.25rem);
+  height: 1px;
+  margin-top: clamp(1rem, 1.4vw, 1.4rem);
+  margin-bottom: clamp(1.5rem, 1.9vw, 2.1rem);
+  background: rgba(223, 189, 85, 0.7);
 }
 
 .tourDetailRoomName{
@@ -1671,27 +1832,32 @@
 
 .tourTopics li{
   display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 0.8rem;
-  padding: 0.9rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
-  color: rgba(255, 255, 255, 0.76);
+  grid-template-columns: 2.8rem minmax(0, 1fr);
+  gap: clamp(1rem, 1.7vw, 1.75rem);
+  padding: clamp(1.05rem, 1.4vw, 1.3rem) 0;
+  color: rgba(247, 243, 231, 0.84);
+}
+
+.tourTopics li + li{
+  border-top: 1px solid rgba(223, 189, 85, 0.2);
 }
 
 .tourTopics li > span{
-  padding-top: 0.15rem;
-  color: #b99b3e;
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  color: rgba(223, 189, 85, 0.88);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 1.7vw, 1.85rem);
+  font-synthesis: none;
+  font-weight: 400;
+  letter-spacing: 0.035em;
+  line-height: 1.35;
 }
 
 .tourTopics p{
   margin: 0;
   color: inherit;
-  font-size: clamp(0.98rem, 1.12vw, 1.12rem);
+  font-size: clamp(1.1rem, 1.22vw, 1.3rem);
   font-weight: 300;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .tourControls{
@@ -1774,6 +1940,24 @@
   background: linear-gradient(135deg, #0e6849 0%, #084630 100%);
 }
 
+.tourPrimaryButtonRestart{
+  border-color: rgba(11, 84, 59, 0.58);
+  color: #0b543b;
+  background: linear-gradient(135deg, #dfca82 0%, #b58e36 100%);
+  box-shadow: 0 8px 24px rgba(83, 62, 15, 0.24), inset 0 1px 0 rgba(255, 248, 214, 0.28);
+}
+
+.tourPrimaryButtonRestart:hover{
+  border-color: rgba(11, 84, 59, 0.72);
+  color: #063728;
+  background: linear-gradient(135deg, #ead790 0%, #c39d45 100%);
+  box-shadow: 0 8px 24px rgba(83, 62, 15, 0.28), inset 0 1px 0 rgba(255, 248, 214, 0.34);
+}
+
+.tourBackdrop .tourPrimaryButtonRestart:focus-visible{
+  outline-color: #0b543b;
+}
+
 @keyframes tourBackdropIn{
   from { opacity: 0; }
   to { opacity: 1; }
@@ -1785,8 +1969,77 @@
 }
 
 @keyframes tourChapterLabelIn{
-  from { opacity: 0; transform: translate(-50%, -0.3rem); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+  from { opacity: 0; transform: translate(var(--tour-label-translate-x), -0.3rem); }
+  to { opacity: 1; transform: translate(var(--tour-label-translate-x), 0); }
+}
+
+@keyframes tourNextChapterLabelIn{
+  0% {
+    opacity: 0;
+    border-color: transparent;
+    color: rgba(235, 232, 218, 0.64);
+    box-shadow: 0 0 0 rgba(1, 18, 12, 0), 0 0 0 rgba(216, 189, 105, 0);
+    font-weight: 520;
+    transform: translate(var(--tour-label-translate-x), 0.12rem) scale(0.98);
+  }
+  42% {
+    opacity: 0.58;
+  }
+  92%,
+  100% {
+    opacity: 1;
+    border-color: rgba(216, 189, 105, 0.42);
+    color: #f0d98e;
+    box-shadow: 0 7px 20px rgba(1, 18, 12, 0.26), 0 0 12px rgba(216, 189, 105, 0.1);
+    font-weight: 650;
+    transform: translate(var(--tour-label-translate-x), 0) scale(1);
+  }
+}
+
+@keyframes tourNextChapterCapsuleIn{
+  from { opacity: 0; }
+  92%, 100% { opacity: 1; }
+}
+
+@keyframes tourCurrentChapterLabelOut{
+  from { opacity: 1; transform: translate(var(--tour-label-translate-x), 0); }
+  92%, 100% { opacity: 0; transform: translate(var(--tour-label-translate-x), 0.08rem); }
+}
+
+@keyframes tourNextChapterDotIn{
+  from {
+    width: 0.82rem;
+    height: 0.82rem;
+    border-color: rgba(222, 213, 181, 0.42);
+    background: #526158;
+    box-shadow: 0 0 0 2px rgba(246, 243, 233, 0.1);
+  }
+  92%,
+  to {
+    width: 0.82rem;
+    height: 0.82rem;
+    border-color: #f3dfa0;
+    background: #dfbd55;
+    box-shadow: 0 0 0 3px rgba(243, 223, 160, 0.2), 0 0 0 6px rgba(223, 189, 85, 0.11), 0 0 15px rgba(236, 207, 119, 0.5);
+  }
+}
+
+@keyframes tourCurrentChapterDotOut{
+  from {
+    width: 0.82rem;
+    height: 0.82rem;
+    border-color: #f3dfa0;
+    background: #dfbd55;
+    box-shadow: 0 0 0 3px rgba(243, 223, 160, 0.2), 0 0 0 6px rgba(223, 189, 85, 0.11), 0 0 15px rgba(236, 207, 119, 0.5);
+  }
+  92%,
+  to {
+    width: 0.82rem;
+    height: 0.82rem;
+    border-color: #d8bd69;
+    background: #c9a84c;
+    box-shadow: 0 0 0 2px rgba(216, 189, 105, 0.16), 0 0 7px rgba(216, 189, 105, 0.24);
+  }
 }
 
 @keyframes tourPulse{
@@ -1817,7 +2070,41 @@
   }
 }
 
+@media(min-width: 901px){
+  .tourDetails{
+    padding-bottom: clamp(0.25rem, 0.5vw, 0.5rem);
+    justify-content: center;
+  }
+
+  .tourDetailsInner{
+    margin-block: 0;
+    transform: none;
+  }
+}
+
+@media(min-width: 901px) and (max-width: 1100px){
+  .tourPreviewPlayLabel{
+    width: min(15.25rem, calc(85.6cqw - var(--tour-preview-button-size) + clamp(1.45rem, 2vw, 1.8rem)));
+    font-size: clamp(0.8rem, 1.2vw, 0.92rem);
+  }
+}
+
+@media(min-width: 901px) and (max-width: 1000px){
+  .tourPreviewPlayLabel{
+    width: min(14.5rem, calc(85.6cqw - var(--tour-preview-button-size) + clamp(1.45rem, 2vw, 1.8rem) - clamp(0.5rem, 1vw, 0.75rem)));
+  }
+}
+
 @media(max-width: 900px){
+  .tourDetailHeading,
+  .tourDetailAccent{
+    display: none;
+  }
+
+  .tourDetailsInner{
+    transform: none;
+  }
+
   .divTitleBlocksComodos{
     padding: 9rem clamp(1.25rem, 3vw, 2rem) 2.5rem;
   }
@@ -1833,7 +2120,18 @@
   }
 
   .tourPreviewPlayButton{
-    width: clamp(5.25rem, 12vw, 6.75rem);
+    --tour-preview-button-size: clamp(5.25rem, 12vw, 6.75rem);
+    bottom: calc(1.3% + clamp(1.05rem, 2.4vw, 1.35rem));
+  }
+
+  .tourPreviewPlayLabel{
+    right: calc(100% - clamp(1.2rem, 2.6vw, 1.5rem));
+    width: min(14.5rem, calc(80.1cqw - var(--tour-preview-button-size) + clamp(1.2rem, 2.6vw, 1.5rem)));
+    min-height: clamp(3rem, 6.8vw, 3.45rem);
+    padding-right: clamp(1.45rem, 3.4vw, 2.1rem);
+    padding-left: clamp(0.75rem, 1.5vw, 1.2rem);
+    font-size: clamp(0.74rem, 1.62vw, 0.83rem);
+    letter-spacing: 0.11em;
   }
 
   .tourIntroContent{
@@ -1867,13 +2165,25 @@
   }
 
   .tourDetails{
-    padding: 1.6rem 1.5rem 1.25rem;
+    padding: 0.675rem clamp(1.35rem, 3.2vw, 2rem) clamp(1.25rem, 2.8vw, 1.75rem);
+    justify-content: flex-start;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-left: 0;
   }
 
-  .tourDetailKicker{
-    margin-bottom: 0.45rem;
+  .tourDetailHeadingPrimary{
+    font-size: clamp(1.3552rem, 3.25248vw, 1.79564rem);
+  }
+
+  .tourDetailHeadingSecondary{
+    margin-left: clamp(0.7rem, 2.2vw, 1.2rem);
+    font-size: clamp(0.88088rem, 2.16832vw, 1.1858rem);
+  }
+
+  .tourDetailAccent{
+    width: clamp(2.85rem, 7vw, 3.75rem);
+    margin-top: clamp(0.6rem, 1.25vw, 0.85rem);
+    margin-bottom: clamp(1.2rem, 2.4vw, 1.6rem);
   }
 
   .tourDetailTitle{
@@ -1882,7 +2192,17 @@
   }
 
   .tourTopics li{
-    padding: 0.55rem 0;
+    grid-template-columns: 2.35rem minmax(0, 1fr);
+    gap: clamp(0.85rem, 2vw, 1.15rem);
+    padding: clamp(0.48rem, 1.05vw, 0.65rem) 0;
+  }
+
+  .tourTopics li > span{
+    font-size: clamp(1.18rem, 2.8vw, 1.45rem);
+  }
+
+  .tourTopics p{
+    font-size: clamp(0.95rem, 2.1vw, 1.08rem);
   }
 
   .tourRoomLabel{
@@ -1915,8 +2235,30 @@
   .tourIntroText{
     margin-inline: auto;
   }
+
+  .tourIntroInfoCapsule{
+    margin-inline: auto;
+  }
 }
 
+@media(min-width: 671px) and (max-width: 760px){
+  .tourPreviewPlayLabel{
+    padding-right: clamp(1.1rem, 2.5vw, 1.35rem);
+    padding-left: clamp(0.55rem, 1.2vw, 0.75rem);
+    font-size: clamp(0.65rem, 1.48vw, 0.71rem);
+    letter-spacing: 0.09em;
+  }
+}
+
+@media(max-width: 700px){
+  .tourPreviewPlayLabel{
+    min-height: clamp(3.45rem, 7.82vw, 3.97rem);
+  }
+
+  .tourChapterMarkerActive .tourChapterLabel{
+   font-size: 0.75rem;
+}
+}
 @media(max-width: 600px){
   .divTitleBlocksComodos{
     padding: 8rem 1rem 2rem;
@@ -1935,10 +2277,23 @@
   }
 
   .tourPreviewPlayButton{
+    --tour-preview-button-size: clamp(5.6rem, 23vw, 6.6rem);
     right: -3%;
-    bottom: -1%;
-    width: clamp(5.6rem, 23vw, 6.6rem);
+    bottom: calc(-1% + clamp(1.1rem, 4.6vw, 1.3rem));
+  }
+
+  .tourPreviewPlayDisc{
     border-width: 0.25rem;
+  }
+
+  .tourPreviewPlayLabel{
+    right: calc(100% - clamp(1.05rem, 5vw, 1.35rem));
+    width: min(14.5rem, calc(81.5cqw - var(--tour-preview-button-size) + clamp(1.05rem, 5vw, 1.35rem)));
+    min-height: clamp(2.875rem, 12.1vw, 3.22rem);
+    padding-right: clamp(1.45rem, 6.6vw, 1.9rem);
+    padding-left: clamp(1.05rem, 3.3vw, 1.3rem);
+    font-size: clamp(0.65rem, 3.05vw, 0.76rem);
+    letter-spacing: 0.1em;
   }
 
   .titleBlocksComodos{
@@ -1958,11 +2313,17 @@
     line-height: 1.6;
   }
 
+  .tourIntroInfoCapsule{
+    margin-top: 1rem;
+    padding: 0.58rem 0.9rem;
+    font-size: clamp(0.76rem, 3.3vw, 0.86rem);
+  }
+
   .tourChapterLabel{
-    top: calc(50% + 0.7rem);
+    top: 1.7rem;
     padding: 0.24rem 0.2rem;
-    max-width: 4.8rem;
-    font-size: 0.78rem;
+    max-width: fit-content;
+    font-size: 0.72rem;
     letter-spacing: 0.01em;
     line-height: 1.12;
     white-space: normal;
@@ -1970,7 +2331,8 @@
 
   .tourChapterMarkerActive .tourChapterLabel{
     padding: 0.36rem 0.58rem;
-    font-size: 0.86rem;
+    font-size: 0.7rem;
+
   }
 
   .tourBrand{
@@ -1987,14 +2349,15 @@
 
   .closeTourButton{
     width: auto;
-    height: 3.2rem;
-    padding: 0 1rem 0 1.08rem;
+    min-height: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.5rem 0 1rem;
     justify-content: center;
     font-size: 0.96rem;
   }
 
   .tourStage{
-    grid-template-rows: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-rows: minmax(0, 1.40fr) minmax(0, 0.85fr);
   }
 
   .tourRoomLabel h2{
@@ -2002,15 +2365,34 @@
   }
 
   .tourDetails{
-    padding: 0.85rem 1.15rem 0.7rem;
+    padding: 0.675rem 1.25rem 0.9rem;
   }
 
-  .tourDetailKicker{
-    margin-bottom: 0.35rem;
+  .tourDetailHeadingPrimary{
+    font-size: clamp(1.1858rem, 4.7432vw, 1.42296rem);
+  }
+
+  .tourDetailHeadingSecondary{
+    margin-top: 0.22em;
+    margin-left: clamp(0.65rem, 3.2vw, 1rem);
+    font-size: clamp(0.758912rem, 3.0492vw, 0.91476rem);
+  }
+
+  .tourDetailAccent{
+    width: clamp(2.75rem, 13vw, 3.4rem);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .tourTopics li{
-    padding: 0.42rem 0;
+    grid-template-columns: 2.15rem minmax(0, 1fr);
+    gap: 0.78rem;
+    padding: 0.4rem 0;
+  }
+
+  .tourTopics li > span{
+    font-size: 1.16rem;
+    line-height: 1.32;
   }
 
   .tourDetailRoomName{
@@ -2028,8 +2410,8 @@
   }
 
   .tourTopics p{
-    font-size: 0.9rem;
-    line-height: 1.38;
+    font-size: 0.92rem;
+    line-height: 1.4;
   }
 
   .tourControls{
@@ -2078,7 +2460,7 @@
   }
 }
 
-@media(min-width: 380px) and (max-width: 600px){
+@media(min-width: 350px) and (max-width: 600px){
   .tourSecondaryButton{
     min-width: 7.4rem;
   }
@@ -2087,7 +2469,126 @@
     display: inline;
   }
 }
+@media(max-width: 460px){
+  .tourChapterLabel::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(10, 77, 55, 0.96), rgba(6, 53, 38, 0.96));
+    opacity: 0;
+    pointer-events: none;
+  }
 
+  .tourChapterLabel{
+    isolation: isolate;
+  }
+
+  .tourChapterMarker:not(.tourChapterMarkerActive):not(.tourChapterMarkerNext) .tourChapterLabel{
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .tourChapterMarkerActive .tourChapterLabel{
+    padding: 0.4rem 0.46rem;
+    background: transparent;
+    font-size: 0.68rem;
+    animation: none;
+  }
+
+  .tourChapterMarkerActive .tourChapterDot{
+    animation: none;
+  }
+
+  .tourChapterMarkerActive .tourChapterLabel::before{
+    opacity: 1;
+  }
+
+  .tourChapterMarkerLeaving .tourChapterLabel{
+    animation-name: tourCurrentChapterLabelOut;
+    animation-duration: var(--tour-label-crossfade-duration);
+    animation-timing-function: ease-in-out;
+    animation-delay: var(--tour-label-crossfade-delay);
+    animation-fill-mode: both;
+    animation-play-state: var(--tour-label-crossfade-play-state);
+  }
+
+  .tourChapterMarkerLeaving .tourChapterDot{
+    animation-name: tourCurrentChapterDotOut;
+    animation-duration: var(--tour-label-crossfade-duration);
+    animation-timing-function: ease-in-out;
+    animation-delay: var(--tour-label-crossfade-delay);
+    animation-fill-mode: both;
+    animation-play-state: var(--tour-label-crossfade-play-state);
+  }
+
+  .tourChapterMarkerNext .tourChapterLabel{
+    visibility: visible;
+    padding: 0.4rem 0.46rem;
+    border-color: transparent;
+    color: rgba(235, 232, 218, 0.72);
+    background: transparent;
+    box-shadow: none;
+    font-size: 0.68rem;
+    animation-name: tourNextChapterLabelIn;
+    animation-duration: var(--tour-label-crossfade-duration);
+    animation-timing-function: ease-in-out;
+    animation-delay: var(--tour-label-crossfade-delay);
+    animation-fill-mode: both;
+    animation-play-state: var(--tour-label-crossfade-play-state);
+  }
+
+  .tourChapterMarkerActive .tourChapterLabel,
+  .tourChapterMarkerNext .tourChapterLabel{
+    min-width: fit-content;
+    max-width: fit-content;
+  }
+
+  .tourChapterMarkerNext .tourChapterDot{
+    animation-name: tourNextChapterDotIn;
+    animation-duration: var(--tour-label-crossfade-duration);
+    animation-timing-function: ease-in-out;
+    animation-delay: var(--tour-label-crossfade-delay);
+    animation-fill-mode: both;
+    animation-play-state: var(--tour-label-crossfade-play-state);
+  }
+
+  .tourChapterMarkerNext .tourChapterLabel::before{
+    animation-name: tourNextChapterCapsuleIn;
+    animation-duration: var(--tour-label-crossfade-duration);
+    animation-timing-function: ease-in-out;
+    animation-delay: var(--tour-label-crossfade-delay);
+    animation-fill-mode: both;
+    animation-play-state: var(--tour-label-crossfade-play-state);
+  }
+
+  .tourChapterMarkerActive .tourChapterLabelGourmet,
+  .tourChapterMarkerNext .tourChapterLabelGourmet{
+    font-size: 0.59rem;
+  }
+
+  .tourChapterMarker:first-child.tourChapterMarkerActive .tourChapterLabel{
+    --tour-label-translate-x: max(-50%, calc(0.25rem - 6.7142857vw));
+  }
+
+  .tourChapterMarker:last-child:is(.tourChapterMarkerActive, .tourChapterMarkerNext) .tourChapterLabel{
+    --tour-label-translate-x: min(-50%, calc(6.7142857vw - 0.25rem - 100%));
+  }
+
+  .tourChapterLabel{
+    font-size: 0.6rem;
+  }
+
+  .tourPrimaryButton{
+    min-width: 6.75rem;
+    width: 9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 0.1rem;
+    max-width: fit-content;
+  }
+}
 @media(max-width: 379px){
   .tourControls{
     gap: 0.4rem;
@@ -2105,9 +2606,9 @@
     height: 3.55rem;
   }
 
-  .tourPrimaryButton{
+  /* .tourPrimaryButton{
     min-width: 9.75rem;
-  }
+  } */
 }
 
 @media(max-width: 420px){
@@ -2137,7 +2638,38 @@
 
   .tourChapterMarkerActive .tourChapterLabel{
     max-width: 5rem;
-    font-size: 0.76rem;
+    /* font-size: 0.76rem; */
+  }
+}
+
+@media(max-width: 400px){
+  .tourDetails{
+    padding-top: 0.675rem;
+  }
+}
+
+@media(max-height: 820px) and (min-width: 901px){
+  .tourDetails{
+    padding: 2rem 2.25rem 0.5rem;
+  }
+
+  .tourDetailAccent{
+    margin-top: 0.9rem;
+    margin-bottom: 1.65rem;
+  }
+
+  .tourTopics li{
+    grid-template-columns: 2.6rem minmax(0, 1fr);
+    gap: 1.15rem;
+    padding: 0.9rem 0;
+  }
+
+  .tourTopics li > span{
+    font-size: 1.55rem;
+  }
+
+  .tourTopics p{
+    font-size: 1.12rem;
   }
 }
 
@@ -2161,15 +2693,25 @@
 
   .tourDetails{
     padding-top: 2rem;
-    padding-bottom: 1.2rem;
+    padding-bottom: 0.35rem;
+    justify-content: center;
   }
 
-  .tourDetailTitle{
-    margin-bottom: 1rem;
+  .tourDetailHeadingPrimary{
+    font-size: 1.55848rem;
+  }
+
+  .tourDetailHeadingSecondary{
+    font-size: 1.0164rem;
+  }
+
+  .tourDetailAccent{
+    margin-top: 0.7rem;
+    margin-bottom: 0.85rem;
   }
 
   .tourTopics li{
-    padding: 0.58rem 0;
+    padding: 0.5rem 0;
   }
 
 }
@@ -2514,6 +3056,9 @@
   .roomTimeline{
     border-radius: 0 0 35px 35px;
   }
+    .tourStage{
+    margin-top: 0.1rem;
+  }
 }
 
 @media(max-height: 760px) and (min-width: 901px){
@@ -2537,6 +3082,13 @@
 }
 
 @media(max-width: 370px){
+  .tourPreviewPlayLabel{
+    padding-right: 0.95rem;
+    padding-left: 0.45rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.09em;
+  }
+
   .roomTimeline{
     left: 50%;
     width: calc(100vw - 0.10rem);
@@ -2547,6 +3099,21 @@
     width: calc((100% - 0.72rem) / 7);
   }
 
+}
+
+@media(max-width: 400px){
+  .tourPreviewPlayLabel{
+    min-height: clamp(3.25rem, 13.65vw, 3.62rem);
+  }
+}
+
+@media(max-width: 340px){
+  .tourPreviewPlayLabel{
+    padding-right: 0.75rem;
+    padding-left: 0.3rem;
+    font-size: 0.54rem;
+    letter-spacing: 0.05em;
+  }
 }
 
 @media(prefers-reduced-motion: reduce){
@@ -2567,4 +3134,9 @@
     transition: none;
   }
 
+}
+@media(max-width: 322px){
+  .tourDetails{
+    padding-bottom: 0.45rem;
+  }
 }

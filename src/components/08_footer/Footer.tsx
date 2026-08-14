@@ -24,9 +24,9 @@ export function Footer(){
     <footer className={styles.footerContainer}>
       <div className={styles.footerContent}>
         <div className={styles.internalLinks}>
-          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href={"#sobre-nos"}>Sobre nós</Link>
-          <a className={`${styles.linksText} ${styles.linksTextGridUm}`} href={"#empreendimentos"}>Empreendimentos</a>
-          <a className={`${styles.linksText} ${styles.linksTextGridUm}`} href={"#obras-em-lancamento"}>Lançamentos</a>
+          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#sobre-nos">Sobre nós</Link>
+          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#empreendimentos">Empreendimentos</Link>
+          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#lancamentos">Lançamentos</Link>
         </div>
         <Link href={"/"} className={styles.logoWithSlogan}>
           <Image 

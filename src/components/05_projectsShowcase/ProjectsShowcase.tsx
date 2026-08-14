@@ -45,15 +45,6 @@ export function ProjectsShowcase(){
     return () => clearInterval(interval);
   }, []);
 
-
-  useEffect(() => {
-  const savedPosition = sessionStorage.getItem('scrollPositionEmpreendComponent');
-  if (savedPosition) {
-    window.scrollTo({ top: Number(savedPosition), behavior: 'instant' });
-    sessionStorage.removeItem('scrollPositionEmpreendComponent'); // limpa pra não interferir em visitas normais
-  }
-}, []);
-
   return(
     <div className={styles.projectsShowcaseContainer}>
       <div className={styles.projectsShowcaseContent} id="empreendimentos" >
@@ -61,7 +52,7 @@ export function ProjectsShowcase(){
         <div className={styles.divTitleSection}>
             <h2 className={styles.lancamTitle}>Empreendimentos</h2>
             <div className={styles.divBlocksSection}>
-                <Link href={"/residencial-v-falatian-casas-3-4"} target="_self" className={styles.linkEmExecImgTextResidenciaVFalatian}  onClick={() => sessionStorage.setItem('scrollPositionEmpreendComponent', String(window.scrollY))}>                  
+                <Link href={"/residencial-v-falatian-casas-3-4"} target="_self" className={styles.linkEmExecImgTextResidenciaVFalatian}>
                   <Image 
                     src={imageList[currentIndexExec]}
                     alt={`Slide ${currentIndexExec + 1}`}
@@ -85,7 +76,7 @@ export function ProjectsShowcase(){
      </div>  
    </div>
    </div>
-      <div className={styles.projectsShowcaseContentLanc} id="obras-em-lancamento" >
+      <div className={styles.projectsShowcaseContentLanc} id="lancamentos" >
         <h2 className={styles.lancamTitle}>Lançamentos</h2>
         <div className={styles.lancamContent}>
           <div className={styles.slideImageContent}>

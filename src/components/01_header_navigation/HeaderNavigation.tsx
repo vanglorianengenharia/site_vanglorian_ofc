@@ -5,7 +5,6 @@ import styles from "./HeaderNavigation.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
 
 export function HeaderNavigation() {
   const[menuOpen, setMenuOpen] = useState(false)
@@ -15,10 +14,6 @@ export function HeaderNavigation() {
     window.open(whatsappLink, '_blank'); 
   }
   
-  const pathname= usePathname();
-  console.log(pathname);
-  
-
   return(
     <header className={styles.wrapperHeaderNav} aria-label="Cabeçalho principal do site">
       <div className={styles.containerHeaderNav}>
@@ -38,11 +33,12 @@ export function HeaderNavigation() {
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem1}`}>
                   <Link href="/">Página Inicial</Link>
                 </li>
-                {pathname === '/emExecucao' ? (<span className={styles.modalMenuItemSpan}>Empreendimentos</span>) :  (<li className={`${styles.modalMenuItem} ${styles.modalMenuItem2}`}>
-                  <a href="#empreendimentos">Empreendimentos</a></li>)}
+                <li className={`${styles.modalMenuItem} ${styles.modalMenuItem2}`}>
+                  <Link href="/#empreendimentos">Empreendimentos</Link>
+                </li>
 
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem3}`}>
-                  <a href="#obras-em-lancamento">Lançamentos</a>
+                  <Link href="/#lancamentos">Lançamentos</Link>
                 </li>
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem4}`}>
                   <button onClick={handleClickTalkWithUs}>Fale conosco</button>
@@ -65,8 +61,8 @@ export function HeaderNavigation() {
         </div> 
         <nav className={styles.nav} aria-label="Navegação principal">
           <ul className={styles.menu}>
-            {pathname === '/emExecucao' ? (<span className={styles.menuItemSpan}>Empreendimentos</span>) : (<li><a href="#empreendimentos" rel="noopener noreferrer" className={`${styles.menuItem} ${styles.menuItem1}`}>Empreendimentos</a></li>)}
-            <li><a href="#obras-em-lancamento" className={`${styles.menuItem} ${styles.menuItem2}`}>Lançamentos</a></li>
+            <li><Link href="/#empreendimentos" className={`${styles.menuItem} ${styles.menuItem1}`}>Empreendimentos</Link></li>
+            <li><Link href="/#lancamentos" className={`${styles.menuItem} ${styles.menuItem2}`}>Lançamentos</Link></li>
             <li><button className={`${styles.menuItem} ${styles.menuItem3}`} onClick={handleClickTalkWithUs}>Fale conosco</button></li>
           </ul>
         </nav>

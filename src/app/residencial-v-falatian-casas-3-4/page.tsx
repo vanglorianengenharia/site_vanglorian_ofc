@@ -1,12 +1,13 @@
 'use client'
 
 import styles from "./residVFalatianCasa1e2.module.css"
-import { Bed, BedDoubleIcon, Bubbles, Building2, Car, ChefHat, ChevronLeft, ChevronRight, Flame, Flower2Icon, GraduationCap, HeartPulse, Leaf, MapPin, MoveUpRight, Pause, PawPrint, Play, ShoppingCart, ShowerHead, SoapDispenserDroplet, Sofa, SparklesIcon, Square, Sun, Toilet, Undo2, UtensilsCrossed, X } from "lucide-react"
+import { Bed, BedDoubleIcon, Bubbles, Building2, Car, ChefHat, ChevronLeft, ChevronRight, Flame, Flower2Icon, GraduationCap, HeartPulse, Leaf, MapPin, MoveUpRight, Pause, PawPrint, Play, RotateCcw, ShoppingCart, ShowerHead, SoapDispenserDroplet, Sofa, SparklesIcon, Square, Sun, Toilet, Undo2, UtensilsCrossed, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation"
+import ZoomableTourImage from "./ZoomableTourImage";
 
 
 type SlideItem = {
@@ -236,6 +237,7 @@ const tourRoomMarkers = tourRooms.map((room, roomIndex) => {
 
 const TOUR_SLIDE_DURATION = 4500;
 const TOUR_PREVIEW_SLIDE_DURATION = 3800;
+const NEXT_ROOM_LABEL_REVEAL_POINT = 0.78;
 const tourPreviewSlides = tourRooms.map((room) => room.slides[0]);
 const MOBILE_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.7;
 const DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.3;
@@ -275,8 +277,10 @@ const [tourPreviewIndex, setTourPreviewIndex] = useState(0);
 const [activeRoomIndex, setActiveRoomIndex] = useState(0);
 const [isRoomTimelineVisible, setIsRoomTimelineVisible] = useState(false);
 const [hasReachedSectionAfterRooms, setHasReachedSectionAfterRooms] = useState(false);
+const [isTourPhotoOverlayHidden, setIsTourPhotoOverlayHidden] = useState(false);
 const tourElapsedTime = useRef(0);
 const tourPlaybackStartedAt = useRef(0);
+const tourPhotoOverlayRevealTimer = useRef<number | null>(null);
 const roomBlocks = useRef<Array<HTMLDivElement | null>>([]);
 const roomsSectionBlock = useRef<HTMLDivElement | null>(null);
 const propertyDetailsBlock = useRef<HTMLDivElement | null>(null);
@@ -302,11 +306,55 @@ const tourProgressStart = currentRoomMarkerPosition
   + (currentTourStop.slideIndex / currentTourStop.slidesInRoom) * currentRoomProgressLength;
 const tourProgressEnd = currentRoomMarkerPosition
   + ((currentTourStop.slideIndex + 1) / currentTourStop.slidesInRoom) * currentRoomProgressLength;
+const nextRoomLabelRevealPosition = NEXT_ROOM_LABEL_REVEAL_POINT * currentTourStop.slidesInRoom;
+const nextRoomLabelRevealSlideIndex = Math.min(
+  currentTourStop.slidesInRoom - 1,
+  Math.floor(nextRoomLabelRevealPosition),
+);
+const canRevealNextRoomLabel = currentTourStop.roomIndex < tourRooms.length - 1
+  && currentTourStop.slideIndex >= nextRoomLabelRevealSlideIndex;
+const nextRoomLabelRevealDelay = Math.max(
+  0,
+  Math.min(
+    TOUR_SLIDE_DURATION,
+    (nextRoomLabelRevealPosition - currentTourStop.slideIndex) * TOUR_SLIDE_DURATION,
+  ),
+);
+const nextRoomLabelCrossfadeDuration = Math.max(
+  1,
+  TOUR_SLIDE_DURATION - nextRoomLabelRevealDelay,
+);
 
-const goToTourStop = (nextIndex: number) => {
+const showTourPhotoOverlayImmediately = useCallback(() => {
+  if (tourPhotoOverlayRevealTimer.current !== null) {
+    window.clearTimeout(tourPhotoOverlayRevealTimer.current);
+    tourPhotoOverlayRevealTimer.current = null;
+  }
+  setIsTourPhotoOverlayHidden(false);
+}, []);
+
+const handleTourImageDraggingChange = useCallback((isDragging: boolean) => {
+  if (tourPhotoOverlayRevealTimer.current !== null) {
+    window.clearTimeout(tourPhotoOverlayRevealTimer.current);
+    tourPhotoOverlayRevealTimer.current = null;
+  }
+
+  if (isDragging) {
+    setIsTourPhotoOverlayHidden(true);
+    return;
+  }
+
+  tourPhotoOverlayRevealTimer.current = window.setTimeout(() => {
+    setIsTourPhotoOverlayHidden(false);
+    tourPhotoOverlayRevealTimer.current = null;
+  }, 300);
+}, []);
+
+const goToTourStop = useCallback((nextIndex: number) => {
   tourElapsedTime.current = 0;
+  showTourPhotoOverlayImmediately();
   setTourIndex(Math.max(0, Math.min(tourStops.length - 1, nextIndex)));
-};
+}, [showTourPhotoOverlayImmediately]);
 
 const startTour = () => {
   goToTourStop(0);
@@ -314,11 +362,12 @@ const startTour = () => {
   setIsTourOpen(true);
 };
 
-const closeTour = () => {
+const closeTour = useCallback(() => {
   tourElapsedTime.current = 0;
+  showTourPhotoOverlayImmediately();
   setIsTourOpen(false);
   setIsTourPlaying(false);
-};
+}, [showTourPhotoOverlayImmediately]);
 
 const nextTourStop = () => {
   if (isLastTourStop) {
@@ -351,7 +400,7 @@ const toggleTourPlayback = useCallback(() => {
   }
 
   setIsTourPlaying(true);
-}, [hasTourFinished, isTourPlaying]);
+}, [goToTourStop, hasTourFinished, isTourPlaying]);
 
 const handleManualNext = (
   nextSlide: () => void,
@@ -524,7 +573,9 @@ useEffect(() => {
     if (event.key === "ArrowLeft") {
       if (tourIndex > 0) goToTourStop(tourIndex - 1);
     }
-    if (event.key === " ") {
+    const isInteractiveControl = event.target instanceof HTMLElement
+      && Boolean(event.target.closest("button, a, input, select, textarea"));
+    if (event.key === " " && !isInteractiveControl) {
       event.preventDefault();
       toggleTourPlayback();
     }
@@ -536,7 +587,13 @@ useEffect(() => {
     document.body.style.overflow = previousOverflow;
     window.removeEventListener("keydown", handleKeyDown);
   };
-}, [isTourOpen, isTourPlaying, isLastTourStop, tourIndex, toggleTourPlayback]);
+}, [closeTour, goToTourStop, isTourOpen, isTourPlaying, isLastTourStop, tourIndex, toggleTourPlayback]);
+
+useEffect(() => () => {
+  if (tourPhotoOverlayRevealTimer.current !== null) {
+    window.clearTimeout(tourPhotoOverlayRevealTimer.current);
+  }
+}, []);
 
 useEffect(() => {
   if (!isTourOpen || !isTourPlaying) return;
@@ -558,7 +615,7 @@ useEffect(() => {
   }, remainingPlaybackTime);
 
   return () => window.clearTimeout(timer);
-}, [isTourOpen, isTourPlaying, isLastTourStop, tourIndex]);
+}, [goToTourStop, isTourOpen, isTourPlaying, isLastTourStop, tourIndex]);
 
   const router = useRouter();
     const handleVoltarExec = () => {
@@ -661,16 +718,29 @@ useEffect(() => {
                   onClick={startTour}
                   aria-label="Assistir ao passeio guiado"
                 >
-                  <Play aria-hidden="true" />
+                  <span className={styles.tourPreviewPlayLabel} aria-hidden="true">
+                    Assistir ao passeio
+                  </span>
+                  <span className={styles.tourPreviewPlayDisc} aria-hidden="true">
+                    <Play />
+                  </span>
                 </button>
               </div>
 
               <div className={styles.tourIntroContent}>
                 <h3 id="tour-intro-title" className={styles.titleBlocksComodos}>Um passeio pelo<br />seu novo lar</h3>
                 <span className={styles.tourIntroAccent} aria-hidden="true" />
-                <p className={styles.tourIntroText}>Conheça cada ambiente e todos os detalhes desta casa em uma apresentação guiada.</p>
+                <p className={styles.tourIntroText}>Assista ao percurso completo pelos ambientes desta casa.</p>
+                <div className={styles.tourIntroInfoCapsule}>
+                  <span className={styles.tourIntroInfoDot} aria-hidden="true" />
+                  <span>7 ambientes • reprodução guiada</span>
+                </div>
               </div>
             </div>
+          </section>
+          <section className={styles.manualExploreIntro} aria-labelledby="manual-explore-title">
+            <h2 id="manual-explore-title" className={styles.manualExploreTitle}>Explore cada ambiente</h2>
+            <p className={styles.manualExploreSubtitle}>Prefere explorar no seu ritmo? Conheça cada ambiente, seus detalhes e acabamentos.</p>
           </section>
           <div className={styles.containerComodos} ref={roomsSectionBlock}>
 
@@ -997,18 +1067,29 @@ useEffect(() => {
         {tourRoomMarkers.map((marker, roomIndex) => {
           const isCurrentRoom = roomIndex === currentTourStop.roomIndex;
           const isCompletedRoom = roomIndex < currentTourStop.roomIndex;
+          const isNextRoom = canRevealNextRoomLabel
+            && roomIndex === currentTourStop.roomIndex + 1;
+          const isCurrentRoomLeaving = canRevealNextRoomLabel && isCurrentRoom;
+          const mobileLabelTransitionStyle = isNextRoom || isCurrentRoomLeaving ? {
+            "--tour-label-crossfade-delay": `${nextRoomLabelRevealDelay}ms`,
+            "--tour-label-crossfade-duration": `${nextRoomLabelCrossfadeDuration}ms`,
+            "--tour-label-crossfade-play-state": isTourPlaying ? "running" : "paused",
+          } as React.CSSProperties : undefined;
 
           return (
             <button
               type="button"
               key={marker.label}
-              className={`${styles.tourChapterMarker} ${isCompletedRoom ? styles.tourChapterMarkerCompleted : ""} ${isCurrentRoom ? styles.tourChapterMarkerActive : ""}`}
+              className={`${styles.tourChapterMarker} ${isCompletedRoom ? styles.tourChapterMarkerCompleted : ""} ${isCurrentRoom ? styles.tourChapterMarkerActive : ""} ${isCurrentRoomLeaving ? styles.tourChapterMarkerLeaving : ""} ${isNextRoom ? styles.tourChapterMarkerNext : ""}`}
+              style={mobileLabelTransitionStyle}
               onClick={() => goToTourStop(marker.startIndex)}
               aria-label={`Ir para a primeira imagem de ${marker.label}`}
               aria-current={isCurrentRoom ? "step" : undefined}
             >
               <span className={styles.tourChapterDot} aria-hidden="true" />
-              <span className={styles.tourChapterLabel}>
+              <span
+                className={`${styles.tourChapterLabel} ${marker.label === "Espaço gourmet" ? styles.tourChapterLabelGourmet : ""}`}
+              >
                 {marker.label === "Espaço gourmet" ? <><span>Espaço</span><br /><span>gourmet</span></> : marker.label}
               </span>
             </button>
@@ -1021,45 +1102,61 @@ useEffect(() => {
       <div className={styles.tourImagePanel}>
         <AnimatePresence initial={false}>
           <motion.div
-            key={currentTourStop.image}
+            key={`${tourIndex}-${currentTourStop.image}`}
             className={styles.tourImageFrame}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.82, ease: "easeInOut" }}
           >
-            <div
-              className={styles.tourKenBurns}
-              style={{
-                "--tour-pan-start-x": tourIndex % 2 === 0 ? "-0.65%" : "0.65%",
-                "--tour-pan-end-x": tourIndex % 2 === 0 ? "0.65%" : "-0.65%",
-                "--tour-pan-start-y": tourIndex % 3 === 0 ? "-0.35%" : "0.35%",
-                "--tour-pan-end-y": tourIndex % 3 === 0 ? "0.35%" : "-0.35%",
-                animationDuration: `${TOUR_SLIDE_DURATION + 820}ms`,
-                animationPlayState: isTourPlaying ? "running" : "paused",
-              } as React.CSSProperties}
+            <ZoomableTourImage
+              onInteractionStart={() => {
+                if (isTourPlaying) toggleTourPlayback();
+              }}
+              onDraggingChange={handleTourImageDraggingChange}
             >
-              <Image
-                src={currentTourStop.image}
-                className={styles.tourImage}
-                alt={`${currentTourStop.room}: ${currentTourStop.title}`}
-                width={1536}
-                height={1024}
-                priority
-              />
-            </div>
+              <div
+                className={styles.tourKenBurns}
+                style={{
+                  "--tour-pan-start-x": tourIndex % 2 === 0 ? "-0.65%" : "0.65%",
+                  "--tour-pan-end-x": tourIndex % 2 === 0 ? "0.65%" : "-0.65%",
+                  "--tour-pan-start-y": tourIndex % 3 === 0 ? "-0.35%" : "0.35%",
+                  "--tour-pan-end-y": tourIndex % 3 === 0 ? "0.35%" : "-0.35%",
+                  animationDuration: `${TOUR_SLIDE_DURATION + 820}ms`,
+                  animationPlayState: isTourPlaying ? "running" : "paused",
+                } as React.CSSProperties}
+              >
+                <Image
+                  src={currentTourStop.image}
+                  className={styles.tourImage}
+                  alt={`${currentTourStop.room}: ${currentTourStop.title}`}
+                  width={1536}
+                  height={1024}
+                  priority
+                  draggable={false}
+                />
+              </div>
+            </ZoomableTourImage>
           </motion.div>
         </AnimatePresence>
-        <div className={styles.tourImageShade} />
-        <div className={styles.tourRoomLabel}>
-          <h2>{currentTourRoomTitle}</h2>
-          <p>{currentTourStop.title}</p>
+        <div
+          className={`${styles.tourContentOverlay} ${isTourPhotoOverlayHidden ? styles.tourContentOverlayHidden : ""}`}
+        >
+          <div className={styles.tourImageShade} />
+          <div className={styles.tourRoomLabel}>
+            <h2>{currentTourRoomTitle}</h2>
+            <p>{currentTourStop.title}</p>
+          </div>
         </div>
       </div>
 
       <section key={`${currentTourStop.room}-${currentTourStop.slideIndex}`} className={styles.tourDetails}>
-        <div>
-          <span className={styles.tourDetailKicker}>Detalhes deste ambiente</span>
+        <div className={styles.tourDetailsInner}>
+          <h3 className={styles.tourDetailHeading}>
+            <span className={styles.tourDetailHeadingPrimary}>Detalhes</span>
+            <span className={styles.tourDetailHeadingSecondary}>Deste ambiente</span>
+          </h3>
+          <span className={styles.tourDetailAccent} aria-hidden="true" />
           <ul className={styles.tourTopics}>
             {currentTourStop.topics.map((topic, index) => (
               <li key={index}><span>{String(index + 1).padStart(2, "0")}</span><p>{topic}</p></li>
@@ -1084,9 +1181,12 @@ useEffect(() => {
         {isTourPlaying ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
       </button>
 
-      <button onClick={nextTourStop} className={styles.tourPrimaryButton}>
-        <span>{isLastTourStop ? "Concluir passeio" : currentTourStop.slideIndex + 1 === currentTourStop.slidesInRoom ? "Próximo ambiente" : "Próxima foto"}</span>
-        {isLastTourStop ? <X aria-hidden="true" /> : <ChevronRight aria-hidden="true" />}
+      <button
+        onClick={isLastTourStop ? startTour : nextTourStop}
+        className={`${styles.tourPrimaryButton} ${isLastTourStop ? styles.tourPrimaryButtonRestart : ""}`}
+      >
+        <span>{isLastTourStop ? "Reiniciar passeio" : currentTourStop.slideIndex + 1 === currentTourStop.slidesInRoom ? "Próximo ambiente" : "Próxima foto"}</span>
+        {isLastTourStop ? <RotateCcw aria-hidden="true" /> : <ChevronRight aria-hidden="true" />}
       </button>
     </footer>
   </div>
