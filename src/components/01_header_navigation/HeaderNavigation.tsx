@@ -5,9 +5,11 @@ import styles from "./HeaderNavigation.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useHomeSectionNavigation } from "@/hooks/useHomeSectionNavigation";
 
 export function HeaderNavigation() {
   const[menuOpen, setMenuOpen] = useState(false)
+  const navigateToHomeSection = useHomeSectionNavigation();
   const phoneNumber = '+554191459026'; 
   const handleClickTalkWithUs = () => {
     const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá!%20Acessei%20o%20%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informações.`;
@@ -34,11 +36,11 @@ export function HeaderNavigation() {
                   <Link href="/">Página Inicial</Link>
                 </li>
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem2}`}>
-                  <Link href="/#empreendimentos">Empreendimentos</Link>
+                  <Link href="/#empreendimentos" onClick={(event) => navigateToHomeSection('empreendimentos', event)}>Empreendimentos</Link>
                 </li>
 
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem3}`}>
-                  <Link href="/#lancamentos">Lançamentos</Link>
+                  <Link href="/#lancamentos" onClick={(event) => navigateToHomeSection('lancamentos', event)}>Lançamentos</Link>
                 </li>
                 <li className={`${styles.modalMenuItem} ${styles.modalMenuItem4}`}>
                   <button onClick={handleClickTalkWithUs}>Fale conosco</button>
@@ -61,8 +63,8 @@ export function HeaderNavigation() {
         </div> 
         <nav className={styles.nav} aria-label="Navegação principal">
           <ul className={styles.menu}>
-            <li><Link href="/#empreendimentos" className={`${styles.menuItem} ${styles.menuItem1}`}>Empreendimentos</Link></li>
-            <li><Link href="/#lancamentos" className={`${styles.menuItem} ${styles.menuItem2}`}>Lançamentos</Link></li>
+            <li><Link href="/#empreendimentos" className={`${styles.menuItem} ${styles.menuItem1}`} onClick={(event) => navigateToHomeSection('empreendimentos', event)}>Empreendimentos</Link></li>
+            <li><Link href="/#lancamentos" className={`${styles.menuItem} ${styles.menuItem2}`} onClick={(event) => navigateToHomeSection('lancamentos', event)}>Lançamentos</Link></li>
             <li><button className={`${styles.menuItem} ${styles.menuItem3}`} onClick={handleClickTalkWithUs}>Fale conosco</button></li>
           </ul>
         </nav>

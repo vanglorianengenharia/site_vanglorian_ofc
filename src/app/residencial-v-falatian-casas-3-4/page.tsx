@@ -619,7 +619,7 @@ useEffect(() => {
 
   const router = useRouter();
     const handleVoltarExec = () => {
-      router.push("/");
+      router.push("/#empreendimentos");
   };
 
     const phoneNumber = '+554191459026'; 

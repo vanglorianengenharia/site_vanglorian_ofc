@@ -5,8 +5,10 @@ import Link from "next/link"
 import styles from "./Footer.module.css"
 import Image from "next/image"
 import { CopyrightIcon } from "lucide-react";
+import { useHomeSectionNavigation } from "@/hooks/useHomeSectionNavigation";
 
 export function Footer(){
+  const navigateToHomeSection = useHomeSectionNavigation();
   const phoneNumber = '+554191459026'; 
   const handleClickTalkWithUs = () => {
   const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá!%20Acessei%20o%20%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informações.`;
@@ -24,9 +26,9 @@ export function Footer(){
     <footer className={styles.footerContainer}>
       <div className={styles.footerContent}>
         <div className={styles.internalLinks}>
-          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#sobre-nos">Sobre nós</Link>
-          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#empreendimentos">Empreendimentos</Link>
-          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#lancamentos">Lançamentos</Link>
+          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#sobre-nos" onClick={(event) => navigateToHomeSection('sobre-nos', event)}>Sobre nós</Link>
+          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#empreendimentos" onClick={(event) => navigateToHomeSection('empreendimentos', event)}>Empreendimentos</Link>
+          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#lancamentos" onClick={(event) => navigateToHomeSection('lancamentos', event)}>Lançamentos</Link>
         </div>
         <Link href={"/"} className={styles.logoWithSlogan}>
           <Image 
