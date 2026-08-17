@@ -49,7 +49,7 @@ export default function DiferenciVanglorian() {
 
 
  return(
-   <div className={styles.constructionAdvantagesContainer}>
+   <div className={styles.constructionAdvantagesContainer} id="diferenciais">
      <div className={styles.constructionAdvantagesContent}>
        <div className={styles.constructionAdvantagesTextBlock}>
          <h2 className={styles.constructionAdvantagesTitle}>Diferenciais da Vanglorian</h2>

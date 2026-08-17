@@ -1,112 +1,90 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { useHomeSectionNavigation } from '@/hooks/useHomeSectionNavigation';
 import styles from './CompanyIntroVideo.module.css';
 
-const listWord = [
-  'Se importa',
-  'Constrói',
-  'Realiza',
-  'Versatilidade',
-];
-
-const images = [
-  "/assets/slideVid1.webp",
-  "/assets/slideVid2.webp",
-  "/assets/slideVid3.webp",
-  "/assets/slideVid4.webp",
-  "/assets/slideVid5.webp",
-  "/assets/slideVid5-1.webp",
-  "/assets/slideVid6.webp",
-  "/assets/slideVid7.webp",
-  "/assets/slideVid8.webp",
-];
+const whatsappLink =
+  'https://wa.me/+554191459026?text=Ol%C3%A1!%20Acessei%20o%20%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.';
 
 export function CompanyIntroVideo() {
-  const [indexWordsState, setIndexWordsState] = useState(0);
-  const [index, setIndex] = useState(0);
-  const [effect, setEffect] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndexWordsState((prev) => (prev + 1) % listWord.length);
-    }, 4000);
-
-    return () => clearInterval(timer);
-  }, []);
-  
-   useEffect(() => {
-      const timer = setInterval(() => {
-        setIndex((prev) => (prev + 1) % images.length);
-        setEffect((prev) => (prev + 1) % 3);
-      }, 5000); // troca a cada 5s
-      return () => clearInterval(timer);
-    }, []);
-  
-    const getAnimation = (effectType: number) => {
-      switch (effectType) {
-        case 0: // Fade + Zoom
-          return {
-            initial: { opacity: 0, scale: 1.1 },
-            animate: { opacity: 1, scale: 1 },
-            exit: { opacity: 0, scale: 0.9 },
-          };
-        case 1: // Pan esquerda → direita
-          return {
-            initial: { x: "0%", scale: 1.1, opacity: 0 },
-            animate: { x: "0%", scale: 1, opacity: 1 },
-            exit: { opacity: 0 },
-          };
-        case 2: // Pan direita → esquerda
-          return {
-            initial: { x: "0%", scale: 1.1, opacity: 0 },
-            animate: { x: "0%", scale: 1, opacity: 1 },
-            exit: { opacity: 0 },
-          };
-        default:
-          return {};
-      }
-    };
+  const navigateToHomeSection = useHomeSectionNavigation();
 
   return (
-    <div className={styles.wrapperCompanyIntroVideo}>
-      <div className={styles.content}>
-        <div className={styles.videoBlock}>
+    <section className={styles.hero} aria-labelledby="hero-title">
+      <Image
+        src="/assets/imagemHero.webp"
+        alt="Residência contemporânea projetada pela Vanglorian"
+        className={styles.heroImage}
+        fill
+        priority
+        sizes="100vw"
+      />
 
-          <AnimatePresence mode="wait">
-                  <motion.img
-                    key={images[index]}
-                    src={images[index]}
-                    alt=""
-                    className={styles.video}
-                    {...getAnimation(effect)}
-                    transition={{ duration: 0.9, ease: "easeInOut" }}
-                  />
-                </AnimatePresence>
-        </div>
-        <div className={styles.textBlock}>
-          <div className={styles.newDiv}>
-            <span className={styles.textTitle1}>Construtora e Incorporadora</span>
-            <h1 className={styles.textH1}>Vanglorian</h1>
+      <div className={styles.translucentPanel} aria-hidden="true" />
+      <svg
+        className={styles.goldLine}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M 33 0 L 55.25 49.8 Q 57 53 55.25 56.2 L 36 100"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
 
-          <div className={styles.textSlider}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={listWord[indexWordsState]}
-                initial={{ opacity: 0, x: 200 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className={styles.words}
-              >
-                {listWord[indexWordsState]}
-              </motion.div>
-            </AnimatePresence>
+      <div className={styles.contentContainer}>
+        <div className={styles.heroContent}>
+          <p className={styles.eyebrow}>Construtora e Incorporadora</p>
+
+          <h1 className={styles.title} id="hero-title">
+            <span>Casas pensadas</span>
+            <span>
+              para <strong>viver bem</strong>
+            </span>
+            <span>
+              em cada <strong>detalhe</strong>
+            </span>
+          </h1>
+
+          <span className={styles.titleDetail} aria-hidden="true" />
+
+          <p className={styles.subtitle}>
+            Soluções completas em construção civil<br className={styles.desktopBreak} />{' '}
+            com alto padrão de qualidade, inovação<br className={styles.desktopBreak} />{' '}
+            e compromisso em cada etapa.
+          </p>
+
+          <div className={styles.actions}>
+            <Link
+              href="/#empreendimentos"
+              className={`${styles.cta} ${styles.primaryCta}`}
+              onClick={(event) => navigateToHomeSection('empreendimentos', event)}
+            >
+              <span>Ver empreendimentos</span>
+              <span className={styles.primaryIcon} aria-hidden="true">
+                <ArrowRight size={17} strokeWidth={1.8} />
+              </span>
+            </Link>
+
+            <a
+              href={whatsappLink}
+              className={`${styles.cta} ${styles.secondaryCta}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Falar com um consultor pelo WhatsApp"
+            >
+              <span>Falar com um consultor</span>
+              <span className={styles.secondaryIcon} aria-hidden="true">
+                <ArrowRight size={17} strokeWidth={1.8} />
+              </span>
+            </a>
           </div>
-          </div>        
         </div>
       </div>
-    </div>
+    </section>
   );
 }
