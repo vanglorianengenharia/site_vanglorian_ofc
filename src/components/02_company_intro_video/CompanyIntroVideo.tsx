@@ -41,14 +41,17 @@ export function CompanyIntroVideo() {
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
-      <Image
-        src="/assets/imagemHero.webp"
-        alt="Residência contemporânea projetada pela Vanglorian"
-        className={styles.heroImage}
-        fill
-        priority
-        sizes="100vw"
-      />
+      <picture>
+        <source media="(max-width: 700px)" srcSet="/assets/hero-mobile.webp" />
+        <Image
+          src="/assets/hero-desktop.webp"
+          alt="Residência contemporânea projetada pela Vanglorian"
+          className={styles.heroImage}
+          fill
+          priority
+          sizes="100vw"
+        />
+      </picture>
 
       <svg
         className={styles.translucentPanel}

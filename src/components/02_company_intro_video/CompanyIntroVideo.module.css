@@ -13,6 +13,11 @@
   background: #d7d2c9;
 }
 
+.hero > picture {
+  display: contents;
+  position: relative;
+}
+
 .heroImage {
   z-index: -3;
   object-fit: cover;
@@ -29,10 +34,11 @@
   height: calc(100% - var(--hero-header-height));
   overflow: visible;
   pointer-events: none;
+  margin-right: 1rem;
 }
 
 .panelFill {
-  fill: rgba(248, 246, 239, 0.217);
+  fill: rgba(239, 248, 240, 0.217);
 }
 
 .panelOutline {
@@ -47,6 +53,10 @@
   .hero {
     --hero-header-height: 4rem;
   }
+  .translucentPanel{
+    width: min(calc(100% - var(--hero-panel-right-offset)), 27rem);
+
+  }
 }
 
 .contentContainer {
@@ -58,11 +68,10 @@
   padding: clamp(2rem, 2vh, 6.5rem) clamp(2rem, 6vw, 6.75rem) clamp(2.75rem, 6vh, 4rem) clamp(1rem, 6vw, 4rem);
   align-items: center;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: calc(var(--hero-header-height) + 1rem) clamp(1rem, 1.5vw, 2rem) clamp(10.75rem, 22vh, 12rem);
-  /* margin-left: 5rem; */
-
+  justify-content: flex-start;
 }
 
 .pillars {
@@ -84,6 +93,7 @@
   color: #f7f4e9;
   backdrop-filter: blur(12px) saturate(112%);
   -webkit-backdrop-filter: blur(12px) saturate(112%);
+  backdrop-filter: blur(10px)
 }
 
 .pillar {
@@ -153,6 +163,10 @@
 .heroContent {
   width: min(100%, 34rem);
   color: #171a18;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 1.4rem;
+
 }
 
 .eyebrow {
@@ -313,6 +327,8 @@
 
   .heroContent {
     width: min(100%, 31rem);
+    margin-left: 0;
+
   }
 
   .title {
@@ -353,7 +369,7 @@
   }
 
   .contentContainer {
-    padding-bottom: 19rem;
+    padding-bottom: 14rem;
   }
 
   .pillars {
@@ -400,8 +416,22 @@
 }
 
 @media (max-width: 900px) {
+  .translucentPanel{
+    top: -14rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+    width: min(calc(100% - var(--hero-panel-right-offset)), 80rem);
+    width: 40rem;
+    height: 100%;
+  }
+ 
+  .panelFill {
+    fill: rgba(211, 213, 217, 0.475);
+    filter: blur(1px);
+}
   .hero {
-    min-height: max(55rem, 100svh);
+    min-height: max(58rem, 100svh);
+  
   }
 
   .heroImage {
@@ -409,11 +439,20 @@
   }
 
   .contentContainer {
+    justify-content: center;
     padding-inline: clamp(1.75rem, 6.5vw, 4rem);
+    padding-top: 0;
+    margin-top: -6rem;
   }
 
   .heroContent {
     width: min(70vw, 31rem);
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .eyebrow {
+    display: none;
   }
 
   .title {
@@ -426,6 +465,12 @@
 
   .subtitle {
     max-width: 28rem;
+    margin-inline: auto;
+  }
+
+  .titleDetail,
+  .actions {
+    margin-inline: auto;
   }
 
   .pillars {
@@ -465,7 +510,15 @@
   }
 
 }
-
+@media(max-width: 700px){
+  .heroContent{
+    margin-top: 0;
+  }
+  .translucentPanel{
+    width: 35rem;
+  }
+  
+}
 @media (max-width: 640px) {
   .hero {
     min-height: max(68rem, 100svh);
@@ -475,6 +528,9 @@
     object-position: 64% center;
   }
 
+  .translucentPanel{
+    width: 31rem;
+  }
   .contentContainer {
     align-items: center;
     padding: 6.75rem 1.35rem 28rem;
@@ -570,19 +626,63 @@
   }
 }
 
+
+
+@media (max-width: 500px) {
+  .hero {
+    min-height: max(66rem, 100svh);
+  }
+  .heroContent{
+    margin-top: 0rem;
+  }
+ 
+  .title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+
+  .actions {
+    width: min(100%, 14rem);
+  }
+
+  .cta {
+    min-height: 2.8rem;
+    padding: 0.3rem 0.4rem 0.3rem 1.2rem;
+    font-size: 0.65rem;
+  }
+
+  .primaryIcon,
+  .secondaryIcon {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .hero {
+    --hero-header-height: 3.75rem;
+  }
+    .title {
+    font-size: clamp(2.5rem, 8vw, 3.25rem);
+  }
+  .translucentPanel{
+    width: 27rem;
+  }
+
+}
 @media (max-width: 390px) {
   .hero {
-    min-height: max(70rem, 100svh);
+    min-height: max(64rem, 100svh);
   }
 
   .contentContainer {
     padding-inline: 1rem;
   }
 
-  .title {
-    font-size: clamp(1.75rem, 8.6vw, 2rem);
-  }
 
+   .title {
+    font-size: clamp(1.95rem, 9vw, 2.2rem);
+  }
   .subtitle {
     font-size: 0.94rem;
   }
@@ -590,14 +690,26 @@
   .actions {
     width: 100%;
   }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    --hero-header-height: 3.75rem;
+  .cta{
+    max-width: 90%;
+    width: 13.2rem;
+    margin: 0 auto;
   }
-}
 
+
+}
+@media (max-width: 390px){
+  .pillar{
+    padding: 0.5rem 0rem;
+  }
+  .pillars{
+    width: calc(100% - 1.4rem);
+    margin: 0 auto;
+        
+
+  }
+  
+}
 @media (prefers-reduced-motion: reduce) {
   .cta,
   .primaryIcon,
