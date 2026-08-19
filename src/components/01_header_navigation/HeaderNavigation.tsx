@@ -78,8 +78,15 @@ export function HeaderNavigation() {
           >
             Lançamentos
           </Link>
-          <button className={styles.consultantButton} onClick={handleClickTalkWithUs}>
-            <span>Falar com um consultor</span>
+          <button
+            className={styles.consultantButton}
+            onClick={handleClickTalkWithUs}
+            aria-label="Falar com um consultor pelo WhatsApp"
+          >
+            <span className={styles.consultantButtonText}>
+              <span>Falar com um</span>{' '}
+              <span>consultor</span>
+            </span>
             <span className={styles.consultantButtonIcon} aria-hidden="true">
               <ArrowRight size={13} strokeWidth={1.8} />
             </span>
