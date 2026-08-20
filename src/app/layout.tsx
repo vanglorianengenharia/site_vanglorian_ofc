@@ -4,6 +4,7 @@ import { Montserrat, DM_Serif_Display, Outfit, Roboto } from "next/font/google";
 import { Footer } from "@/components/08_footer/Footer";
 import { BtnWhatsapp } from "@/components/btnWhatsapp/BtnWhatsapp";
 import { HeaderNavigation } from "@/components/01_header_navigation/HeaderNavigation";
+import { BackToTop } from "@/components/backToTop/BackToTop";
 
 
 
@@ -80,6 +81,7 @@ export default function RootLayout({
         <HeaderNavigation />
         {children}
         <Footer />
+        <BackToTop />
         <BtnWhatsapp />
       </body>
     </html>

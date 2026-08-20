@@ -1,0 +1,75 @@
+.button {
+  position: fixed;
+  right: max(2.475rem, calc(env(safe-area-inset-right, 0px) + 0.75rem));
+  bottom: calc(7.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 999;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(187, 140, 39, 0.45);
+  border-radius: 50%;
+  background: rgba(247, 245, 240, 0.92);
+  color: #002d18;
+  box-shadow: 0 0.3rem 0.9rem rgba(0, 45, 24, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease,
+    visibility 0s linear 250ms,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.button svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.button:focus-visible {
+  outline: 2px solid #bb8c27;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .visible:hover {
+    border-color: rgba(187, 140, 39, 0.68);
+    background: rgba(250, 248, 243, 0.98);
+    box-shadow: 0 0.4rem 1rem rgba(0, 45, 24, 0.14);
+    transform: translateY(-0.125rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .button {
+    right: max(
+      calc(1.625rem - 2.5vw),
+      calc(env(safe-area-inset-right, 0px) + 0.75rem)
+    );
+    bottom: calc(5.875rem + 1vw + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .visible,
+  .visible:hover {
+    transform: none;
+    transition: none;
+  }
+}

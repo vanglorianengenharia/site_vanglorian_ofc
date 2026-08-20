@@ -59,7 +59,7 @@ export function HeaderNavigation() {
               className={styles.logoIcon}
             />
             <Image
-              src="/assets/logoSloganTemporaria.webp"
+              src="/assets/logoSloganVanglorian.webp"
               width={1010}
               height={247}
               alt="Vanglorian Construtora e Incorporadora"
