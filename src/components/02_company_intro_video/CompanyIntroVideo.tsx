@@ -42,7 +42,7 @@ export function CompanyIntroVideo() {
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <picture>
-        <source media="(max-width: 700px)" srcSet="/assets/hero-mobile.webp" />
+        <source media="(max-width: 900px)" srcSet="/assets/capa-hero-mobile.webp" />
         <Image
           src="/assets/hero-desktop.webp"
           alt="Residência contemporânea projetada pela Vanglorian"
@@ -86,9 +86,7 @@ export function CompanyIntroVideo() {
           <span className={styles.titleDetail} aria-hidden="true" />
 
           <p className={styles.subtitle}>
-            Soluções completas em construção civil<br className={styles.desktopBreak} />{' '}
-            com alto padrão de qualidade, inovação<br className={styles.desktopBreak} />{' '}
-            e compromisso em cada etapa.
+            Construção, gestão de obras e reformas com acompanhamento técnico especializado do projeto à entrega.
           </p>
 
           <div className={styles.actions}>
