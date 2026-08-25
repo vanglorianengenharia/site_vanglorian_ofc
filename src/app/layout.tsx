@@ -51,9 +51,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vanglorian | Construtora e Incorporadora",
     description:
-      "Casas com qualidade e bem-estar em Fazenda Rio Grande, Curitiba, Paraná.",
+      "A Vanglorian atua em construção, gestão de obras e reformas, com acompanhamento especializado, alto padrão de execução e cuidado em cada etapa do projeto à entrega.",
     url: "https://vanglorian.com.br",
     siteName: "Vanglorian",
+      images: [
+      {
+        url: "/assets/og-vanglorian.webp",
+        width: 1200,
+        height: 630,
+        alt: "Vanglorian Construtora e Incorporadora",
+      },
+    ],
     locale: "pt_BR",
     type: "website",
   },
