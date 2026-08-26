@@ -34,6 +34,7 @@ const roboto = Roboto({
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vanglorian.com.br"),
   title: "Vanglorian | Construtora e Incorporadora",
   description:
     "A Vanglorian é uma construtora e incorporadora localizada em Fazenda Rio Grande, Paraná, próxima a Curitiba. Construímos casas com qualidade, responsabilidade e foco no bem-estar dos futuros moradores. Conheça nossos projetos e transforme seu sonho em realidade.",
