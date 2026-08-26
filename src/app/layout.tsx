@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     siteName: "Vanglorian",
       images: [
       {
-        url: "/assets/og-vanglorian.webp",
+        url: "/assets/og-img-compartilhamento.webp",
         width: 1200,
         height: 630,
         alt: "Vanglorian Construtora e Incorporadora",
