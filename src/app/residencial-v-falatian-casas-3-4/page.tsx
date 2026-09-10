@@ -1,12 +1,13 @@
 'use client'
 
 import styles from "./residVFalatianCasa1e2.module.css"
-import { Bed, BedDoubleIcon, Bubbles, Building2, Car, ChefHat, ChevronLeft, ChevronRight, Flame, Flower2Icon, GraduationCap, HeartPulse, Leaf, MapPin, MoveUpRight, Pause, PawPrint, Play, RotateCcw, ShoppingCart, ShowerHead, SoapDispenserDroplet, Sofa, SparklesIcon, Square, Sun, Toilet, Undo2, UtensilsCrossed, X } from "lucide-react"
+import { ArrowLeftIcon, ArrowRightIcon, Bed, BedDoubleIcon, Bubbles, Building2, Car, ChefHat, ChevronLeft, ChevronRight, Flame, Flower2Icon, GraduationCap, HeartPulse, Leaf, MapPin, MoveUpRight, Pause, PawPrint, Play, RotateCcw, ShoppingCart, ShowerHead, SoapDispenserDroplet, Sofa, SparklesIcon, Square, Sun, Toilet, Undo2, UtensilsCrossed, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation"
+import { ProjectStatusFlag } from "@/components/projectStatusFlag/ProjectStatusFlag";
 import ZoomableTourImage from "./ZoomableTourImage";
 
 
@@ -239,9 +240,7 @@ const TOUR_SLIDE_DURATION = 4500;
 const TOUR_PREVIEW_SLIDE_DURATION = 3800;
 const NEXT_ROOM_LABEL_REVEAL_POINT = 0.78;
 const tourPreviewSlides = tourRooms.map((room) => room.slides[0]);
-const MOBILE_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.7;
-const DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.3;
-const NARROW_DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD = 0.8;
+const ROOM_TIMELINE_REVEAL_RATIO = 0.95;
 
 
 export default function ResidVFalatianCasa1e2(){
@@ -508,24 +507,15 @@ useEffect(() => {
     });
 
     const roomsSectionBounds = roomsSectionBlock.current?.getBoundingClientRect();
+    const firstRoomBounds = roomBlocks.current[0]?.getBoundingClientRect();
     const sectionAfterRoomsBounds = propertyDetailsBlock.current?.getBoundingClientRect();
-    const isDesktopViewport = window.matchMedia("(min-width: 901px)").matches;
-    const visibleRoomsSectionHeight = roomsSectionBounds
-      ? Math.max(
-          0,
-          Math.min(roomsSectionBounds.bottom, window.innerHeight)
-            - Math.max(roomsSectionBounds.top, 0)
-        )
+    const visibleRoomHeight = firstRoomBounds
+      ? Math.min(firstRoomBounds.height, window.innerHeight)
       : 0;
-    const visibleRoomsViewportRatio = window.innerHeight > 0
-      ? visibleRoomsSectionHeight / window.innerHeight
-      : 0;
-    const desktopRoomsVisibilityThreshold = window.innerWidth < 1500
-      ? NARROW_DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD
-      : DESKTOP_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD;
-    const hasEnteredRoomsSection = isDesktopViewport
-      ? visibleRoomsViewportRatio >= desktopRoomsVisibilityThreshold
-      : visibleRoomsViewportRatio >= MOBILE_ROOMS_VIEWPORT_VISIBILITY_THRESHOLD;
+    const firstRoomRevealPoint = firstRoomBounds
+      ? firstRoomBounds.top + visibleRoomHeight * ROOM_TIMELINE_REVEAL_RATIO
+      : Number.POSITIVE_INFINITY;
+    const hasEnteredRoomsSection = firstRoomRevealPoint <= window.innerHeight;
 
     setIsRoomTimelineVisible(Boolean(
       hasEnteredRoomsSection
@@ -669,9 +659,10 @@ useEffect(() => {
         </button>
       </div>
           <section className={styles.divTitleBlocksComodos} aria-labelledby="tour-intro-title">
+            <ProjectStatusFlag status="completed" premiumAccent />
             <div className={styles.tourPreviewComposition}>
               <div className={styles.tourPreviewVisual}>
-                <div className={styles.tourPreviewCircle} aria-hidden="true">
+                <div className={styles.tourPreviewCircle} aria-hidden="true"  onClick={startTour}>
                   <AnimatePresence initial={false}>
                     <motion.div
                       key={tourPreviewSlides[tourPreviewIndex].image}
@@ -754,10 +745,10 @@ useEffect(() => {
                     <li key={i} className={styles.dotTextLi}><span className={styles.dotIconSpan}>•</span> {topic}</li>
                   ))}
                 </ul>
-              </div>             
+              </div>
             </div>
             <Image src={currentFachada.image} className={styles.imageApresentationResidSideRight} alt={""} width={1536} height={1024} loading={currentFachada.image === "/assets/entrada-garagem-01.webp" ? "eager" : "lazy"}/>
-            <ChevronLeft
+            <ArrowLeftIcon
               className={styles.arrowIconRLeft}
               onClick={() => handleManualPrevious(prevFachada, indexFachada, -1, resetFachada)}
               onKeyDown={(event) => handleManualPreviousKeyDown(event, prevFachada, indexFachada, -1, resetFachada)}
@@ -765,7 +756,7 @@ useEffect(() => {
               tabIndex={0}
               aria-label={indexFachada === 0 ? "Primeira imagem da entrada" : "Ver imagem anterior da entrada"}
             />
-            <ChevronRight
+            <ArrowRightIcon
               className={styles.arrowIconRRight}
               onClick={() => handleManualNext(nextFachada, indexFachada, slideFachada.length, 1, resetFachada)}
               onKeyDown={(event) => handleManualNextKeyDown(event, nextFachada, indexFachada, slideFachada.length, 1, resetFachada)}
@@ -789,7 +780,7 @@ useEffect(() => {
                   </div>         
                </div>   
             </div>
-              <ChevronLeft
+              <ArrowLeftIcon
                 className={styles.arrowIconLLeft}
                 onClick={() => handleManualPrevious(prevSala, indexSala, 0, resetSala)}
                 onKeyDown={(event) => handleManualPreviousKeyDown(event, prevSala, indexSala, 0, resetSala)}
@@ -797,7 +788,7 @@ useEffect(() => {
                 tabIndex={0}
                 aria-label={indexSala === 0 ? "Ir para a entrada" : "Ver imagem anterior da sala"}
               />
-              <ChevronRight
+              <ArrowRightIcon
                 className={styles.arrowIconLRight}
                 onClick={() => handleManualNext(nextSala, indexSala, slideSala.length, 2, resetSala)}
                 onKeyDown={(event) => handleManualNextKeyDown(event, nextSala, indexSala, slideSala.length, 2, resetSala)}
@@ -820,7 +811,7 @@ useEffect(() => {
 
             </div>
             <Image src={currentQuartos.image} className={styles.imageApresentationResidSideRight} alt={""} width={1536} height={1024}/>
-            <ChevronLeft
+            <ArrowLeftIcon
               className={styles.arrowIconRLeft}
               onClick={() => handleManualPrevious(prevQuartos, indexQuartos, 1, resetQuartos)}
               onKeyDown={(event) => handleManualPreviousKeyDown(event, prevQuartos, indexQuartos, 1, resetQuartos)}
@@ -828,7 +819,7 @@ useEffect(() => {
               tabIndex={0}
               aria-label={indexQuartos === 0 ? "Ir para a sala" : "Ver imagem anterior dos quartos"}
             />
-            <ChevronRight
+            <ArrowRightIcon
               className={styles.arrowIconRRight}
               onClick={() => handleManualNext(nextQuartos, indexQuartos, slideQuartos.length, 3, resetQuartos)}
               onKeyDown={(event) => handleManualNextKeyDown(event, nextQuartos, indexQuartos, slideQuartos.length, 3, resetQuartos)}
@@ -851,7 +842,7 @@ useEffect(() => {
                 </ul>
               </div>   
             </div>
-              <ChevronLeft
+              <ArrowLeftIcon
                 className={styles.arrowIconLLeft}
                 onClick={() => handleManualPrevious(prevBanheiro, indexBanheiro, 2, resetBanheiro)}
                 onKeyDown={(event) => handleManualPreviousKeyDown(event, prevBanheiro, indexBanheiro, 2, resetBanheiro)}
@@ -859,7 +850,7 @@ useEffect(() => {
                 tabIndex={0}
                 aria-label={indexBanheiro === 0 ? "Ir para os quartos" : "Ver imagem anterior do banheiro"}
               />
-              <ChevronRight
+              <ArrowRightIcon
                 className={styles.arrowIconLRight}
                 onClick={() => handleManualNext(nextBanheiro, indexBanheiro, slideBanheiro.length, 4, resetBanheiro)}
                 onKeyDown={(event) => handleManualNextKeyDown(event, nextBanheiro, indexBanheiro, slideBanheiro.length, 4, resetBanheiro)}
@@ -881,7 +872,7 @@ useEffect(() => {
               </div>
             </div>
             <Image src={currentCozinha.image} className={styles.imageApresentationResidSideRight} alt={""} width={1536} height={1024}/>
-            <ChevronLeft
+            <ArrowLeftIcon
               className={styles.arrowIconRLeft}
               onClick={() => handleManualPrevious(prevCozinha, indexCozinha, 3, resetCozinha)}
               onKeyDown={(event) => handleManualPreviousKeyDown(event, prevCozinha, indexCozinha, 3, resetCozinha)}
@@ -889,7 +880,7 @@ useEffect(() => {
               tabIndex={0}
               aria-label={indexCozinha === 0 ? "Ir para o banheiro" : "Ver imagem anterior da cozinha"}
             />
-            <ChevronRight
+            <ArrowRightIcon
               className={styles.arrowIconRRight}
               onClick={() => handleManualNext(nextCozinha, indexCozinha, slideCozinha.length, 5, resetCozinha)}
               onKeyDown={(event) => handleManualNextKeyDown(event, nextCozinha, indexCozinha, slideCozinha.length, 5, resetCozinha)}
@@ -912,7 +903,7 @@ useEffect(() => {
                 </ul>
               </div>   
             </div>
-              <ChevronLeft
+              <ArrowLeftIcon
                 className={styles.arrowIconLLeft}
                 onClick={() => handleManualPrevious(prevAreaGourmet, indexAreaGourmet, 4, resetAreaGourmet)}
                 onKeyDown={(event) => handleManualPreviousKeyDown(event, prevAreaGourmet, indexAreaGourmet, 4, resetAreaGourmet)}
@@ -920,7 +911,7 @@ useEffect(() => {
                 tabIndex={0}
                 aria-label={indexAreaGourmet === 0 ? "Ir para a cozinha" : "Ver imagem anterior do espaço gourmet"}
               />
-              <ChevronRight
+              <ArrowRightIcon
                 className={styles.arrowIconLRight}
                 onClick={() => handleManualNext(nextAreaGourmet, indexAreaGourmet, slideAreaGourmet.length, 6, resetAreaGourmet)}
                 onKeyDown={(event) => handleManualNextKeyDown(event, nextAreaGourmet, indexAreaGourmet, slideAreaGourmet.length, 6, resetAreaGourmet)}
@@ -942,7 +933,7 @@ useEffect(() => {
               </div>
             </div>
             <Image src={currentLavanderia.image} className={styles.imageApresentationResidSideRight} alt={""} width={1536} height={1024}/>
-            <ChevronLeft
+            <ArrowLeftIcon
               className={styles.arrowIconRLeft}
               onClick={() => handleManualPrevious(prevLavanderia, indexLavanderia, 5, resetLavanderia)}
               onKeyDown={(event) => handleManualPreviousKeyDown(event, prevLavanderia, indexLavanderia, 5, resetLavanderia)}
@@ -950,7 +941,7 @@ useEffect(() => {
               tabIndex={0}
               aria-label={indexLavanderia === 0 ? "Ir para o espaço gourmet" : "Ver imagem anterior da lavanderia"}
             />
-            <ChevronRight
+            <ArrowRightIcon
               className={styles.arrowIconRRight}
               onClick={() => handleManualNext(nextLavanderia, indexLavanderia, slideLavanderia.length, 7, resetLavanderia)}
               onKeyDown={(event) => handleManualNextKeyDown(event, nextLavanderia, indexLavanderia, slideLavanderia.length, 7, resetLavanderia)}

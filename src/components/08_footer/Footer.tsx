@@ -27,7 +27,7 @@ export function Footer(){
       <div className={styles.footerContent}>
         <div className={styles.internalLinks}>
           <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#sobre-nos" onClick={(event) => navigateToHomeSection('sobre-nos', event)}>Sobre nós</Link>
-          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#empreendimentos" onClick={(event) => navigateToHomeSection('empreendimentos', event)}>Empreendimentos</Link>
+          <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#empreendimentos" onClick={(event) => navigateToHomeSection('empreendimentos', event)}>Projetos &amp; Atuações</Link>
           <Link className={`${styles.linksText} ${styles.linksTextGridUm}`} href="/#lancamentos" onClick={(event) => navigateToHomeSection('lancamentos', event)}>Lançamentos</Link>
         </div>
         <Link href={"/"} className={styles.logoWithSlogan}>

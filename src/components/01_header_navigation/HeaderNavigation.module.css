@@ -1,7 +1,7 @@
 .wrapperHeaderNav {
   --header-green: #002d18;
   --header-gold: #bb8c27;
-  --header-background: rgb(212 207 199 / 80%);
+  --header-background: rgba(201, 212, 199, 0.8);
   --logo-notch-width: clamp(24rem, 32vw, 29rem);
   --logo-notch-height: 1.55rem;
   position: absolute;
@@ -13,11 +13,30 @@
   color: var(--header-green);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+
 }
 
 .internalPageHeader {
   --header-background: rgba(212, 207, 199, 0.249);
 }
+
+.airportPageHeader {
+  --header-background: rgba(248, 246, 242, 0.951);
+  /* border-bottom: 1px solid rgb(0 45 24 / 12%); */
+  box-shadow: 0 0.35rem 1.25rem rgb(0 18 12 / 14%);
+}
+
+/* .airportPageHeader .leftNavigation {
+  justify-content: flex-end;
+  width: auto;
+  margin-right: clamp(1rem, 1.5vw, 1.5rem);
+} */
+
+/* .residentialPageHeader .leftNavigation {
+  justify-content: flex-end;
+  width: auto;
+  margin-right: clamp(1rem, 1.5vw, 1.5rem);
+} */
 
 .wrapperHeaderNav::after {
   position: absolute;
@@ -62,12 +81,11 @@
   grid-column: 1;
   gap: clamp(2.28rem, 2.93vw, 3.25rem);
   margin-left: 1.4rem;
-
 }
 
 .rightNavigation {
-  margin-left: 0.5rem;
   grid-column: 3;
+  justify-content: flex-end;
   gap: clamp(2.34rem, 3.12vw, 3.51rem);
 }
 

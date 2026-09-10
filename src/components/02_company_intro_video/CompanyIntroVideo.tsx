@@ -95,7 +95,7 @@ export function CompanyIntroVideo() {
               className={`${styles.cta} ${styles.primaryCta}`}
               onClick={(event) => navigateToHomeSection('empreendimentos', event)}
             >
-              <span>Ver empreendimentos</span>
+              <span>Projetos &amp; Atuações</span>
               <span className={styles.primaryIcon} aria-hidden="true">
                 <ArrowRight size={17} strokeWidth={1.8} />
               </span>

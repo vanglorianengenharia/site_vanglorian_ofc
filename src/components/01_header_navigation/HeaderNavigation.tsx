@@ -11,6 +11,11 @@ import { useHomeSectionNavigation } from "@/hooks/useHomeSectionNavigation";
 export function HeaderNavigation() {
   const[menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname();
+  const isAirportPage = pathname === '/aeroporto-curitiba';
+  const isVFalatianResidentialPage = [
+    '/residencial-v-falatian-casas-1-2',
+    '/residencial-v-falatian-casas-3-4',
+  ].includes(pathname);
   const navigateToHomeSection = useHomeSectionNavigation();
   const phoneNumber = '+554191459026'; 
   const handleClickTalkWithUs = () => {
@@ -20,7 +25,7 @@ export function HeaderNavigation() {
   
   return(
     <header
-      className={`${styles.wrapperHeaderNav} ${pathname !== '/' ? styles.internalPageHeader : ''}`}
+      className={`${styles.wrapperHeaderNav} ${pathname !== '/' ? styles.internalPageHeader : ''} ${isAirportPage ? styles.airportPageHeader : ''} ${isVFalatianResidentialPage ? styles.residentialPageHeader : ''}`}
       aria-label="Cabeçalho principal do site"
     >
       <div className={styles.containerHeaderNav}>
@@ -44,7 +49,7 @@ export function HeaderNavigation() {
             className={styles.menuItem}
             onClick={(event) => navigateToHomeSection('empreendimentos', event)}
           >
-            Empreendimentos
+            Projetos &amp; Atuações
           </Link>
         </nav>
 
@@ -120,7 +125,7 @@ export function HeaderNavigation() {
                   <Link href="/#diferenciais" onClick={(event) => navigateToHomeSection('diferenciais', event)}>Diferenciais</Link>
                 </li>
                 <li className={styles.modalMenuItem}>
-                  <Link href="/#empreendimentos" onClick={(event) => navigateToHomeSection('empreendimentos', event)}>Empreendimentos</Link>
+                  <Link href="/#empreendimentos" onClick={(event) => navigateToHomeSection('empreendimentos', event)}>Projetos &amp; Atuações</Link>
                 </li>
                 <li className={styles.modalMenuItem}>
                   <Link href="/#lancamentos" onClick={(event) => navigateToHomeSection('lancamentos', event)}>Lançamentos</Link>

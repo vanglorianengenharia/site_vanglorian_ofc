@@ -85,6 +85,7 @@
 }
 .divBtnUndoV{
   position: absolute;
+  z-index: 1;
   top: clamp(5.5rem, 7vw, 7rem);
   left: clamp(1rem, 2vw, 2rem);
   display: inline-flex;
@@ -501,25 +502,35 @@
 }
  .arrowIconRRight, .arrowIconLRight, .arrowIconLLeft, .arrowIconRLeft{
   position: absolute;
-  top: 53%;
+  top: 50%;
   z-index: 900;
   width: auto;
+  aspect-ratio: 1;
+  box-sizing: border-box;
   display: flex;
+  padding: 0.85rem;
+  border-radius: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  color: #b17f00;
+  color: #fff;
+  background: #b99538;
+  box-shadow: 0 0.4rem 0.9rem rgba(29, 42, 35, 0.22);
     &:hover{
-    scale: 1.1;
-    color: #d69a03;
+    scale: 1.05;
+    color: #fff;
+    background: #c3a154;
+    box-shadow: 0 0.55rem 1.1rem rgba(29, 42, 35, 0.26);
   }
  }
 .arrowIconLRight, .arrowIconRRight{
-  right: -6rem;
+  right: 0;
   height: 4rem;
+  transform: translate(50%, -50%);
 }
 .arrowIconLLeft, .arrowIconRLeft{
-  left: -2rem;
+  left: 0;
   height: 4rem;
+  transform: translate(-50%, -50%);
 }
 .arrowIconRRight:focus,
 .arrowIconLRight:focus,
@@ -690,10 +701,10 @@
   justify-self: flex-start;
  }
  .arrowIconLLeft, .arrowIconRLeft{
-  left: -2rem;
+  left: 0;
  }
   .arrowIconRRight, .arrowIconLRight{
-    right: -6rem;
+    right: 0;
  }
 }
 @media(max-width: 1100px){
@@ -753,6 +764,10 @@
   .secondGridLeft{
     padding: 3rem 0.2rem 3rem 2rem;
  }
+   .arrowIconLRight, .arrowIconRRight{
+    right: 0.4rem;
+   
+}
 }
 @media(max-width: 900px){
   .divThirdGridText, .secondGridLeft{
@@ -766,12 +781,12 @@
     width: 85%;
   }
   .arrowIconLRight, .arrowIconRRight{
-  right: -4.5rem;
-  height: 3rem;
+  right: 0;
+  height: 3.5rem;
 }
 .arrowIconLLeft, .arrowIconRLeft{
-  left: -1.5rem;
-  height: 3rem;
+  left: 0;
+  height: 3.5rem;
 }
   .residencP{
     font-size: 1.8rem;
@@ -1022,14 +1037,16 @@
     max-height: 20rem;
   } 
  .arrowIconRRight, .arrowIconLRight{
-    right: 0rem;
-    height: 4rem;
-    top: 40%;
+    right: 0;
+    height: 3.125rem;
+    top: 20rem;
+    transform: translate(min(35%, max(0px, calc(2.5vw - 0.35rem))), -50%);
   }
   .arrowIconRLeft, .arrowIconLLeft{
-    left: 4rem;
-    height: 4rem;
-    top: 40%;
+    left: 0;
+    height: 3.125rem;
+    top: 20rem;
+    transform: translate(max(-35%, min(0px, calc(0.35rem - 2.5vw))), -50%);
   }
   .textCta2{
     text-wrap: wrap;
@@ -1079,16 +1096,6 @@
  .divLocation{
   width: auto;
  }
-  .arrowIconRRight, .arrowIconLRight{
-    right: -1rem;
-    height: 3rem;
-    top: 40%;
-  }
-  .arrowIconRLeft, .arrowIconLLeft{
-    left: 2rem;
-    height: 3rem;
-    top: 40%;
-  }
   .locGoogleMaps{
     overflow: hidden;
   }
@@ -1142,6 +1149,7 @@
 
 /* Passeio guiado */
 .divTitleBlocksComodos{
+  position: relative;
   padding: clamp(9rem, 12vw, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 3vw, 3rem);
   text-align: left;
 }
@@ -1172,6 +1180,10 @@
   border-radius: 50%;
   background: #e9e5dc;
   box-shadow: 0 1.5rem 3.8rem rgba(22, 48, 38, 0.15);
+
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .tourPreviewFrame{
@@ -2093,6 +2105,18 @@
   .tourPreviewPlayLabel{
     width: min(14.5rem, calc(85.6cqw - var(--tour-preview-button-size) + clamp(1.45rem, 2vw, 1.8rem) - clamp(0.5rem, 1vw, 0.75rem)));
   }
+  .tourIntroContent{
+    max-width: 22rem;
+}
+.titleBlocksComodos{
+  text-wrap: wrap;
+}
+  /* .tourPreviewComposition{
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  } */
+
+
 }
 
 @media(max-width: 900px){
