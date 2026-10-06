@@ -39,6 +39,7 @@ const developments: PortfolioItem[] = [
     imageAlt: 'Residencial V-Falatian, Casas 1 e 2',
     location: 'Fazenda Rio Grande - PR',
     cta: 'Conhecer o projeto',
+    // href: '/residencial-v-falatian-casas-1-2',
   },
 
 ];

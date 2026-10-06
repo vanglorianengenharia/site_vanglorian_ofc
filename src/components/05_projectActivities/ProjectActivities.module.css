@@ -12,7 +12,6 @@
   overflow: clip;
   padding: clamp(5rem, 8vw, 8.5rem) clamp(1rem, 4vw, 3rem) clamp(5.5rem, 9vw, 9rem);
   scroll-margin-top: 3vh;
-  margin-top: 4rem;
 }
 
 .container {

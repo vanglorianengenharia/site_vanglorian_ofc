@@ -19,19 +19,19 @@ const pillars = [
   {
     title: 'Gestão completa de obras',
     description:
-      'Projetos, responsabilidade técnica, acompanhamento e mão de obra especializada em cada etapa.',
+      'Projetos, responsabilidade técnica, acompanhamento e mão de obra especializada.',
     Icon: ClipboardCheck,
   },
   {
     title: 'Reformas personalizadas',
     description:
-      'Soluções pensadas para renovar e transformar espaços residenciais, comerciais e industriais.',
+      'Soluções para transformar espaços residenciais, comerciais e industriais.',
     Icon: Hammer,
   },
   {
     title: 'Parcerias de investimento',
     description:
-      'Oportunidades para desenvolvimento de novos empreendimentos e projetos em parceria.',
+      'Oportunidades para desenvolver novos empreendimentos e projetos em parceria.',
     Icon: Handshake,
   },
 ];
@@ -74,21 +74,18 @@ export function CompanyIntroVideo() {
           <p className={styles.eyebrow}>Construtora e Incorporadora</p>
 
           <h1 className={styles.title} id="hero-title">
-            <span>Casas pensadas</span>
+            <span>Construções que</span>
             <span>
-              para <strong>viver bem</strong>
+             revelam <strong>cuidado </strong>
             </span>
+            <span>em cada <strong>detalhe</strong></span>
             <span>
-              em cada <strong>detalhe</strong>
+              
             </span>
           </h1>
 
-          <span className={styles.titleDetail} aria-hidden="true" />
 
-          <p className={styles.subtitle}>
-            Construção, gestão de obras e reformas com acompanhamento técnico especializado do projeto à entrega.
-          </p>
-
+         
           <div className={styles.actions}>
             <Link
               href="/#empreendimentos"

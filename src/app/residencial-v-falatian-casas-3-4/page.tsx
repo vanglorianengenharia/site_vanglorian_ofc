@@ -1012,6 +1012,7 @@ useEffect(() => {
         </div>
       </div> 
       </div> 
+      {/* <ConstructionJourney /> */}
           <div className={styles.divTextCtaEBtn}>
             <div className={styles.divText}>
               <p className={styles.textCta1}>Gostou do que viu?</p>

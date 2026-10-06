@@ -353,9 +353,9 @@ export default function ResidencialVFalatianCasas1e2() {
               <p className={sharedStyles.tourIntroText}>Veja a residência ganhar forma em um percurso pelos ambientes do projeto.</p>
               <div className={sharedStyles.tourIntroInfoCapsule}>
                 <span className={sharedStyles.tourIntroInfoDot} aria-hidden="true" />
-                <span>7 ambientes • evolução guiada</span>
+                <span>6 etapas • passeio guiado</span>
               </div>
-              <p className={localStyles.temporaryNotice}>Imagens temporárias para visualização do layout.</p>
+              <p className={localStyles.temporaryNotice}>Conheça os ambientes das Casas 1 e 2.</p>
             </div>
           </div>
         </section>
@@ -374,7 +374,7 @@ export default function ResidencialVFalatianCasas1e2() {
               <Image
                 src={slide.image}
                 className={imageOnLeft ? sharedStyles.imageApresentationResidSideLeft : sharedStyles.imageApresentationResidSideRight}
-                alt={`Imagem ilustrativa temporária para ${room.displayName.toLowerCase()}`}
+                alt={`Imagem ilustrativa de ${room.displayName.toLowerCase()}`}
                 width={1536}
                 height={1024}
               />
@@ -576,7 +576,7 @@ export default function ResidencialVFalatianCasas1e2() {
                         animationPlayState: isTourPlaying ? "running" : "paused",
                       } as CSSProperties}
                     >
-                      <Image src={currentTourStop.image} className={sharedStyles.tourImage} alt={`Imagem ilustrativa temporária: ${currentTourStop.displayName}`} width={1536} height={1024} priority draggable={false} />
+                      <Image src={currentTourStop.image} className={sharedStyles.tourImage} alt={`Imagem ilustrativa: ${currentTourStop.displayName}`} width={1536} height={1024} priority draggable={false} />
                     </div>
                   </ZoomableTourImage>
                 </motion.div>

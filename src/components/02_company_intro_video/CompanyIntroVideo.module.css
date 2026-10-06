@@ -154,9 +154,9 @@
   margin: 0;
   color: rgba(247, 244, 233, 0.78);
   font-family: var(--font-outfit);
-  font-size: clamp(0.76rem, 0.84vw, 0.86rem);
+  font-size: clamp(0.76rem, 0.84vw, 0.95rem);
   font-weight: 300;
-  line-height: 1.42;
+  line-height: 1.32;
   letter-spacing: 0.012em;
 }
 
@@ -431,27 +431,27 @@
     pointer-events: none;
     background: radial-gradient(
       ellipse at 60% 20%,
-      rgba(248, 246, 241, 0.5) 0%,
+      rgba(242, 248, 241, 0.5) 0%,
       rgba(248, 246, 241, 0.32) 25%,
-      rgba(248, 246, 241, 0.1) 48%,
+      rgba(241, 248, 242, 0.1) 48%,
       transparent 68%
     );
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 38%, transparent 54%);
-    mask-image: linear-gradient(to bottom, #000 0%, #000 38%, transparent 54%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 3%, transparent 45%);
     content: '';
   }
 
   .translucentPanel{
-    top: -14rem;
+    top: -18rem;
     left: 50%;
     transform: translateX(-50%) rotate(90deg);
     width: min(calc(100% - var(--hero-panel-right-offset)), 80rem);
-    width: 40rem;
+    width: 38rem;
     height: 100%;
   }
  
   .panelFill {
-    fill: rgba(211, 213, 217, 0.32);
+    fill: rgba(211, 217, 212, 0.32);
     filter: blur(1px);
 }
   .hero {
@@ -475,7 +475,7 @@
     z-index: 2;
     width: min(70vw, 31rem);
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: -3rem;
   }
 
   .eyebrow {
@@ -541,9 +541,9 @@
 
 }
 @media(max-width: 700px){
-  .heroContent{
+  /* .heroContent{
     margin-top: 0;
-  }
+  } */
   .translucentPanel{
     width: 35rem;
   }
@@ -654,6 +654,20 @@
     font-size: 0.8rem;
     line-height: 1.4;
   }
+
+  .hero::after {
+    background: radial-gradient(
+      ellipse at 60% 20%,
+      rgba(242, 248, 241, 0.5) 0%,
+      rgba(248, 246, 241, 0.32) 25%,
+      rgba(241, 248, 242, 0.1) 48%,
+      transparent 68%
+    );
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 38%, transparent 54%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 3%, transparent 4%);
+    content: '';
+  }
+
 }
 
 
@@ -663,7 +677,10 @@
     min-height: max(66rem, 100svh);
   }
   .heroContent{
-    margin-top: 0rem;
+    margin-top: -7rem;
+  }
+  .translucentPanel{
+    top: -22rem;
   }
  
   .title {
@@ -705,9 +722,9 @@
     .title {
     font-size: clamp(2.5rem, 8vw, 3.25rem);
   }
-  .translucentPanel{
+  /* .translucentPanel{
     width: 27rem;
-  }
+  } */
 
 }
 @media (max-width: 390px) {
