@@ -7,7 +7,7 @@ import { useHomeSectionNavigation } from '@/hooks/useHomeSectionNavigation';
 import styles from './CompanyIntroVideo.module.css';
 
 const whatsappLink =
-  'https://wa.me/+554191459026?text=Ol%C3%A1!%20Acessei%20o%20%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.';
+  'https://wa.me/+554191459026?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.';
 
 const pillars = [
   {

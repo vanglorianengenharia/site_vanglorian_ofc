@@ -18,21 +18,39 @@
 
 .evolutionSection {
   position: relative;
-  width: min(calc(100% - 3rem), 92rem);
-  margin: clamp(6rem, 10vw, 10rem) auto;
-  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 5rem);
+  width: min(calc(100% - 2rem), 92rem);
+  margin: clamp(4rem, 4vw, 4rem) auto;
+  margin-top: 2rem;
+  padding: clamp(3rem, 5vw, 55rem) clamp(1.5rem, 5vw, 5rem);
+  padding-top: 2rem;
   overflow: hidden;
-  border: 1px solid rgba(167, 133, 41, 0.18);
+  /* border: 1px solid rgba(167, 133, 41, 0.18); */
   border-radius: 2.5rem;
-  background:
+  /* background:
     radial-gradient(circle at 92% 8%, rgba(211, 181, 94, 0.16), transparent 31%),
-    linear-gradient(145deg, #faf8f1 0%, #f0ecdf 100%);
-  box-shadow: 0 1.8rem 4.5rem rgba(32, 62, 51, 0.09);
+    linear-gradient(145deg, #faf8f1 0%, #f0ecdf 100%); */
+  /* box-shadow: 0 1.8rem 4.5rem rgba(32, 62, 51, 0.09); */
+
+
+
+  width: 75%;
+  margin: clamp(2.25rem, 4vw, 3.75rem) auto 0;
+  max-width: 1500px;
+  padding: 0 0 7rem;
+}
+
+/*
+ * Modificador exclusivo das Casas 1 e 2. Mantém os valores atuais, mas
+ * oferece pontos de ajuste independentes sem alterar a seção das Casas 3 e 4.
+ */
+.evolutionSectionInProgress {
+  padding: 0 0 4rem;
 }
 
 .evolutionHeading {
   max-width: 49rem;
-  margin-bottom: clamp(3rem, 6vw, 5.25rem);
+  margin: 0 auto clamp(3rem, 6vw, 5.25rem);
+  text-align: center;
 }
 
 .evolutionHeading > span {
@@ -42,13 +60,14 @@
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
+  display: none;
 }
 
 .evolutionHeading h2 {
   margin: 0.6rem 0 1.25rem;
   color: #075039;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.35rem, 4.3vw, 4.2rem);
+  font-size: clamp(2.1rem, 3.2vw, 3.25rem);
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.1;
@@ -59,7 +78,7 @@
   margin: 0;
   color: #5c625f;
   font-family: var(--font-outfit);
-  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
   font-weight: 300;
   line-height: 1.7;
 }
@@ -78,10 +97,24 @@
   content: "";
   position: absolute;
   top: 1.22rem;
-  right: 5%;
-  left: 5%;
+  right: 7.1429%;
+  left: 7.1429%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(7, 80, 57, 0.27) 6%, rgba(7, 80, 57, 0.27) 94%, transparent);
+  background: rgba(133, 137, 132, 0.32);
+}
+
+.evolutionTimeline::after {
+  content: "";
+  position: absolute;
+  top: 1.22rem;
+  left: 7.1429%;
+  width: 49.5714%;
+  height: 2px;
+  background: #168153;
+}
+
+.completedEvolutionTimeline::after {
+  width: 85.7142%;
 }
 
 .evolutionTimeline li {
@@ -100,22 +133,34 @@
   width: 2.5rem;
   height: 2.5rem;
   place-items: center;
-  border: 1px solid rgba(181, 142, 42, 0.42);
+  border: 1px solid rgba(133, 137, 132, 0.42);
   border-radius: 50%;
-  color: #826316;
-  background: #f7f3e7;
-  box-shadow: 0 0 0 0.45rem #f4f0e5;
+  color: #ffffff;
+  background: #858984;
+  box-shadow: 0 0 0 0.45rem rgba(133, 137, 132, 0.16);
   font-family: var(--font-outfit);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 
+.completedStageNumber {
+  border-color: rgba(22, 129, 83, 0.42);
+  background: #168153;
+  box-shadow: 0 0 0 0.45rem rgba(22, 129, 83, 0.16);
+}
+
+.halfStageNumber {
+  border-color: rgba(168, 120, 0, 0.42);
+  background: #a87800;
+  box-shadow: 0 0 0 0.45rem rgba(168, 120, 0, 0.16);
+}
+
 .evolutionTimeline h3 {
   margin: 1.25rem 0 0.35rem;
   color: #173d30;
   font-family: var(--font-outfit);
-  font-size: clamp(0.82rem, 1vw, 1rem);
+  font-size: clamp(1rem, 1.15vw, 1.2rem);
   font-weight: 500;
 }
 
@@ -123,8 +168,20 @@
   margin: 0;
   color: #858984;
   font-family: var(--font-outfit);
-  font-size: clamp(0.67rem, 0.78vw, 0.76rem);
-  font-weight: 300;
+  font-size: clamp(0.82rem, 0.95vw, 1rem);
+  font-weight: 600;
+}
+
+.evolutionTimeline .completedProgress {
+  color: #168153;
+}
+
+.evolutionTimeline .halfProgress {
+  color: #a87800;
+}
+
+.stageStatus {
+  display: none;
 }
 
 .propertyFacts {
@@ -136,7 +193,8 @@
   justify-self: center !important;
 }
 
-@media (max-width: 1050px) {
+
+/* @media (max-width: 1050px) {
   .evolutionTimeline {
     grid-template-columns: 1fr;
     gap: 0;
@@ -149,7 +207,19 @@
     left: 1.25rem;
     width: 1px;
     height: auto;
-    background: linear-gradient(180deg, transparent, rgba(7, 80, 57, 0.25) 5%, rgba(7, 80, 57, 0.25) 95%, transparent);
+    background: rgba(133, 137, 132, 0.32);
+  }
+
+  .evolutionTimeline::after {
+    top: 1.25rem;
+    left: 1.25rem;
+    width: 2px;
+    height: 11.2rem;
+    background: #168153;
+  }
+
+  .completedEvolutionTimeline::after {
+    height: 33.6rem;
   }
 
   .evolutionTimeline li {
@@ -166,18 +236,29 @@
 
   .evolutionTimeline h3 {
     margin: 0 0 0.3rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .evolutionTimeline p {
-    font-size: 0.78rem;
+    font-size: 0.9rem;
   }
 
   .propertyFacts {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
-}
+} */
 
+@media (max-width: 1300px) {
+  .introTitle {
+    white-space: normal !important;
+  }
+
+  .evolutionSection {
+    width: min(calc(100% - 5.5rem), 92rem);
+    /* margin-block: 5rem; */
+    border-radius: 1.6rem;
+  }
+}
 @media (max-width: 900px) {
   .introTitle {
     white-space: normal !important;
@@ -185,7 +266,7 @@
 
   .evolutionSection {
     width: min(calc(100% - 1.5rem), 92rem);
-    margin-block: 5rem;
+    /* margin-block: 5rem; */
     border-radius: 1.6rem;
   }
 }
@@ -204,7 +285,7 @@
   }
 
   .evolutionSection {
-    padding: 2.6rem 1.25rem 2rem;
+    padding: 0 1.25rem 2rem;
   }
 
   .propertyFacts {
@@ -213,5 +294,139 @@
 
   .propertyFacts > * {
     justify-self: start !important;
+  }
+}
+
+@media (max-width: 749px) {
+  .evolutionSection {
+    width: min(calc(100% - 1.5rem), 32rem);
+    padding: 0 clamp(1.25rem, 6vw, 2rem) 5.5rem;
+  }
+
+  .evolutionSectionInProgress {
+    padding: 0 clamp(1.25rem, 6vw, 2rem) 2.5rem;
+  }
+
+  .evolutionHeading {
+    margin-bottom: 2.75rem;
+  }
+
+  .evolutionTimeline {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.8rem;
+  }
+
+  .evolutionTimeline::before,
+  .evolutionTimeline::after {
+    top: 1.25rem;
+    right: auto;
+    bottom: 1.75rem;
+    left: 1.25rem;
+    width: 1px;
+    height: auto;
+  }
+
+  .evolutionTimeline::after {
+    width: 2px;
+    transform: scaleY(var(--timeline-progress, 0));
+    transform-origin: center top;
+  }
+
+  .evolutionTimeline li {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr) clamp(1.75rem, 8vw, 2rem);
+    min-height: 3rem;
+    align-items: flex-start;
+    column-gap: clamp(0.9rem, 4vw, 1.5rem);
+    text-align: left;
+  }
+
+  .stageNumber {
+    flex: 0 0 auto;
+  }
+
+  .evolutionTimeline li > div {
+    min-width: 0;
+    padding-top: 0.05rem;
+  }
+
+  .stageStatus {
+    display: grid;
+    width: clamp(1.75rem, 8vw, 2rem);
+    height: clamp(1.75rem, 8vw, 2rem);
+    align-self: center;
+    place-items: center;
+    border-radius: 50%;
+  }
+
+  .stageStatus svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2.2;
+  }
+
+  .completedStageStatus {
+    color: #168153;
+    background: rgba(22, 129, 83, 0.12);
+  }
+
+  .activeStageStatus {
+    color: #a87800;
+    background: rgba(168, 120, 0, 0.12);
+  }
+
+  .pendingStageStatus {
+    color: #858984;
+    background: rgba(133, 137, 132, 0.13);
+  }
+
+  .evolutionTimeline h3 {
+    margin: 0 0 0.3rem;
+  }
+}
+
+/*
+ * Nesta página, Localização e Comodidades são seções irmãs. No mobile,
+ * o CSS compartilhado reserva espaço para a estrutura aninhada das Casas 3 e 4;
+ * aqui o fluxo deve ser dimensionado pelo conteúdo real.
+ */
+@media (max-width: 800px) {
+  .responsiveLocationContainer.responsiveLocationContainer {
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .responsiveLocationLayout.responsiveLocationLayout {
+    height: auto;
+  }
+
+  .responsiveAmenitiesContainer.responsiveAmenitiesContainer {
+    width: fit-content;
+    align-self: flex-start;
+    margin-block: 0;
+    margin-top: 3rem;
+    margin-bottom: 2.6rem;
+  }
+
+  .responsiveCta.responsiveCta {
+    margin-top: clamp(3rem, 8vw, 4rem);
+  }
+}
+
+@media (max-width: 600px) {
+  /*
+   * Esta regra vem depois de max-width: 749px para vencer a cascata somente
+   * no modificador das Casas 1 e 2.
+   */
+  .evolutionSectionInProgress {
+    padding: 0 1.25rem 2rem;
+  }
+
+  .responsiveAmenitiesContainer.responsiveAmenitiesContainer {
+    width: 98%;
+  }
+  .responsiveAmenitiesContainer.responsiveAmenitiesContainer {
+    margin-top: 0rem;
+    margin-bottom: 2rem;
   }
 }

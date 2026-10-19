@@ -35,11 +35,11 @@ const developments: PortfolioItem[] = [
     title: 'Residencial V-Falatian',
     subtitle: 'CASAS 1 E 2',
     badge: 'EM EXECUÇÃO',
-    image: '/assets/cardImage.png',
+    image: '/assets/capa-cardShade-rvfalatian-1e2.webp',
     imageAlt: 'Residencial V-Falatian, Casas 1 e 2',
     location: 'Fazenda Rio Grande - PR',
     cta: 'Conhecer o projeto',
-    // href: '/residencial-v-falatian-casas-1-2',
+    href: '/residencial-v-falatian-casas-1-2',
   },
 
 ];

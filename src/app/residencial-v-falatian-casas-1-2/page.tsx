@@ -3,11 +3,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   BedDouble,
-  ChefHat,
   ChevronLeft,
   ChevronRight,
   Car,
-  Flame,
   GraduationCap,
   HeartPulse,
   MapPin,
@@ -17,10 +15,13 @@ import {
   Play,
   RotateCcw,
   ShoppingCart,
-  SoapDispenserDroplet,
   X,
   ArrowLeftIcon,
   ArrowRightIcon,
+  Building2,
+  Flower2Icon,
+  Square,
+  Toilet,
   Undo2,
 } from "lucide-react";
 import Image from "next/image";
@@ -30,12 +31,22 @@ import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { ProjectStatusFlag } from "@/components/projectStatusFlag/ProjectStatusFlag";
 import sharedStyles from "../residencial-v-falatian-casas-3-4/residVFalatianCasa1e2.module.css";
 import ZoomableTourImage from "../residencial-v-falatian-casas-3-4/ZoomableTourImage";
+import { ConstructionStageItem } from "./ConstructionStageStatus";
 import localStyles from "./construction.module.css";
 import { constructionRooms, constructionStages } from "./residentialData";
 
 const TOUR_DURATION = 4500;
 const PREVIEW_DURATION = 3800;
 const ROOM_TIMELINE_REVEAL_RATIO = 0.95;
+const constructionProgress = [100, 100, 100, 100, 50, 0, 0] as const;
+const firstIncompleteStageIndex = constructionProgress.findIndex((progress) => progress < 100);
+const constructionTimelineProgress = firstIncompleteStageIndex === -1
+  ? 1
+  : Math.max(
+      0,
+      (firstIncompleteStageIndex - 1 + constructionProgress[firstIncompleteStageIndex] / 100)
+        / (constructionProgress.length - 1),
+    );
 
 type TourStop = (typeof constructionRooms)[number]["slides"][number] & {
   room: string;
@@ -76,7 +87,8 @@ export default function ResidencialVFalatianCasas1e2() {
   const [isTourPhotoOverlayHidden, setIsTourPhotoOverlayHidden] = useState(false);
   const roomBlocks = useRef<Array<HTMLElement | null>>([]);
   const roomsSection = useRef<HTMLDivElement | null>(null);
-  const afterRoomsSection = useRef<HTMLElement | null>(null);
+  const afterRoomsSection = useRef<HTMLDivElement | null>(null);
+  const isManualScrollTransitioning = useRef(false);
   const overlayTimer = useRef<number | null>(null);
 
   const previewSlides = useMemo(() => constructionRooms.map((room) => room.slides[0]), []);
@@ -196,7 +208,7 @@ export default function ResidencialVFalatianCasas1e2() {
       setActiveRoomIndex(closestIndex);
       setIsRoomTimelineVisible(Boolean(
         sectionBounds
-        && sectionBounds.bottom > window.innerHeight * 0.08
+        && sectionBounds.bottom > window.innerHeight * 0.7
         && firstRoomRevealPoint <= window.innerHeight
       ));
       animationFrame = 0;
@@ -222,17 +234,33 @@ export default function ResidencialVFalatianCasas1e2() {
     if (overlayTimer.current !== null) window.clearTimeout(overlayTimer.current);
   }, []);
 
+  const leaveRoom = (roomIndex: number, target: HTMLElement | null | undefined) => {
+    if (!target || isManualScrollTransitioning.current) return;
+    isManualScrollTransitioning.current = true;
+
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    window.setTimeout(() => {
+      setRoomSlideIndexes((indexes) => indexes.map((index, position) => (
+        position === roomIndex ? 0 : index
+      )));
+      isManualScrollTransitioning.current = false;
+    }, 650);
+  };
+
   const changeRoomSlide = (roomIndex: number, direction: -1 | 1) => {
     const current = roomSlideIndexes[roomIndex];
     const slideCount = constructionRooms[roomIndex].slides.length;
 
     if (direction === 1 && current === slideCount - 1) {
-      const nextTarget = roomBlocks.current[roomIndex + 1] ?? afterRoomsSection.current;
-      nextTarget?.scrollIntoView({ behavior: "smooth", block: "center" });
+      leaveRoom(
+        roomIndex,
+        roomBlocks.current[roomIndex + 1] ?? afterRoomsSection.current,
+      );
       return;
     }
     if (direction === -1 && current === 0) {
-      roomBlocks.current[roomIndex - 1]?.scrollIntoView({ behavior: "smooth", block: "center" });
+      leaveRoom(roomIndex, roomBlocks.current[roomIndex - 1]);
       return;
     }
 
@@ -253,7 +281,7 @@ export default function ResidencialVFalatianCasas1e2() {
 
   const openWhatsApp = () => {
     window.open(
-      "https://wa.me/554191459026?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Residencial%20V-Falatian%20-%20Casas%201%20e%202.",
+      "https://wa.me/554191459026?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20casas%201%20e%202%20do%20Residencial%20V-Falatian.",
       "_blank",
       "noopener,noreferrer",
     );
@@ -353,11 +381,35 @@ export default function ResidencialVFalatianCasas1e2() {
               <p className={sharedStyles.tourIntroText}>Veja a residência ganhar forma em um percurso pelos ambientes do projeto.</p>
               <div className={sharedStyles.tourIntroInfoCapsule}>
                 <span className={sharedStyles.tourIntroInfoDot} aria-hidden="true" />
-                <span>6 etapas • passeio guiado</span>
+                <span>7 etapas • passeio guiado</span>
               </div>
               <p className={localStyles.temporaryNotice}>Conheça os ambientes das Casas 1 e 2.</p>
             </div>
           </div>
+        </section>
+
+        <section
+          className={`${localStyles.evolutionSection} ${localStyles.evolutionSectionInProgress}`}
+          aria-labelledby="evolution-title"
+        >
+          <div className={localStyles.evolutionHeading}>
+            <span>Acompanhamento</span>
+            <h2 id="evolution-title">Evolução da obra</h2>
+            <p>Acompanhe abaixo o percentual concluído em cada etapa da obra.</p>
+          </div>
+          <ol
+            className={localStyles.evolutionTimeline}
+            style={{ "--timeline-progress": constructionTimelineProgress } as CSSProperties}
+          >
+            {constructionStages.map((stage, index) => (
+              <ConstructionStageItem
+                key={stage}
+                index={index}
+                progress={constructionProgress[index]}
+                stage={stage}
+              />
+            ))}
+          </ol>
         </section>
 
         <section className={sharedStyles.manualExploreIntro} aria-labelledby="explore-title">
@@ -437,37 +489,24 @@ export default function ResidencialVFalatianCasas1e2() {
           })}
         </div>
 
-        <section className={localStyles.evolutionSection} ref={afterRoomsSection} aria-labelledby="evolution-title">
-          <div className={localStyles.evolutionHeading}>
-            <span>Acompanhamento</span>
-            <h2 id="evolution-title">Evolução da obra</h2>
-            <p>As etapas abaixo apresentam a estrutura de acompanhamento. Os status serão atualizados quando os dados oficiais da obra estiverem disponíveis.</p>
-          </div>
-          <ol className={localStyles.evolutionTimeline}>
-            {constructionStages.map((stage, index) => (
-              <li key={stage}>
-                <span className={localStyles.stageNumber}>{String(index + 1).padStart(2, "0")}</span>
-                <div><h3>{stage}</h3><p>Status a confirmar</p></div>
-              </li>
-            ))}
-          </ol>
-        </section>
 
-        <section className={sharedStyles.divIntroInfoContent} aria-label="Informações gerais do imóvel">
-          <div className={`${sharedStyles.divIntroInfo} ${localStyles.propertyFacts}`}>
-            <div className={sharedStyles.listIntroInfo}><BedDouble className={sharedStyles.iconIntro} /><h3 className={sharedStyles.listIntroInfoText}>3 quartos</h3></div>
-            <div className={sharedStyles.listIntroInfo}><ChefHat className={sharedStyles.iconIntro} /><h3 className={sharedStyles.listIntroInfoText}>Cozinha com passa-prato</h3></div>
-            <div className={sharedStyles.listIntroInfo}><Flame className={sharedStyles.iconIntro} /><h3 className={sharedStyles.listIntroInfoText}>Área gourmet</h3></div>
-            <div className={sharedStyles.listIntroInfo}><SoapDispenserDroplet className={sharedStyles.iconIntro} /><h3 className={sharedStyles.listIntroInfoText}>Lavanderia</h3></div>
-            <div className={sharedStyles.listIntroInfo}><Car className={sharedStyles.iconIntro} /><h3 className={sharedStyles.listIntroInfoText}>Garagem</h3></div>
+
+        <div ref={afterRoomsSection} className={sharedStyles.divIntroInfoContent} aria-label="Informações gerais do imóvel">
+          <div className={sharedStyles.divIntroInfo}>
+            <div className={sharedStyles.listIntroInfo}><Square className={sharedStyles.iconIntro} /><h5 className={sharedStyles.listIntroInfoText}>126 m<sup className={sharedStyles.numberTwoSup}>2</sup> de área total</h5></div>
+            <div className={sharedStyles.listIntroInfo}><Building2 className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>63 m<sup className={sharedStyles.numberTwoSup}>2</sup> de área construída</h5></div>
+            <div className={sharedStyles.listIntroInfo}><BedDouble className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>3 quartos</h5></div>
+            <div className={sharedStyles.listIntroInfo}><Toilet className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>1 banheiro</h5></div>
+            <div className={sharedStyles.listIntroInfo}><Car className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>Garagem</h5></div>
+            <div className={sharedStyles.listIntroInfo}><Flower2Icon className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>Jardim</h5></div>
           </div>
-        </section>
+        </div>
 
         <div className={sharedStyles.containerEmExec}>
           <div className={sharedStyles.containerInfoCasa}>
             <div className={sharedStyles.imagesVFalatian}>
-              <section className={sharedStyles.locationContainer} aria-labelledby="location-title">
-                <div className={sharedStyles.divLocation}>
+              <section className={`${sharedStyles.locationContainer} ${localStyles.responsiveLocationContainer}`} aria-labelledby="location-title">
+                <div className={`${sharedStyles.divLocation} ${localStyles.responsiveLocationLayout}`}>
                   <div className={sharedStyles.locationText}>
                     <h2 id="location-title" className={`${sharedStyles.locationTitle} ${sharedStyles.localizacaoTextTitle}`}>Localização</h2>
                     <div className={sharedStyles.iconAndTextLocation}><p className={sharedStyles.detailsTextBLocation}>Bairro Veneza - Fazenda Rio Grande / PR</p></div>
@@ -490,7 +529,7 @@ export default function ResidencialVFalatianCasas1e2() {
                 </div>
               </section>
 
-              <section className={sharedStyles.comodProxContainer} aria-labelledby="amenities-title">
+              <section className={`${sharedStyles.comodProxContainer} ${localStyles.responsiveAmenitiesContainer}`} aria-labelledby="amenities-title">
                 <h2 id="amenities-title" className={`${sharedStyles.locationTitle} ${sharedStyles.comodidadesProxTitle}`}>Comodidades Próximas</h2>
                 <div className={sharedStyles.comodidadesContainer}>
                   <div className={sharedStyles.comodidadesCategorias}><span className={sharedStyles.comodidadesCategoriasSpan}><ShoppingCart />Compras &amp; Serviços</span><p className={sharedStyles.comodidadesCategoriasText}>Supermercado Condor - 3 km</p><p className={sharedStyles.comodidadesCategoriasText}>Mercados e lanchonetes - 1,6 km</p></div>
@@ -503,12 +542,12 @@ export default function ResidencialVFalatianCasas1e2() {
           </div>
         </div>
 
-        <section className={sharedStyles.divTextCtaEBtn} aria-label="Fale com a Vanglorian">
+        <section className={`${sharedStyles.divTextCtaEBtn} ${localStyles.responsiveCta}`} aria-label="Fale com a Vanglorian">
           <div className={sharedStyles.divText}>
             <p className={sharedStyles.textCta1}>Quer acompanhar este projeto?</p>
-            <p className={sharedStyles.textCta2}>Converse com a Vanglorian e saiba mais sobre as Casas 1 e 2.</p>
+            <p className={sharedStyles.textCta2}>Converse com a Vanglorian e saiba mais sobre as casas.</p>
           </div>
-          <div className={sharedStyles.divBtn}><button className={sharedStyles.btnCta} onClick={openWhatsApp}>Fale conosco</button></div>
+          <div className={sharedStyles.divBtn}><button className={sharedStyles.btnCta} onClick={openWhatsApp}>Fale Conosco</button></div>
         </section>
       </div>
 

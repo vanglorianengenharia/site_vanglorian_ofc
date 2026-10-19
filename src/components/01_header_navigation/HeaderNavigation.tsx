@@ -19,7 +19,7 @@ export function HeaderNavigation() {
   const navigateToHomeSection = useHomeSectionNavigation();
   const phoneNumber = '+554191459026'; 
   const handleClickTalkWithUs = () => {
-    const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá!%20Acessei%20o%20%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informações.`;
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=Olá!%20Acessei%20o%20site%20da%20Vanglorian%20e%20gostaria%20de%20mais%20informações.`;
     window.open(whatsappLink, '_blank'); 
   }
   

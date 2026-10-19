@@ -215,6 +215,7 @@ export function CompanyEssenceSection() {
   useEffect(() => {
     if (!isModalOpen) return;
 
+    const playButton = playButtonRef.current;
     const body = document.body;
     const savedScrollY = window.scrollY;
     const previousBodyStyles = {
@@ -275,7 +276,7 @@ export function CompanyEssenceSection() {
       document.documentElement.style.scrollBehavior = 'auto';
       window.scrollTo(0, savedScrollY);
       document.documentElement.style.scrollBehavior = previousScrollBehavior;
-      playButtonRef.current?.focus({ preventScroll: true });
+      playButton?.focus({ preventScroll: true });
     };
   }, [applyCardPlaybackToModal, closeModal, isModalOpen]);
 

@@ -9,7 +9,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation"
 import { ProjectStatusFlag } from "@/components/projectStatusFlag/ProjectStatusFlag";
 import ZoomableTourImage from "./ZoomableTourImage";
+import { ConstructionStageItem } from "../residencial-v-falatian-casas-1-2/ConstructionStageStatus";
+import evolutionStyles from "../residencial-v-falatian-casas-1-2/construction.module.css";
+import { constructionStages } from "../residencial-v-falatian-casas-1-2/residentialData";
 
+const constructionProgress = [100, 100, 100, 100, 100, 100, 100] as const;
 
 type SlideItem = {
   image: string;
@@ -525,7 +529,7 @@ useEffect(() => {
     setHasReachedSectionAfterRooms(Boolean(
       roomsSectionBounds
       && sectionAfterRoomsBounds
-      && roomsSectionBounds.bottom <= window.innerHeight * 0.3
+      && roomsSectionBounds.bottom <= window.innerHeight * 0.7
       && sectionAfterRoomsBounds.top < window.innerHeight
     ));
 
@@ -952,7 +956,31 @@ useEffect(() => {
           </div>  
           </div> 
         </div>
-    <div className={styles.divIntroInfoContent} ref={propertyDetailsBlock}>
+    <section
+      className={evolutionStyles.evolutionSection}
+      ref={propertyDetailsBlock}
+      aria-labelledby="evolution-title"
+    >
+      <div className={evolutionStyles.evolutionHeading}>
+        <span>Acompanhamento</span>
+        <h2 id="evolution-title">Evolução da obra</h2>
+        <p>Acompanhe abaixo o percentual concluído em cada etapa da obra.</p>
+      </div>
+      <ol
+        className={`${evolutionStyles.evolutionTimeline} ${evolutionStyles.completedEvolutionTimeline}`}
+        style={{ "--timeline-progress": 1 } as React.CSSProperties}
+      >
+        {constructionStages.map((stage, index) => (
+          <ConstructionStageItem
+            key={stage}
+            index={index}
+            progress={constructionProgress[index]}
+            stage={stage}
+          />
+        ))}
+      </ol>
+    </section>
+    <div className={styles.divIntroInfoContent}>
         <div className={styles.divIntroInfo}>
           <div className={styles.listIntroInfo}><Square  className={styles.iconIntro}/> <h5 className={styles.listIntroInfoText}>126 m<sup className={styles.numberTwoSup}>2</sup> de área total</h5></div>
           <div className={styles.listIntroInfo}><Building2 className={styles.icon}/> <h5 className={styles.listIntroInfoText}>57 m<sup className={styles.numberTwoSup}>2</sup> de área construída</h5></div>

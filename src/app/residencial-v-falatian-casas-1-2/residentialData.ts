@@ -2,13 +2,12 @@ import {
   BedDouble,
   Bubbles,
   Car,
-  ChefHat,
-  Flame,
   House,
+  RouteIcon,
   ShowerHead,
   SoapDispenserDroplet,
   Sofa,
-  UtensilsCrossed,
+  SproutIcon,
   type LucideIcon,
 } from "lucide-react";
 
@@ -29,13 +28,13 @@ export type ConstructionRoom = {
 // Imagens temporárias: substitua somente os caminhos abaixo quando as
 // fotografias reais das Casas 1 e 2 estiverem disponíveis.
 const temporaryImages = {
-  entrance: ["/assets/entrada-casas-1e2-frente.webp", "/assets/entrada-casas-1e2-02.webp"],
-  living: ["/assets/area-social-integrada-01.webp", "/assets/sala-visao-interna-02.webp"],
-  bedrooms: ["/assets/quartos-visao-sala-01.webp", "/assets/quartos-visao-interna-03.webp"],
-  bathroom: ["/assets/banheiro-visao-geral-01.webp", "/assets/banheiro-vista-porta-02.webp"],
-  kitchen: ["/assets/cozinha-completa-01.webp", "/assets/cozinha-iluminada-02.webp"],
-  gourmet: ["/assets/espaco-gourmet-completa-01.webp", "/assets/espaco-gourmet-visao-frente-02.webp"],
-  laundry: ["/assets/lavanderia-visao-geral-01.webp", "/assets/lavanderia-visao-interna-02.webp"],
+  entrance: ["/assets/vfalatian-casas-1e2-entrada-01.webp", "/assets/vfalatian-1e2-entrada-02.webp"],
+  living: ["/assets/vfalatian-casas-1e2-area-social-01.webp", "/assets/vfalatian-1e2-area-social-02.webp"],
+  hall: ["/assets/vfalatian-casas-1e2-hall-00.webp", "/assets/vfalatian-casas-1e2-hall-02.webp"],
+  bathroom: ["/assets/vfalatian-1e2-banheiro-01.webp", "/assets/vfalatian-1e2-banheiro-02.webp"],
+  bedrooms: ["/assets/vfalatian-casas-1e2-quarto-01.webp", "/assets/vfalatian-casas-1e2-quarto-02.webp", "/assets/vfalatian-casas-1e2-quarto-03.webp"],
+  garden: ["/assets/vfalatian-casas-1e2-jardim-01.webp", "/assets/vfalatian-1e2-lavanderia-e-jardim-02.webp"],
+  laundry: ["/assets/vfalatian-1e2-lavanderia-01.webp", "/assets/vfalatian-1e2-lavanderia-e-jardim-02.webp"],
 } as const;
 
 export const constructionRooms: ConstructionRoom[] = [
@@ -99,8 +98,8 @@ export const constructionRooms: ConstructionRoom[] = [
     displayName: "Hall",
     slides: [
       {
-        image: temporaryImages.bedrooms[0],
-        icon: BedDouble,
+        image: temporaryImages.hall[0],
+        icon:  RouteIcon,
         title: "Privacidade e organização",
         topics: [
           "Hall que conecta a área social aos ambientes íntimos",
@@ -109,8 +108,8 @@ export const constructionRooms: ConstructionRoom[] = [
         ],
       },
       {
-        image: temporaryImages.bedrooms[1],
-        icon: BedDouble,
+        image: temporaryImages.hall[1],
+        icon:  RouteIcon,
         title: "Privacidade e organização",
         topics: [
           "Hall que conecta a área social aos ambientes íntimos",
@@ -153,8 +152,8 @@ export const constructionRooms: ConstructionRoom[] = [
     displayName: "Dormitórios",
     slides: [
       {
-        image: temporaryImages.kitchen[0],
-        icon: ChefHat,
+        image: temporaryImages.bedrooms[0],
+        icon: BedDouble,
         title: "Espaços para descansar",
         topics: [
           "Três dormitórios integrados à área íntima da residência",
@@ -163,8 +162,18 @@ export const constructionRooms: ConstructionRoom[] = [
         ],
       },
       {
-        image: temporaryImages.kitchen[1],
-        icon: UtensilsCrossed,
+        image: temporaryImages.bedrooms[1],
+        icon: BedDouble,
+        title: "Espaços para descansar",
+        topics: [
+          "Três dormitórios integrados à área íntima da residência",
+          "Ambientes projetados para conforto e privacidade",
+          "Distribuição que favorece diferentes possibilidades de uso",
+        ],
+      },
+      {
+        image: temporaryImages.bedrooms[2],
+        icon: BedDouble,
         title: "Espaços para descansar",
         topics: [
           "Três dormitórios integrados à área íntima da residência",
@@ -180,8 +189,8 @@ export const constructionRooms: ConstructionRoom[] = [
     displayName: "Jardim",
     slides: [
       {
-        image: temporaryImages.gourmet[0],
-        icon: Flame,
+        image: temporaryImages.garden[0],
+        icon: SproutIcon,
         title: "Praticidade ao ar livre",
         topics: [
           "Jardim localizado nos fundos da residência",
@@ -190,8 +199,8 @@ export const constructionRooms: ConstructionRoom[] = [
         ],
       },
       {
-        image: temporaryImages.gourmet[1],
-        icon: UtensilsCrossed,
+        image: temporaryImages.garden[1],
+        icon: SproutIcon,
         title: "Praticidade ao ar livre",
         topics: [
           "Jardim localizado nos fundos da residência",
