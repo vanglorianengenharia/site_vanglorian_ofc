@@ -493,7 +493,7 @@ export default function ResidencialVFalatianCasas1e2() {
 
         <div ref={afterRoomsSection} className={sharedStyles.divIntroInfoContent} aria-label="Informações gerais do imóvel">
           <div className={sharedStyles.divIntroInfo}>
-            <div className={sharedStyles.listIntroInfo}><Square className={sharedStyles.iconIntro} /><h5 className={sharedStyles.listIntroInfoText}>126 m<sup className={sharedStyles.numberTwoSup}>2</sup> de área total</h5></div>
+            <div className={sharedStyles.listIntroInfo}><Square className={sharedStyles.iconIntro} /><h5 className={sharedStyles.listIntroInfoText}>126 m<sup className={sharedStyles.numberTwoSup}>2</sup> de terreno</h5></div>
             <div className={sharedStyles.listIntroInfo}><Building2 className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>63 m<sup className={sharedStyles.numberTwoSup}>2</sup> de área construída</h5></div>
             <div className={sharedStyles.listIntroInfo}><BedDouble className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>3 quartos</h5></div>
             <div className={sharedStyles.listIntroInfo}><Toilet className={sharedStyles.icon} /><h5 className={sharedStyles.listIntroInfoText}>1 banheiro</h5></div>

@@ -982,7 +982,7 @@ useEffect(() => {
     </section>
     <div className={styles.divIntroInfoContent}>
         <div className={styles.divIntroInfo}>
-          <div className={styles.listIntroInfo}><Square  className={styles.iconIntro}/> <h5 className={styles.listIntroInfoText}>126 m<sup className={styles.numberTwoSup}>2</sup> de área total</h5></div>
+          <div className={styles.listIntroInfo}><Square  className={styles.iconIntro}/> <h5 className={styles.listIntroInfoText}>126 m<sup className={styles.numberTwoSup}>2</sup> de terreno</h5></div>
           <div className={styles.listIntroInfo}><Building2 className={styles.icon}/> <h5 className={styles.listIntroInfoText}>57 m<sup className={styles.numberTwoSup}>2</sup> de área construída</h5></div>
           <div className={styles.listIntroInfo}><BedDoubleIcon className={styles.icon}/> <h5 className={styles.listIntroInfoText}>2 quartos</h5></div>
           <div className={styles.listIntroInfo}><Toilet className={styles.icon}/> <h5 className={styles.listIntroInfoText}>1 banheiro</h5></div>
