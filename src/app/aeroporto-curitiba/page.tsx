@@ -94,16 +94,16 @@ const timeline = [
   },
   {
     number: '03',
-    title: 'Infraestrutura e instalações',
+    title: 'Montagem da estrutura metálica',
     text: 'Desenvolvimento das instalações técnicas necessárias ao ambiente.',
-    image: null,
+    image: '/assets/timeline-03.webp',
     position: 'center',
   },
   {
     number: '04',
     title: 'Adequações finais',
     text: 'Acabamentos, ajustes, testes e validação dos sistemas.',
-    image: null,
+    image: '/assets/timeline-04.webp',
     position: '68% center',
   },
   {

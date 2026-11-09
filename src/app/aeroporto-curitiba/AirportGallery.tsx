@@ -7,6 +7,10 @@ import styles from './airportCuritiba.module.css';
 
 const galleryImages = [
   {
+    src: '/assets/aeroporto-galeria-000.webp',
+    alt: 'Terminal aeroportuário e aeronave ao entardecer',
+  },
+  {
     src: '/assets/aeroporto-galeria-01.webp',
     alt: 'Terminal aeroportuário e aeronave ao entardecer',
   },
@@ -20,6 +24,14 @@ const galleryImages = [
   },
   {
     src: '/assets/aeroporto-galeria-04.webp',
+    alt: 'Aeroporto iluminado durante operação noturna',
+  },
+   {
+    src: '/assets/aeroporto-galeria-05.webp',
+    alt: 'Aeroporto iluminado durante operação noturna',
+  },
+   {
+    src: '/assets/aeroporto--galeria-06.webp',
     alt: 'Aeroporto iluminado durante operação noturna',
   },
 ];
